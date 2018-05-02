@@ -143,35 +143,38 @@ and then forwarded to the unpacker/processor/parser.
 
 Nano, different to SmartGlass core, uses padding of type
 [ANSI X.923](https://en.wikipedia.org/wiki/Padding_(cryptography)#ANSI_X.923)
-aka. padding with **zero**, the last byte defining the number of padding
-bytes. Aligment is **4 bytes**.
+aka. padding with **zero**, the last byte defining the number of padding bytes.
+
+Aligment is **4 bytes**.
 
 ### Example
 
 **Plaintext (9 bytes)**
 `DE AD BE EF DE AD BE EF DE`
+
 **Padded Plaintext (12 bytes) - 3 bytes padding**
 `DE AD BE EF DE AD BE EF DE 00 00 03`
 
 ## RTP Header
 
 ![Rtp Header](rtpheader.png)
+
 Image Source: <https://de.wikipedia.org/wiki/Real-Time_Transport_Protocol>
+
 Image Copyright License: **CC-by-sa-3.0**
 
-**Total size**: 0x0C (12)
-**V**: Version (2 bits): Always 2
-**P**: Padding (1 bit): If set, last byte of payload is
-padding size.
-**X**: Extension (1 bit): If set, variable size header
-extension exists - **Not used by Nano**
-**CSRC Count**: (4 bits) Should be 0 - **Not used by Nano**
-**M**: Marker (1 bit): Indicates a _special packet_ in stream data
-**Payload type**: (7 bits) See [Payload Types](#payload-types)
-**Sequence number**: (16 bits) Incrementing number, indvidual to each
-channel, used to keep track of order and lost packets
-**Timestamp**: (32 bits) Timestamp, unsure how it's actually calculated
-**SSRC**: (32 bits) For Nano its split into 2 x 16 bits:
+- **Total size**: 0x0C (12)
+- **V**: Version (2 bits): Always 2
+- **P**: Padding (1 bit): If set, last byte of payload is padding size.
+- **X**: Extension (1 bit): If set, variable size header
+  extension exists - **Not used by Nano**
+- **CSRC Count**: (4 bits) Should be 0 - **Not used by Nano**
+- **M**: Marker (1 bit): Indicates a _special packet_ in stream data
+- **Payload type**: (7 bits) See [Payload Types](#payload-types)
+- **Sequence number**: (16 bits) Incrementing number, indvidual to each
+  channel, used to keep track of order and lost packets
+- **Timestamp**: (32 bits) Timestamp, unsure how it's actually calculated
+- **SSRC**: (32 bits) For Nano its split into 2 x 16 bits:
 
 > NOTE: Only UDP packets use `Connection Id` field, TCP sets it to `0`
 >
@@ -212,13 +215,13 @@ Payload Type is encoded in the [RTP Header](#rtp-header) `Payload type` field.
 | Channel Control | 0x61  |
 | UDP Handshake   | 0x64  |
 
-**Streamer**: Sending encoded video/audio/input data,
-sending [Control Protocol packets](#control-protocol)
-**Control**: Initial TCP handshake, informs each participants
-about the used Connection Id.
-**Channel Control**: Creating / opening / closing [Channels](#channels).
-**UDP Handshake**: Initial UDP handshake, used to inform
-the host about the used UDP port of the client side.
+- **Streamer**: Sending encoded video/audio/input data,
+  sending [Control Protocol packets](#control-protocol)
+- **Control**: Initial TCP handshake, informs each participants
+  about the used Connection Id.
+- **Channel Control**: Creating / opening / closing [Channels](#channels).
+- **UDP Handshake**: Initial UDP handshake, used to inform
+  the host about the used UDP port of the client side.
 
 ## Streamer Protocol Version
 
@@ -261,13 +264,9 @@ respond with a `Client Handshake`.
 
 **Total size**: 0x03 (3)
 
-**Type**: Handshake type:
-
-- SYN: 0 - Sent by client
-- ACK: 1 - Response from console
-
-**Connection Id**: Client sends randomly generated connection
-Id, Host responds with it's own.
+- **Type**: Handshake type: SYN: 0 - Sent by client, ACK: 1 - Response from console
+- **Connection Id**: Client sends randomly generated connection
+  Id, Host responds with it's own.
 
 ### Channel Control Packet
 
@@ -280,8 +279,8 @@ Id, Host responds with it's own.
 
 **Total size**: _variable_
 
-**Channel Control Type**: See [Channel Control Types](#channel-control-types)
-**Payload**: Depending on Type-field
+- **Channel Control Type**: See [Channel Control Types](#channel-control-types)
+- **Payload**: Depending on Type-field
 
 #### Channel Control Types
 
@@ -305,8 +304,8 @@ Id, Host responds with it's own.
 
 **Total size**: _variable_
 
-**Channel Name**: See [Channels](#channels)
-**Flags**: Unknown
+- **Channel Name**: See [Channels](#channels)
+- **Flags**: Unknown
 
 ##### Open
 
@@ -319,9 +318,8 @@ Id, Host responds with it's own.
 
 **Total size**: _variable_
 
-**Flags (optional)**: Depending on prepended size.
-Are sent by the client _as-is_ in the responding
-[Channel Open](#open) packet.
+- **Flags (optional)**: Depending on prepended size.
+  Are sent by the client _as-is_ in the responding [Channel Open](#open) packet.
 
 ##### Close
 
@@ -333,7 +331,7 @@ Are sent by the client _as-is_ in the responding
 
 **Total size**: 0x04 (4)
 
-**Flags**: Same flags as sent with `Create` and `Open` packet
+- **Flags**: Same flags as sent with `Create` and `Open` packet
 
 ### UDP Handshake Packet
 
@@ -343,7 +341,7 @@ Are sent by the client _as-is_ in the responding
 
 **Total size**: 0x01 (1)
 
-**Type**: Handshake Type
+- **Type**: Handshake Type
 
 ### Streamer Packet
 
@@ -366,13 +364,13 @@ protocol:
 > **Streamer Payload Length**: Only used if `Streamer Payload Type`
 > is **not** 0 (0: Control packet with own header)
 
-**Streamer Version**: Depending on used [Channel](#channels)
-**Sequence Number**: Incrementing number, specific for channel
-and participant side
-**Previous Sequence Number**: Previously sent `Sequence Number`
-**Streamer Payload Type**:  See [Audio / Video Payload Type](#audio-video-streamer-payload-type)
-and [Input Payload Type](#input-payload-type)
-**Streamer Payload**: Depending on `Streamer Payload Type`
+- **Streamer Version**: Depending on used [Channel](#channels)
+- **Sequence Number**: Incrementing number, specific for channel
+  and participant side
+- **Previous Sequence Number**: Previously sent `Sequence Number`
+- **Streamer Payload Type**:  See [Audio / Video Payload Type](#audio-video-streamer-payload-type)
+  and [Input Payload Type](#input-payload-type)
+- **Streamer Payload**: Depending on `Streamer Payload Type`
 
 #### UDP Streamer Header
 
@@ -385,10 +383,10 @@ and [Input Payload Type](#input-payload-type)
 
 **Total size**: _variable_
 
-**Streamer Version**: Depending on used [Channel](#channels)
-**Streamer Payload Type**: See [Audio / Video Payload Type](#audio-video-streamer-payload-type)
-and [Input Payload Type](#input-payload-type)
-**Streamer Payload**: Depending on `Streamer Payload Type`
+- **Streamer Version**: Depending on used [Channel](#channels)
+- **Streamer Payload Type**: See [Audio / Video Payload Type](#audio-video-streamer-payload-type)
+  and [Input Payload Type](#input-payload-type)
+- **Streamer Payload**: Depending on `Streamer Payload Type`
 
 #### Audio Video Streamer Payload Type
 
@@ -434,24 +432,24 @@ value and increment on each packet.
 
 #### Audio Format
 
-| Offset (hex) | Offset (dec) | Type   | Description |
-| -----------: | -----------: | ------ | ----------- |
-|         0x00 |            0 | uint32 | Channels    |
-|         0x04 |            4 | uint32 | Sample Rate |
-|         0x08 |            8 | uint32 | Audio Codec |
+| Offset (hex) | Offset (dec) | Type   | Description           |
+| -----------: | -----------: | ------ | --------------------- |
+|         0x00 |            0 | uint32 | Channels              |
+|         0x04 |            4 | uint32 | Sample Rate           |
+|         0x08 |            8 | uint32 | Audio Codec           |
+|              |              |        | If AudioCodec is PCM: |
+|         0x0C |           12 | uint32 | Bit Depth             |
+|         0x10 |           16 | uint32 | Type                  |
 
-| If AudioCodec is PCM:
-| 0x0C | 12 | uint32   | Bit Depth
-| 0x10 | 16 | uint32   | Type
 **Total size**: _variable_
 
-**Channels**: Audio Channels of encoded data
-**Sample Rate**: Samplerate of encoded data
-**Audio Codec**: See [Audio Codec](#audio-codec)
-**Bit Depth (optional)**: If `Audio Codec` is `PCM` this field
-gives the bit depth of encoded data
-**Type (optional)**: If `Audio Codec` is `PCM` this field
-gives the type (`Integer` or `Float`) of encoded data
+- **Channels**: Audio Channels of encoded data
+- **Sample Rate**: Samplerate of encoded data
+- **Audio Codec**: See [Audio Codec](#audio-codec)
+- **Bit Depth (optional)**: If `Audio Codec` is `PCM` this field
+  gives the bit depth of encoded data
+- **Type (optional)**: If `Audio Codec` is `PCM` this field
+  gives the type (`Integer` or `Float`) of encoded data
 
 #### Audio Codec
 
@@ -474,10 +472,10 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: _variable_
 
-**Protocol Version**: See [Streamer Protocol Version](#streamer-protocol-version)
-**Reference Timestamp**: See [Reference Timestamp](#reference-timestamp)
-**Audio Formats**: Available `Audio Formats`, Array of
-[Audio Format](#audio-format)
+- **Protocol Version**: See [Streamer Protocol Version](#streamer-protocol-version)
+- **Reference Timestamp**: See [Reference Timestamp](#reference-timestamp)
+- **Audio Formats**: Available `Audio Formats`, Array of
+  [Audio Format](#audio-format)
 
 #### Audio Client Handshake
 
@@ -490,8 +488,8 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: _variable_
 
-**Initial Frame Id**: See [Frame Id](#frame-id)
-**Audio Format**: By client desired [Audio Format](#audio-format)
+- **Initial Frame Id**: See [Frame Id](#frame-id)
+- **Audio Format**: By client desired [Audio Format](#audio-format)
 
 #### Audio Control
 
@@ -503,15 +501,15 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: 0x04 (4)
 
-**Audio Control Flags**: See [Audio Control Flags](#audio-control-flags)
+- **Audio Control Flags**: See [Audio Control Flags](#audio-control-flags)
 
 ##### Audio Control Flags
 
-| Flag                      | Bits                  | Mask
-\| ------------------------- \| --------------------- \| ------
-| Reinitialize              | `0000 0000 0000 0010` | 0x02
-| Start Stream              | `0000 0000 0000 1000` | 0x08
-| Stop Stream               | `0000 0000 0001 0000` | 0x10
+| Flag         | Bits                  | Mask |
+| ------------ | --------------------- | ---- |
+| Reinitialize | `0000 0000 0000 0010` | 0x02 |
+| Start Stream | `0000 0000 0000 1000` | 0x08 |
+| Stop Stream  | `0000 0000 0001 0000` | 0x10 |
 
 #### Audio Data
 
@@ -527,10 +525,10 @@ Header: [UDP Streamer Header](#udp-streamer-header)
 
 **Total size**: _variable_
 
-**Flags**: Unknown, for `AAC` it seems to always be `0x4`
-**Frame Id**: See [Frame Id](#frame-id)
-**Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
-**Data**: Encoded data
+- **Flags**: Unknown, for `AAC` it seems to always be `0x4`
+- **Frame Id**: See [Frame Id](#frame-id)
+- **Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
+- **Data**: Encoded data
 
 ### Video
 
@@ -540,35 +538,35 @@ TODO
 
 #### Video Format
 
-| Offset (hex) | Offset (dec) | Type   | Description |
-| -----------: | -----------: | ------ | ----------- |
-|         0x00 |            0 | uint32 | FPS         |
-|         0x04 |            4 | uint32 | Width       |
-|         0x08 |            8 | uint32 | Height      |
-|         0x0C |           12 | uint32 | Video Codec |
+| Offset (hex) | Offset (dec) | Type   | Description           |
+| -----------: | -----------: | ------ | --------------------- |
+|         0x00 |            0 | uint32 | FPS                   |
+|         0x04 |            4 | uint32 | Width                 |
+|         0x08 |            8 | uint32 | Height                |
+|         0x0C |           12 | uint32 | Video Codec           |
+|              |              |        | If VideoCodec is RGB: |
+|         0x10 |           16 | uint32 | Bpp                   |
+|         0x14 |           20 | uint32 | Bytes                 |
+|         0x18 |           24 | uint64 | Red Mask              |
+|         0x20 |           32 | uint64 | Green Mask            |
+|         0x28 |           40 | uint64 | Blue Mask             |
 
-| If VideoCodec is RGB:
-| 0x10 | 16 | uint32   | Bpp
-| 0x14 | 20 | uint32   | Bytes
-| 0x18 | 24 | uint64   | Red Mask
-| 0x20 | 32 | uint64   | Green Mask
-| 0x28 | 40 | uint64   | Blue Mask
 **Total size**: _variable_
 
-**FPS**: Frames per second
-**Width**: Video Frame Width
-**Height**: Video Frame Height
-**Video Codec**: See `Video Codec`
-**Bpp (optional)**: If `Video Codec` is `RGB` this field gives
-the bits per pixel (color depth)
-**Bytes (optional)**:  If `Video Codec` is `RGB` this field gives
-the bytes per pixel
-**Red Mask (optional)**: If `Video Codec` is `RGB` this field gives
-the `Red Mask`
-**Green Mask (optional)**: If `Video Codec` is `RGB` this field gives
-the `Green Mask`
-**Blue Mask (optional)**: If `Video Codec` is `RGB` this field gives
-the `Blue Mask`
+- **FPS**: Frames per second
+- **Width**: Video Frame Width
+- **Height**: Video Frame Height
+- **Video Codec**: See `Video Codec`
+- **Bpp (optional)**: If `Video Codec` is `RGB` this field gives
+  the bits per pixel (color depth)
+- **Bytes (optional)**:  If `Video Codec` is `RGB` this field gives
+  the bytes per pixel
+- **Red Mask (optional)**: If `Video Codec` is `RGB` this field gives
+  the `Red Mask`
+- **Green Mask (optional)**: If `Video Codec` is `RGB` this field gives
+  the `Green Mask`
+- **Blue Mask (optional)**: If `Video Codec` is `RGB` this field gives
+  the `Blue Mask`
 
 #### Video Codec
 
@@ -594,13 +592,13 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: _variable_
 
-**Protocol Version**: See [Streamer Protocol Version](#streamer-protocol-version)
-**Width**: Video Width
-**Height**: Video Height
-**FPS**: Frames per second
-**Reference Timestamp**: [Reference Timestamp](#reference-timestamp)
-**Video Formats**: Available `Video Formats`, Array of
-[Video Format](#video-format)
+- **Protocol Version**: See [Streamer Protocol Version](#streamer-protocol-version)
+- **Width**: Video Width
+- **Height**: Video Height
+- **FPS**: Frames per second
+- **Reference Timestamp**: [Reference Timestamp](#reference-timestamp)
+- **Video Formats**: Available `Video Formats`, Array of
+  [Video Format](#video-format)
 
 #### Video Client Handshake
 
@@ -613,49 +611,49 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: _variable_
 
-**Initial Frame Id**: See [Frame Id](#frame-id)
-**Video Format**: By client desired [Video Format](#video-format)
+- **Initial Frame Id**: See [Frame Id](#frame-id)
+- **Video Format**: By client desired [Video Format](#video-format)
 
 #### Video Control
 
 Header: [TCP Streamer Header](#tcp-streamer-header)
 
-| Offset (hex) | Offset (dec) | Type   | Description         |
-| -----------: | -----------: | ------ | ------------------- |
-|         0x00 |            0 | uint32 | Video Control Flags |
+| Offset (hex) | Offset (dec) | Type   | Description                    |
+| -----------: | -----------: | ------ | ------------------------------ |
+|         0x00 |            0 | uint32 | Video Control Flags            |
+|              |              |        | If "Last displayed frame" set: |
+|         0x?? |            ? | uint32 | Last displayed Frame Id        |
+|         0x?? |            ? | uint64 | Timestamp                      |
+|              |              |        | If "Queue Depth" set:          |
+|         0x?? |            ? | uint32 | Queue Depth                    |
+|              |              |        | If "Lost frames" set:          |
+|         0x?? |            ? | uint32 | First lost Frame               |
+|         0x?? |            ? | uint32 | Last lost Frame                |
 
-| If "Last displayed frame" set:
-| 0x?? |  ? | uint32           | Last displayed Frame Id
-| 0x?? |  ? | uint64           | Timestamp
-| If "Queue Depth" set:
-| 0x?? |  ? | uint32           | Queue Depth
-| If "Lost frames" set:
-| 0x?? |  ? | uint32           | First lost Frame
-| 0x?? |  ? | uint32           | Last lost Frame
 **Total size**: _variable_
 
-**Video Control Flags**: See [Video Control Flags](#video-control-flags)
-**Last displayed Frame Id (optional)**: If flag `Last displayed frame` is set, this
-informs the host about the last displayed `Video Frame` by `Frame Id`
-**Timestamp (optional)**: If flag `Last displayed frame` is set, this informs the
-host about the time the frame was displayed
-([Timestamp of Data Packets](#timestamp-of-data-packets))
-**Queue Depth (optional)**: If flag `Queue Depth` is set: Informs the host about queue depth
-**First lost Frame (optional)**: If flag `Lost frames` is set, this informs the host about
-the first last Frame, given the `Frame Id`
-**Last lost Frame (optional)**: If flag `Lost frames` is set, this informs the host about
-the last last Frame, given the `Frame Id`
+- **Video Control Flags**: See [Video Control Flags](#video-control-flags)
+- **Last displayed Frame Id (optional)**: If flag `Last displayed frame` is set, this
+  informs the host about the last displayed `Video Frame` by `Frame Id`
+- **Timestamp (optional)**: If flag `Last displayed frame` is set, this informs the
+  host about the time the frame was displayed
+  ([Timestamp of Data Packets](#timestamp-of-data-packets))
+- **Queue Depth (optional)**: If flag `Queue Depth` is set: Informs the host about queue depth
+- **First lost Frame (optional)**: If flag `Lost frames` is set, this informs the host about
+  the first last Frame, given the `Frame Id`
+- **Last lost Frame (optional)**: If flag `Lost frames` is set, this informs the host about
+  the last last Frame, given the `Frame Id`
 
 ##### Video Control Flags
 
-| Flag                      | Bits                  | Mask
-\| ------------------------- \| --------------------- \| ------
-| Request Keyframe          | `0000 0000 0000 0100` | 0x04
-| Start Stream              | `0000 0000 0000 1000` | 0x08
-| Stop Stream               | `0000 0000 0001 0000` | 0x10
-| Queue Depth               | `0000 0000 0010 0000` | 0x20
-| Lost frames               | `0000 0000 0100 0000` | 0x40
-| Last displayed frame      | `0000 0000 1000 0000` | 0x80
+| Flag                 | Bits                  | Mask |
+| -------------------- | --------------------- | ---- |
+| Request Keyframe     | `0000 0000 0000 0100` | 0x04 |
+| Start Stream         | `0000 0000 0000 1000` | 0x08 |
+| Stop Stream          | `0000 0000 0001 0000` | 0x10 |
+| Queue Depth          | `0000 0000 0010 0000` | 0x20 |
+| Lost frames          | `0000 0000 0100 0000` | 0x40 |
+| Last displayed frame | `0000 0000 1000 0000` | 0x80 |
 
 #### Video Data
 
@@ -674,13 +672,13 @@ Header: [UDP Streamer Header](#udp-streamer-header)
 
 **Total size**: _variable_
 
-**Flags**: See [Video Data Flags](#video-data-flags)
-**Frame Id**: See [Frame Id](#frame-id)
-**Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
-**Total size**: Total size of the Video Frame
-**Packet count**: Count of total frame chunks
-**Offset**: Beginning position of current frame chunk
-**Data**: Encoded data
+- **Flags**: See [Video Data Flags](#video-data-flags)
+- **Frame Id**: See [Frame Id](#frame-id)
+- **Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
+- **Total size**: Total size of the Video Frame
+- **Packet count**: Count of total frame chunks
+- **Offset**: Beginning position of current frame chunk
+- **Data**: Encoded data
 
 ##### Video Data Flags
 
@@ -709,8 +707,8 @@ Header: [UDP Streamer Header](#udp-streamer-header)
 #### Input Button Model
 
 This structure starts with `all-zero`.
-When a button-state is changed, the appropriate field is incremented
-by one.
+When a button-state is changed, the appropriate field is incremented by one.
+
 **Advice**: Keep track of the button-state, don't increment the value if new button-
 state is the same as the old one - otherwise you will provoke a _stuck button_
 in case an [Input Frame](#input-frame) packet is lost.
@@ -792,7 +790,7 @@ while (getting_input_data) {
 
 **Total size**: 0x09 (9)
 
-**Unknown 1**: Set to 1 for gamepad
+- **Unknown 1**: Set to 1 for gamepad
 
 #### Input Server Handshake
 
@@ -808,11 +806,11 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: 0x14 (20)
 
-**Protocol Version**: See [Streamer Protocol Version](#streamer-protocol-version)
-**Desktop Width**: Host's display width
-**Desktop Height**: Host's display height
-**Max Touches**: `0`
-**Initial Frame Id**: [Frame Id](#frame-id)
+- **Protocol Version**: See [Streamer Protocol Version](#streamer-protocol-version)
+- **Desktop Width**: Host's display width
+- **Desktop Height**: Host's display height
+- **Max Touches**: `0`
+- **Initial Frame Id**: [Frame Id](#frame-id)
 
 #### Input Client Handshake
 
@@ -825,8 +823,8 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 **Total size**: 0x0C (12)
 
-**Max Touches**: Input: `10`, Input Feedback: `0`
-**Reference Timestamp**: See [Reference Timestamp](#reference-timestamp)
+- **Max Touches**: Input: `10`, Input Feedback: `0`
+- **Reference Timestamp**: See [Reference Timestamp](#reference-timestamp)
 
 #### Frame Ack
 
@@ -838,30 +836,30 @@ Header: [UDP Streamer Header](#udp-streamer-header)
 
 **Total size**: 0x04 (4)
 
-**Acked frame**: `Frame Id` of [Input Frame](#input-frame) to acknowledge
+- **Acked frame**: `Frame Id` of [Input Frame](#input-frame) to acknowledge
 
 #### Input Frame
 
 Header: [UDP Streamer Header](#udp-streamer-header)
 
-| Offset (hex) | Offset (dec) | Type      | Description        |
-| -----------: | -----------: | --------- | ------------------ |
-|         0x00 |            0 | uint32    | Frame Id           |
-|         0x04 |            4 | uint64    | Timestamp          |
-|         0x0C |           12 | uint64    | Created Timestamp  |
-|         0x14 |           20 | byte\[16] | Input Button Model |
-|         0x24 |           36 | byte\[14] | Input Analog Model |
+| Offset (hex) | Offset (dec) | Type      | Description           |
+| -----------: | -----------: | --------- | --------------------- |
+|         0x00 |            0 | uint32    | Frame Id              |
+|         0x04 |            4 | uint64    | Timestamp             |
+|         0x0C |           12 | uint64    | Created Timestamp     |
+|         0x14 |           20 | byte\[16] | Input Button Model    |
+|         0x24 |           36 | byte\[14] | Input Analog Model    |
+|              |              |           | If remaining data:    |
+|         0x32 |           50 | byte\[9]  | Input Extension Model |
 
-| If remaining data:
-| 0x32         | 50           | byte\[9]  | Input Extension Model
 **Total size**: 0x32 (50) or 0x3B (59)
 
-**Frame Id**: See [Frame Id](#frame-id)
-**Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
-**Created Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
-**Input Button Model**: See [Input Button Model](#input-button-model)
-**Input Analog Model**: See [Input Analog Model](#input-analog-model)
-**Input Extension Model (optional)**: [Input Extension Model](#input-extension-model)
+- **Frame Id**: See [Frame Id](#frame-id)
+- **Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
+- **Created Timestamp**: See [Timestamp of Data Packets](#timestamp-of-data-packets)
+- **Input Button Model**: See [Input Button Model](#input-button-model)
+- **Input Analog Model**: See [Input Analog Model](#input-analog-model)
+- **Input Extension Model (optional)**: [Input Extension Model](#input-extension-model)
 
 ### Control Protocol
 
@@ -880,11 +878,11 @@ Control Protocol packets have `Streamer Payload Type` set to `0`
 
 **Total size**: _variable_
 
-**Previous Sequence**: Previous Sequence Number (DUPE)
-**Unknown 1**: TODO: `1`
-**Unknown 2**: TODO: `1406`
-**Control Payload Type**: See [Control Payload Type](#control-payload-type)
-**Control Payload**: Depends on [Control Payload Type](#control-payload-type)
+- **Previous Sequence**: Previous Sequence Number (DUPE)
+- **Unknown 1**: TODO: `1`
+- **Unknown 2**: TODO: `1406`
+- **Control Payload Type**: See [Control Payload Type](#control-payload-type)
+- **Control Payload**: Depends on [Control Payload Type](#control-payload-type)
 
 #### Control Payload Type
 
@@ -1003,8 +1001,8 @@ appropriate `Channel Open` packets to the client.
 |         0x00 |            0 | byte | Event             |
 |         0x01 |            1 | byte | Controller Number |
 
-**Event**: [Controller Event Type](#controller-event-type)
-**Controller Number**: Null-indexed controller number
+- **Event**: [Controller Event Type](#controller-event-type)
+- **Controller Number**: Null-indexed controller number
 
 ##### Controller Event Type
 

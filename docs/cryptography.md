@@ -14,9 +14,9 @@
 
 At a high level, SmartGlass uses:
 
-1. ECDH over `prime256/384/521v1` with a salted `SHA-512` KDF for key exchange
-2. `AES-128-CBC` for message encryption
-3. `HMAC-SHA-256` for message authentication
+- ECDH over `prime256/384/521v1` with a salted `SHA-512` KDF for key exchange
+- `AES-128-CBC` for message encryption
+- `HMAC-SHA-256` for message authentication
 
 ## Key Exchange
 
@@ -48,7 +48,7 @@ In detail, key exchange works like this:
 ### Connect Request
 
 The **IV** is randomly generated and transmitted inside
-the **unprotected payload** section of the Connect Request packet.
+the **unprotected payload** section of the [Connect Request packet](simple_message.md#connect-request).
 
 ### Messages
 
@@ -79,13 +79,17 @@ If the plaintext is 16 bytes aligned already,
 
 **Plaintext (12 bytes)**
 `DE AD BE EF DE AD BE EF DE AD BE EF`
-**Padded Plaintext (16 bytes) - 4 bytes padding**
+
+**Padded (12+4 bytes)**
 `DE AD BE EF DE AD BE EF DE AD BE EF 04 04 04 04`
 
 As you can see, the padding consists of the _count of
 bytes_:
+
 **2 byte padding**: `02 02`
+
 **3 byte padding**: `03 03 03`
+
 **6 byte padding**: `06 06 06 06 06 06`
 
 ## Message Authentication

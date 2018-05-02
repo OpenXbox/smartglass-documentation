@@ -211,6 +211,7 @@ Direction: _Client -> Console_
 ##### Response
 
 Direction: _Console -> Client_
+
 **Regular response**
 
 ```json
@@ -243,6 +244,7 @@ Direction: _Console -> Client_
 #### Get Configuration
 
 Value: `GetConfiguration`
+
 **Request Parameters**
 `None`
 
@@ -275,6 +277,7 @@ Value: `GetConfiguration`
 #### Get Headend Info
 
 Value: `GetHeadendInfo`
+
 **Request Parameters**
 `None`
 
@@ -311,6 +314,7 @@ Value: `GetHeadendInfo`
 #### Get Live TV Info
 
 Value: `GetLiveTVInfo`
+
 **Request Parameters**
 `None`
 
@@ -323,6 +327,7 @@ Value: `GetLiveTVInfo`
 #### Get Program Info
 
 Value: `GetProgrammInfo`
+
 **Request Parameters**
 `None`
 
@@ -335,8 +340,10 @@ Value: `GetProgrammInfo`
 #### Get Tuner Lineups
 
 Value: `GetTunerLineups`
+
 **Request Parameters**
 `None`
+
 **Response Parameters**
 
 ```json
@@ -358,6 +365,7 @@ Value: `GetTunerLineups`
 #### Get AppChannel Lineups
 
 Value: `GetAppChannelLineups`
+
 **Request Parameters**
 `None`
 
@@ -403,6 +411,7 @@ Value: `GetAppChannelLineups`
 #### Get AppChannel Program Data
 
 Value: `GetAppChannelProgramData`
+
 **Request Parameters**
 
 ```json
@@ -421,6 +430,7 @@ Value: `GetAppChannelProgramData`
 #### Get AppChannel Data
 
 Value: `GetAppChannelData`
+
 **Request Parameters**
 
 ```json
@@ -440,6 +450,7 @@ Value: `GetAppChannelData`
 #### Ensure Streaming started
 
 Value: `EnsureStreamingStarted`
+
 **Request Parameters**
 
 ```json
@@ -455,6 +466,7 @@ Value: `EnsureStreamingStarted`
 #### Set Channel Params
 
 Value: `SetChannel`
+
 **Request Parameters**
 By Id:
 
@@ -477,6 +489,7 @@ By Name:
 #### Get recent Channels
 
 Value: `GetRecentChannels`
+
 **Request Paramters**
 
 ```json
@@ -492,6 +505,7 @@ Value: `GetRecentChannels`
 #### Send Key
 
 Value: `SendKey`
+
 **Request Parameters**
 
 ```json
@@ -570,6 +584,7 @@ The other messages are basically status messages sent from console to client.
 ##### Gamestream Start Message
 
 Type: `0x1`
+
 Direction: _Client -> Console_
 
 > NOTE: Some values _could_ be int or bool rather than string
@@ -622,6 +637,7 @@ Direction: _Client -> Console_
 ##### Gamestream Stop Message
 
 Type: `0x2`
+
 Direction: _Client -> Console / never seen in the wild_
 
 ```json
@@ -633,6 +649,7 @@ Direction: _Client -> Console / never seen in the wild_
 ##### Gamestream State Message
 
 Type: `0x3`
+
 Direction: _Console -> Client_
 
 All gamestream state messages use a `state` field,
@@ -691,6 +708,7 @@ declared in the following table.
 ##### Gamestream Enabled Message
 
 Type: `0x4`
+
 Direction: _Console -> Client_
 
 ```json
@@ -706,6 +724,7 @@ Direction: _Console -> Client_
 ##### Gamestream Error Message
 
 Type: `0x5`
+
 Direction: _Console -> Client_
 
 ```json
@@ -742,6 +761,7 @@ Direction: _Console -> Client_
 ##### Gamestream Telemetry Message
 
 Type: `0x6`
+
 Direction: _Unknown / never seen in the wild_
 
 ```json
@@ -753,6 +773,7 @@ Direction: _Unknown / never seen in the wild_
 ##### Gamestream Preview Status Message
 
 Type: `0x7`
+
 Direction: _Console -> Client_
 
 ```json

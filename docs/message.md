@@ -73,18 +73,18 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
 | 0x10         | 16           | uint16 | Flags (Version, NeedAck, IsFragment, MsgType) |
 | 0x12         | 18           | uint64 | Channel Id                                    |
 
-**Packet Type**: Always `0xD00D` for message packet
-**Protected Payload Length**: Payload length before encryption **excluding**
-padding. That is, the length of the plaintext
-**Sequence Number**: Incrementing sequence number - if packet
-was not acknowledged even if requested, message gets sent
-again with same sequence number. Start index is `1`.
-**Target Participant Id**: Target Id as seen from sender, client sets this to 0
-**Source Participant Id**:  Id of sender, client gets that from
-[Connect Response](simple_message.md#connect-response)
-**Flags**: See [Header Flags](#header-flags)
-**Channel Id**: Negotioated Channel Id (see
-[Channel Start Response](#channel-start-response))
+- **Packet Type**: Always `0xD00D` for message packet
+- **Protected Payload Length**: Payload length before encryption **excluding**
+  padding. That is, the length of the plaintext
+- **Sequence Number**: Incrementing sequence number - if packet
+  was not acknowledged even if requested, message gets sent
+  again with same sequence number. Start index is `1`.
+- **Target Participant Id**: Target Id as seen from sender, client sets this to 0
+- **Source Participant Id**:  Id of sender, client gets that from
+  [Connect Response](simple_message.md#connect-response)
+- **Flags**: See [Header Flags](#header-flags)
+- **Channel Id**: Negotioated Channel Id (see
+  [Channel Start Response](#channel-start-response))
 
 ### Header Flags
 
@@ -95,11 +95,11 @@ again with same sequence number. Start index is `1`.
 | Is Fragment          | `0000 0000 0000 1000` | 0x08   |
 | Message Type         | `1111 1111 1111 0000` | 0xFFF0 |
 
-**Version**: Always `2`
-**Need Acknowledgement**: Indicates if the message needs to
-be acknowledged by a message of type [Acknowledgement](#acknowledgement)
-**Is Fragment**: Not used for regular messages, maybe for auxiliary messages
-**Message Type**: See [Message Types](#message-types)
+- **Version**: Always `2`
+- **Need Acknowledgement**: Indicates if the message needs to
+  be acknowledged by a message of type [Acknowledgement](#acknowledgement)
+- **Is Fragment**: Not used for regular messages, maybe for auxiliary messages
+- **Message Type**: See [Message Types](#message-types)
 
 ## Message Types
 
@@ -176,16 +176,16 @@ Pair client to console.
 |         0x1A |           26 | uint32   | OS Minor Version    |
 |         0x1E |           30 | SGString | Display Name        |
 
-**Device Type**: See [Client Type](simple_message.md#client-type)
-**Native Width**: Display resolution width from connecting client
-**Native Height**: Display resolution height from connecting client
-**DPI X**: Pixel Density on X-axis from client display
-**DPI Y**: Pixel Density on Y-axis from client display
-**Device Capabilities**: See [Device Capabilities](#device-capabilities)
-**Client Version**: SmartGlass client version
-**OS Major Version**: Operating System major version
-**OS Minor Version**: Operating System minor version
-**Display Name**: Client's display name
+- **Device Type**: See [Client Type](simple_message.md#client-type)
+- **Native Width**: Display resolution width from connecting client
+- **Native Height**: Display resolution height from connecting client
+- **DPI X**: Pixel Density on X-axis from client display
+- **DPI Y**: Pixel Density on Y-axis from client display
+- **Device Capabilities**: See [Device Capabilities](#device-capabilities)
+- **Client Version**: SmartGlass client version
+- **OS Major Version**: Operating System major version
+- **OS Minor Version**: Operating System minor version
+- **Display Name**: Client's display name
 
 #### Device Capabilities
 
@@ -249,11 +249,11 @@ Start opening a `Service Channel`.
 |         0x08 |            8 | byte\[16] | Service Channel GUID |
 |         0x18 |           24 | uint32    | Activity Id          |
 
-**Channel Request Id**: Incrementing number, it's used to
-match with [Channel Start Response](#channel-start-response)
-**Title Id**: Always `0`
-**Service Channel GUID**: See [Service Channels](channels.md#service-channels)
-**Activity Id**: Always `0`
+- **Channel Request Id**: Incrementing number, it's used to
+  match with [Channel Start Response](#channel-start-response)
+- **Title Id**: Always `0`
+- **Service Channel GUID**: See [Service Channels](channels.md#service-channels)
+- **Activity Id**: Always `0`
 
 ### Channel Start Response
 
@@ -269,11 +269,11 @@ Response to [Channel Start Request](#channel-start-request).
 |         0x04 |            4 | uint64 | Target Channel Id  |
 |         0x0C |           12 | uint32 | Result             |
 
-**Channel Request Id**: Matches with
-[Channel Start Request](#channel-start-request)
-**Target Channel Id**: Assigned `Channel Id` to be used in
-[Message Header](#header)
-**Result**: Result code, `0` on success
+- **Channel Request Id**: Matches with
+  [Channel Start Request](#channel-start-request)
+- **Target Channel Id**: Assigned `Channel Id` to be used in
+  [Message Header](#header)
+- **Result**: Result code, `0` on success
 
 ### Channel Stop
 
@@ -287,8 +287,8 @@ Stop an opened `Service Channel`
 | -----------: | -----------: | ------ | ----------------- |
 |         0x00 |            0 | uint64 | Target Channel Id |
 
-**Target Channel Id**: `Channel Id` received by
-[Channel Start Response](#channel-start-response)
+- **Target Channel Id**: `Channel Id` received by
+  [Channel Start Response](#channel-start-response)
 
 ### Console Status
 
@@ -308,13 +308,13 @@ Informs client about running titles and Xbox OS version.
 |         0x?? |            ? | uint16              | Active Title Count |
 |         0x?? |            ? | ActiveTitle\[count] | Active Titles      |
 
-**Live TV Provider**: Live TV provider Id
-**Major Version**: Major OS version
-**Minor Version**: Minor OS version
-**Build Number**: OS builder number
-**Locale**: Locale string
-**Active Title Count**: Number of `Active Titles`
-**Active Titles**: Array of [Active Title](#active-title)
+- **Live TV Provider**: Live TV provider Id
+- **Major Version**: Major OS version
+- **Minor Version**: Minor OS version
+- **Build Number**: OS builder number
+- **Locale**: Locale string
+- **Active Title Count**: Number of `Active Titles`
+- **Active Titles**: Array of [Active Title](#active-title)
 
 #### Active Title
 
@@ -326,11 +326,11 @@ Informs client about running titles and Xbox OS version.
 |         0x14 |           20 | byte\[16] | Sandbox Id        |
 |         0x24 |           36 | SGString  | AUM Id            |
 
-**Title Id**: Title Id
-**Title Disposition**: 1 bit: HasFocus-Flag, 15 bits: [Active Title Location](#active-title-location)
-**Product Id**: Product Id
-**Sandbox Id**: Sandbox Id
-**AUM Id**: Application User Model Id
+- **Title Id**: Title Id
+- **Title Disposition**: 1 bit: HasFocus-Flag, 15 bits: [Active Title Location](#active-title-location)
+- **Product Id**: Product Id
+- **Sandbox Id**: Sandbox Id
+- **AUM Id**: Application User Model Id
 
 #### Active Title Location
 
@@ -361,13 +361,13 @@ Informs client about surface change, used in auxiliary-stream context.
 |         0x18 |           24 | uint16    | Render Height      |
 |         0x1A |           26 | byte\[16] | Master Session Key |
 
-**Surface Type**: See [Active Surface Type](#active-surface-type)
-**Server TCP Port**: Likely used with `Auxiliary Stream`
-**Server UDP Port**: Likely used with `Auxiliary Stream`
-**Session Id**: Likely used with `Auxiliary Stream`
-**Render Width**: Likely used with `Auxiliary Stream`
-**Render Height**: Likely used with `Auxiliary Stream`
-**Master Session Key**: Likely used with `Auxiliary Stream`
+- **Surface Type**: See [Active Surface Type](#active-surface-type)
+- **Server TCP Port**: Likely used with `Auxiliary Stream`
+- **Server UDP Port**: Likely used with `Auxiliary Stream`
+- **Session Id**: Likely used with `Auxiliary Stream`
+- **Render Width**: Likely used with `Auxiliary Stream`
+- **Render Height**: Likely used with `Auxiliary Stream`
+- **Master Session Key**: Likely used with `Auxiliary Stream`
 
 #### Active Surface Type
 
@@ -393,9 +393,9 @@ Used for messages that need to be fragmented.
 |         0x04 |            4 | uint32   | Sequence End   |
 |         0x08 |            8 | SGString | Data           |
 
-**Sequence Begin**: Start offset of this fragment
-**Sequence End**: End offset of this fragment
-**Data**: `Base64` encoded data
+- **Sequence Begin**: Start offset of this fragment
+- **Sequence End**: End offset of this fragment
+- **Data**: `Base64` encoded data
 
 ### Acknowledgement
 
@@ -413,9 +413,9 @@ Acknowledge a message from sender, alternatively used to request hearbeat from p
 |         0x?? |            ? | uint32       | Rejected List Length  |
 |         0x?? |            ? | uint32\[len] | Rejected List         |
 
-**Low Watermark**: Last received/processed sequence number
-**Processed List**: Processed sequence numbers (array of `uint32`)
-**Rejected List**: Rejected sequence numbers (array of `uint32`)
+- **Low Watermark**: Last received/processed sequence number
+- **Processed List**: Processed sequence numbers (array of `uint32`)
+- **Rejected List**: Rejected sequence numbers (array of `uint32`)
 
 ### Json
 
@@ -429,7 +429,7 @@ Used to transfer commands or info in text-form.
 | -----------: | -----------: | -------- | ----------- |
 |         0x00 |            0 | SGString | Text        |
 
-**Text**: JSON Body
+- **Text**: JSON Body
 
 ### Auxiliary Stream
 
@@ -450,13 +450,13 @@ The only known utilization is in Fallout 4.
 |         0x41 |           65 | uint16    | Endpoints Size       |
 |         0x43 |           67 | SGString  | Message              |
 
-**Connection Info Flag**: Unknown
-**Crypto Key**: AES-CBC Key
-**Server IV**: Server's Initialization Vector
-**Client IV**: Client's Initialization Vector
-**Sign Hash**: HMAC key
-**Endpoints Size**: Unknown
-**Message**: Actual message text
+- **Connection Info Flag**: Unknown
+- **Crypto Key**: AES-CBC Key
+- **Server IV**: Server's Initialization Vector
+- **Client IV**: Client's Initialization Vector
+- **Sign Hash**: HMAC key
+- **Endpoints Size**: Unknown
+- **Message**: Actual message text
 
 ### Disconnect
 
@@ -471,8 +471,8 @@ Disconnect client from console.
 |         0x00 |            0 | uint32 | Reason      |
 |         0x04 |            4 | uint32 |  Error code |
 
-**Reason**: See [Disconnect Reason](#disconnect-reason)
-**Error code**: Error code
+- **Reason**: See [Disconnect Reason](#disconnect-reason)
+- **Error code**: Error code
 
 #### Disconnect Reason
 
@@ -500,7 +500,7 @@ Send poweroff to the console.
 | -----------: | -----------: | -------- | ----------- |
 |         0x00 |            0 | SGString | Live ID     |
 
-**Live ID**: Live ID of console to power off. This info is stored in the [Discovery Response Certificate](simple_message.md#certificate)
+- **Live ID**: Live ID of console to power off. This info is stored in the [Discovery Response Certificate](simple_message.md#certificate)
 
 ### Game DVR Record
 
@@ -515,8 +515,8 @@ Save a DVR clip
 |         0x00 |            0 | uint32 | Start Time Delta |
 |         0x04 |            4 | uint32 | End Time Delta   |
 
-**Start Time Delta**: Start time of recording
-**End Time Delta**: End time of recording
+- **Start Time Delta**: Start time of recording
+- **End Time Delta**: End time of recording
 
 ### Unsnap
 
@@ -530,7 +530,7 @@ Unsnap currently snapped application.
 | -----------: | -----------: | ---- | ----------- |
 |         0x00 |            0 | byte | Unknown     |
 
-**Unknown**: Unknown
+- **Unknown**: Unknown
 
 ### Gamepad
 
@@ -551,14 +551,14 @@ Send gamepad control (not for use with low latency _gamestreaming_).
 |         0x1A |           26 | float32 | Right Thumbstick X |
 |         0x1E |           30 | float32 | Right Thumbstick Y |
 
-**Timestamp**: Timestamp
-**Buttons**: See Flags [Gamepad Button](#gamepad-button)
-**Left Trigger**: Left Trigger value
-**Right Trigger**: Right trigger value
-**Left Thumbstick X**: Left thumbstick x-axis value
-**Left Thumbstick Y**: Left thumbstick y-axis value
-**Right Thumbstick X**: Right thumbstick x-axis value
-**Right Thumbstick Y**: Right thumbstick y-axis value
+- **Timestamp**: Timestamp
+- **Buttons**: See Flags [Gamepad Button](#gamepad-button)
+- **Left Trigger**: Left Trigger value
+- **Right Trigger**: Right trigger value
+- **Left Thumbstick X**: Left thumbstick x-axis value
+- **Left Thumbstick Y**: Left thumbstick y-axis value
+- **Right Thumbstick X**: Right thumbstick x-axis value
+- **Right Thumbstick Y**: Right thumbstick y-axis value
 
 #### Gamepad Button
 
@@ -594,7 +594,7 @@ Informs client about paired identity state change.
 | -----------: | -----------: | ------ | ----------- |
 |         0x00 |            0 | uint16 | State       |
 
-**State**: See [Paired Identity State](#paired-identity-state)
+- **State**: See [Paired Identity State](#paired-identity-state)
 
 #### Paired Identity State
 
@@ -629,21 +629,21 @@ Informs client about media playback state.
 |         0x4A |           74 | uint16              | Metadata Length  |
 |         0x4C |           76 | MediaMetadata\[len] | Metadata         |
 
-**Title Id**: Title Id of media
-**AUM Id**: Application User Model Id of media
-**Asset Id**: Asset Id
-**Media Type**: See [Media Type](#media-type)
-**Sound Level**: See [Sound Level](#sound-level)
-**Enabled commands**: See [Media Control Command](#media-control-command)
-**Playback status**: See [Media Playback Status](#media-playback-status)
-**Rate**: Playback rate
-**Position**: Current media position (nanoseconds)
-**Media Start**: Media start (nanoseconds)
-**Media End**: Media end (nanoseconds)
-**Min Seek**: Minimal seek position (nanoseconds)
-**Max Seek**: Maximal seek position (nanoseconds)
-**Metadata Length**: Length of Metadata array
-**Metadata**: Array of [Media Metadata](#media-metadata)
+- **Title Id**: Title Id of media
+- **AUM Id**: Application User Model Id of media
+- **Asset Id**: Asset Id
+- **Media Type**: See [Media Type](#media-type)
+- **Sound Level**: See [Sound Level](#sound-level)
+- **Enabled commands**: See [Media Control Command](#media-control-command)
+- **Playback status**: See [Media Playback Status](#media-playback-status)
+- **Rate**: Playback rate
+- **Position**: Current media position (nanoseconds)
+- **Media Start**: Media start (nanoseconds)
+- **Media End**: Media end (nanoseconds)
+- **Min Seek**: Minimal seek position (nanoseconds)
+- **Max Seek**: Maximal seek position (nanoseconds)
+- **Metadata Length**: Length of Metadata array
+- **Metadata**: Array of [Media Metadata](#media-metadata)
 
 #### Sound Level
 
@@ -704,7 +704,7 @@ Informs client about removed media controller.
 | -----------: | -----------: | ------ | ----------- |
 |         0x00 |            0 | uint32 | Title Id    |
 
-**Title Id**: Title Id of removed media controller
+- **Title Id**: Title Id of removed media controller
 
 ### Media Command Result
 
@@ -719,8 +719,8 @@ Informs client wether Media Command succeeded.
 |         0x00 |            0 | uint64 | Request Id  |
 |         0x08 |            8 | uint32 | Result      |
 
-**Request Id**: Match with request Id of [Media Command](#media-command)
-**Result**: Result, `0` is success
+- **Request Id**: Match with request Id of [Media Command](#media-command)
+- **Result**: Result, `0` is success
 
 ### Media Command
 
@@ -739,10 +739,10 @@ Sends media playback command to console.
 | If Command == Seek
 | 0x10         |  16   | uint32      | Seek position
 
-**Request Id**: Request Id
-**Title Id**: Title Id of media controller
-**Command**: See [Media Control Command](#media-control-command)
-**Seek position (optional)**: Only set if Command == Seek
+- **Request Id**: Request Id
+- **Title Id**: Title Id of media controller
+- **Command**: See [Media Control Command](#media-control-command)
+- **Seek position (optional)**: Only set if Command == Seek
 
 #### Media Control Command
 
@@ -781,12 +781,12 @@ Send orientation message to console.
 |         0x14 |           20 | float32 | Y                     |
 |         0x18 |           24 | float32 | Z                     |
 
-**Timestamp**: Timestamp
-**Rotation Matrix Value**: Rotation Matrix Value
-**W**: Value of W-axis
-**X**: Value of X-axis
-**Y**: Value of Y-axis
-**Z**: Value of Z-axis
+- **Timestamp**: Timestamp
+- **Rotation Matrix Value**: Rotation Matrix Value
+- **W**: Value of W-axis
+- **X**: Value of X-axis
+- **Y**: Value of Y-axis
+- **Z**: Value of Z-axis
 
 ### Compass
 
@@ -802,9 +802,9 @@ Send compass message to console.
 |         0x08 |            8 | float32 | Magnetic North |
 |         0x0C |           12 | float32 | True North     |
 
-**Timestamp**: Timestamp
-**Magnetic North**: Magnetic North
-**True North**: True North
+- **Timestamp**: Timestamp
+- **Magnetic North**: Magnetic North
+- **True North**: True North
 
 ### Inclinometer
 
@@ -821,10 +821,10 @@ Send inclinometer message to console.
 |         0x0C |           12 | float32 | Roll        |
 |         0x10 |           16 | float32 | Yaw         |
 
-**Timestamp**: Timestamp
-**Pitch**: Pitch
-**Roll**: Roll
-**Yaw**: Yaw
+- **Timestamp**: Timestamp
+- **Pitch**: Pitch
+- **Roll**: Roll
+- **Yaw**: Yaw
 
 ### Gyrometer
 
@@ -841,10 +841,10 @@ Send gyrometer message to console.
 |         0x0C |           12 | float32 | Angular Velocity Y |
 |         0x10 |           16 | float32 | Angular Velocity Z |
 
-**Timestamp**: Timestamp
-**Angular Velocity X**: Angular Velocity X-axis
-**Angular Velocity Y**: Angular Velocity Y-axis
-**Angular Velocity Z**: Angular Velocity Z-axis
+- **Timestamp**: Timestamp
+- **Angular Velocity X**: Angular Velocity X-axis
+- **Angular Velocity Y**: Angular Velocity Y-axis
+- **Angular Velocity Z**: Angular Velocity Z-axis
 
 ### Accelerometer
 
@@ -861,10 +861,10 @@ Send accelerometer message to console.
 |         0x0C |           12 | float32 | Acceleration Y |
 |         0x10 |           16 | float32 | Acceleration Z |
 
-**Timestamp**: Timestamp
-**Acceleration X**: Acceleration X-axis
-**Acceleration Y**: Acceleration Y-axis
-**Acceleration Z**: Acceleration Z-axis
+- **Timestamp**: Timestamp
+- **Acceleration X**: Acceleration X-axis
+- **Acceleration Y**: Acceleration Y-axis
+- **Acceleration Z**: Acceleration Z-axis
 
 ### Touch
 
@@ -880,9 +880,9 @@ Send touch input message to console.
 | 0x04         | 4            | uint16             |  Touch Count        |
 | 0x06         | 6            | Touchpoint\[count] | Touches             |
 
-**Touch Msg Timestamp**: Timestamp
-**Touch Count**: Number of touchpoints
-**Touches**: Array of [Touchpoint](#touchpoint)
+- **Touch Msg Timestamp**: Timestamp
+- **Touch Count**: Number of touchpoints
+- **Touches**: Array of [Touchpoint](#touchpoint)
 
 #### Touch Action
 
@@ -902,10 +902,10 @@ Send touch input message to console.
 |         0x06 |            6 | uint32 | Touchpoint X      |
 |         0x0A |           10 | uint32 | Touchpoint Y      |
 
-**Touchpoint Id**: Id of Touchpoint
-**Touchpoint Action**: See [Touch Action](#touch-action)
-**Touchpoint X**: Touchpoint X-Axis
-**Touchpoint Y**: Touchpoint X-Axis
+- **Touchpoint Id**: Id of Touchpoint
+- **Touchpoint Action**: See [Touch Action](#touch-action)
+- **Touchpoint X**: Touchpoint X-Axis
+- **Touchpoint Y**: Touchpoint X-Axis
 
 ### Title Launch
 
@@ -920,8 +920,8 @@ Launch a title / URL on the console.
 |         0x00 |            0 | uint16   | Location    |
 |         0x02 |            2 | SGString | Uri         |
 
-**Location**: Usually `0`
-**Uri**: Uri to launch
+- **Location**: Usually `0`
+- **Uri**: Uri to launch
 
 ### System Text Done
 
@@ -936,10 +936,10 @@ Launch a title / URL on the console.
 |         0x08 |            8 | uint32 | Flags           |
 |         0x0C |           12 | uint32 | Result          |
 
-**Text Session Id**: Text session id
-**Text Version**: Text version
-**Flags**: Flags
-**Result**: See [Text Result](#text-result)
+- **Text Session Id**: Text session id
+- **Text Version**: Text version
+- **Flags**: Flags
+- **Result**: See [Text Result](#text-result)
 
 #### Text Result
 
@@ -959,8 +959,8 @@ Launch a title / URL on the console.
 |         0x00 |            0 | uint32 | Text Session Id  |
 |         0x04 |            4 | uint32 | Text Version Ack |
 
-**Text Session Id**: Text session id
-**Text Version Ack**: Text version to acknowledge
+- **Text Session Id**: Text session id
+- **Text Version Ack**: Text version to acknowledge
 
 ### System Text Input
 
@@ -981,16 +981,16 @@ Launch a title / URL on the console.
 |         0x1E |           30 | SGString | Delta (TODO: Verify)  |
 |         0x?? |           ?? | SGString | Text Chunk            |
 
-**Text Session Id**: Text session id
-**Base Version**: Base version
-**Submitted Version**: Submitted version
-**Total Text bytelength**: Total bytelength of text
-**Selection Start**: Selection start
-**Selection Length**: Selection length
-**Flags**: Flags
-**Text Chunk bytestart**: Bytestart of textchunk
-**Delta**: Delta
-**Text Chunk**: Actual text chunk to send
+- **Text Session Id**: Text session id
+- **Base Version**: Base version
+- **Submitted Version**: Submitted version
+- **Total Text bytelength**: Total bytelength of text
+- **Selection Start**: Selection start
+- **Selection Length**: Selection length
+- **Flags**: Flags
+- **Text Chunk bytestart**: Bytestart of textchunk
+- **Delta**: Delta
+- **Text Chunk**: Actual text chunk to send
 
 ### Title Text Selection
 
@@ -1005,10 +1005,10 @@ Launch a title / URL on the console.
 |         0x0C |           12 | uint32 | Start               |
 |         0x10 |           16 | uint32 | Length              |
 
-**Text Session Id**: Text session id
-**Text Buffer Version**: Text buffer version
-**Start**: Start
-**Length**: Length
+- **Text Session Id**: Text session id
+- **Text Buffer Version**: Text buffer version
+- **Start**: Start
+- **Length**: Length
 
 ### Title Text Input
 
@@ -1023,10 +1023,10 @@ Launch a title / URL on the console.
 |         0x0C |           12 | uint16   | Result              |
 |         0x0E |           14 | SGString | Text                |
 
-**Text Session Id**: Text session id
-**Text Buffer Version**: Text buffer version
-**Result**: See [Text Result](#text-result)
-**Text**: Actual text
+- **Text Session Id**: Text session id
+- **Text Buffer Version**: Text buffer version
+- **Result**: See [Text Result](#text-result)
+- **Text**: Actual text
 
 ### Text Configuration
 
@@ -1044,13 +1044,13 @@ Launch a title / URL on the console.
 |         0x18 |           24 | SGString | Locale              |
 |         0x?? |           ?? | SGString | Prompt              |
 
-**Text Session Id**: Text session id
-**Text Buffer Version**: Text buffer version
-**Text options**: See [Text Option Flags](#text-option-flags)
-**Input Scope**: See [Text Input Scope](#text-input-scope)
-**Max Text Length**: Maximal text length
-**Locale**: Locale to use
-**Prompt**: Text input prompt
+- **Text Session Id**: Text session id
+- **Text Buffer Version**: Text buffer version
+- **Text options**: See [Text Option Flags](#text-option-flags)
+- **Input Scope**: See [Text Input Scope](#text-input-scope)
+- **Max Text Length**: Maximal text length
+- **Locale**: Locale to use
+- **Prompt**: Text input prompt
 
 #### Text Input Scope
 

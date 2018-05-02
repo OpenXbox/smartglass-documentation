@@ -48,12 +48,13 @@ Only the discovery and power on messages are transmitted in plain text, the rest
 ### Packet layout
 
 General packet layout looks like the following:
-| Name                 | Note
-\| -------------------- \| --------
-| Packet Header        | Either [SimpleMessage](simple_message.md) or [Message](message.md)
-| Unprotected Payload  | For [Discovery](simple_message.md#discovery-packet), [Connect](simple_message.md#connect-packet) or [Power On](simple_message.md#power-on-request) packet
-| Protected Payload    | For [Connect](simple_message.md#connect-packet) or [Message](message.md) packet
-\| \*Hash               | Only if packet has `Protected Payload`, see [Message Authentication](cryptography.md#message-authentication)
+
+| Name                | Note                                                                                                         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Packet Header       | Either [SimpleMessage](simple_message.md#header) or [Message](message.md#header)                             |
+| Unprotected Payload | For all [SimpleMessage packets](simple_message.md)                                                           |
+| Protected Payload   | For [Connect](simple_message.md#connect-packet) or [Message](message.md) packet                              |
+| \*Hash              | Only if packet has `Protected Payload`, see [Message Authentication](cryptography.md#message-authentication) |
 
 > NOTE: All numeric values in the SmartGlass Protocol are in network / big-endian byteorder.
 
