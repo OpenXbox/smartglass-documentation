@@ -23,6 +23,7 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
     - [Acknowledgement](#acknowledgement)
     - [Json](#json)
     - [Auxiliary Stream](#auxiliary-stream)
+      - [Endpoint](#endpoint)
     - [Disconnect](#disconnect)
       - [Disconnect Reason](#disconnect-reason)
     - [Power Off](#power-off)
@@ -116,8 +117,8 @@ Direction as seen from the client perspective:
 | Group                                                           | 0x02  |     x     | x           |
 | [Local Join](#local-join)                                       | 0x03  |     →     | Core        |
 | Stop Activity                                                   | 0x05  |     x     | x           |
-| [Auxiliary Stream](#auxiliary-stream)                           | 0x19  |     ↔     | x           |
-| [Active Surface Change](#active-surface-change)                 | 0x1A  |     ←     | Core        |
+| [Auxiliary Stream](#auxiliary-stream)                           | 0x19  |     ↔     | Title       |
+| [Active Surface Change](#active-surface-change)                 | 0x1A  |     ←     | Title       |
 | Navigate                                                        | 0x1B  |     x     | x           |
 | [Json](#json)                                                   | 0x1C  |     ↔     | _Various_   |
 | Tunnel                                                          | 0x1D  |     x     | x           |
@@ -251,7 +252,7 @@ Start opening a `Service Channel`.
 
 - **Channel Request Id**: Incrementing number, it's used to
   match with [Channel Start Response](#channel-start-response)
-- **Title Id**: Always `0`
+- **Title Id**: Set for [Title channel](channels.md#title-channel), otherwise `0`
 - **Service Channel GUID**: See [Service Channels](channels.md#service-channels)
 - **Activity Id**: Always `0`
 
@@ -362,12 +363,12 @@ Informs client about surface change, used in auxiliary-stream context.
 |         0x1A |           26 | byte\[16] | Master Session Key |
 
 - **Surface Type**: See [Active Surface Type](#active-surface-type)
-- **Server TCP Port**: Likely used with `Auxiliary Stream`
-- **Server UDP Port**: Likely used with `Auxiliary Stream`
-- **Session Id**: Likely used with `Auxiliary Stream`
-- **Render Width**: Likely used with `Auxiliary Stream`
-- **Render Height**: Likely used with `Auxiliary Stream`
-- **Master Session Key**: Likely used with `Auxiliary Stream`
+- **Server TCP Port**: Used with `Auxiliary Stream`
+- **Server UDP Port**: Used with `Auxiliary Stream`
+- **Session Id**: Used with `Auxiliary Stream`
+- **Render Width**: Used with `Auxiliary Stream`
+- **Render Height**: Used with `Auxiliary Stream`
+- **Master Session Key**: Used with `Auxiliary Stream`
 
 #### Active Surface Type
 
@@ -440,23 +441,35 @@ Used to transfer commands or info in text-form.
 Used for _SmartGlass Experience_ aka. game companion stuff.
 The only known utilization is in Fallout 4.
 
-| Offset (hex) | Offset (dec) | Type      | Description          |
-| -----------: | -----------: | --------- | -------------------- |
-|         0x00 |            0 | byte      | Connection Info Flag |
-|         0x01 |            1 | byte\[16] | Crypto Key           |
-|         0x11 |           17 | byte\[16] | Server IV            |
-|         0x21 |           33 | byte\[16] | Client IV            |
-|         0x31 |           49 | byte\[16] | Sign Hash            |
-|         0x41 |           65 | uint16    | Endpoints Size       |
-|         0x43 |           67 | SGString  | Message              |
+| Offset (hex) | Offset (dec) | Type            | Description                   |
+| -----------: | -----------: | --------------- | ----------------------------- |
+|         0x00 |            0 | byte            | Connection Info Flag          |
+|              |              |                 | If Connection Info Flag == 1: |
+|         0x01 |            1 | uint16          | AES Key length                |
+|         0x03 |            3 | byte\[len]      | AES Key                       |
+|           ?? |           ?? | uint16          | Server IV length              |
+|           ?? |           ?? | byte\[len]      | Server IV                     |
+|           ?? |           ?? | uint16          | Client IV length              |
+|           ?? |           ?? | byte\[len]      | Client IV                     |
+|           ?? |           ?? | uint16          | HMAC Key length               |
+|           ?? |           ?? | byte\[len]      | HMAC Key                      |
+|           ?? |           ?? | uint16          | Endpoints Size                |
+|           ?? |           ?? | Endpoint\[size] | Endpoints                     |
 
-- **Connection Info Flag**: Unknown
-- **Crypto Key**: AES-CBC Key
+- **Connection Info Flag**: Handshake: `0`, Connection Data: `1`
+- **AES Key**: AES-CBC Key
 - **Server IV**: Server's Initialization Vector
 - **Client IV**: Client's Initialization Vector
-- **Sign Hash**: HMAC key
-- **Endpoints Size**: Unknown
-- **Message**: Actual message text
+- **HMAC Key**: HMAC key
+- **Endpoints Size**: Endpoint count
+- **Endpoints**: Advertised title endpoints, See [Endpoint](#endpoint)
+
+#### Endpoint
+
+| Type     | Description |
+| -------- | ----------- |
+| SGString | IP Address  |
+| SGString | Port        |
 
 ### Disconnect
 

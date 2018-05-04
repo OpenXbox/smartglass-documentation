@@ -55,6 +55,9 @@ All channel communication is of type [Message](message.md).
           - [Gamestream Error](#gamestream-error)
         - [Gamestream Telemetry Message](#gamestream-telemetry-message)
         - [Gamestream Preview Status Message](#gamestream-preview-status-message)
+    - [Title Channel](#title-channel)
+      - [Title handshaking](#title-handshaking)
+      - [Packet structure](#packet-structure)
 
 ## Core Channel
 
@@ -76,6 +79,7 @@ Click on the channel in the following table to get more information.
 | [SystemMedia](#media-channel)                   | `48a9ca24-eb6d-4e12-8c43d57469edd3cd` |
 | [SystemText](#text-channel)                     | `7af3e6a2-488b-40cb-a93179c04b7da3a0` |
 | [SystemBroadcast](#broadcast-channel)           | `b6a117d8-f5e2-45d7-862e8fd8e3156476` |
+| [Title](#title-channel)                         | `00000000-0000-0000-0000000000000000` |
 
 ### Acquiring a channel
 
@@ -783,3 +787,33 @@ Direction: _Console -> Client_
     "isInternalPreview": false
 }
 ```
+
+### Title Channel
+
+The title channel is used if the running title (aka. game) supports
+the `SmartGlass Experience` (for example: Fallout 4).
+
+For opening the `Service Channel` you have to send a `Title Id`
+while [acquiring the channel](#acquiring-a-channel).
+
+Title channel does basic communication over the `Core channel`:
+
+- [Auxiliary Stream](message.md#auxiliary-stream)
+- [Active Surface Change](message.md#active-surface-change)
+
+> NOTE: For title specific data additional sockets are used!
+
+#### Title handshaking
+
+Flow to get connection data for title communication:
+
+1. Client sends [Auxiliary Stream Handshake](message.md#auxiliary-stream)
+2. Host responds with [Auxiliary Stream Handshake](message.md#auxiliary-stream)
+3. Client sends [Auxiliary Stream Handshake](message.md#auxiliary-stream) again
+4. Host responds with [Auxiliary Stream Connection Info](message.md#auxiliary-stream)
+5. Client sets up [Auxiliary crypto context](cryptography.md#auxiliary-stream-encryption)
+6. Client connects to advertised `Title endpoints`
+
+#### Packet structure
+
+TODO

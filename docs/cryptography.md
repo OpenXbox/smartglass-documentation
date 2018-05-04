@@ -99,4 +99,9 @@ The produced hash has a length of 32 bytes (0x20).
 
 ## Auxiliary Stream encryption
 
-TODO
+Cryptography parameters for [`Title channel` aka. `Auxiliary Stream`](channels.md#title-channel) are
+transmitted via [Auxiliary Stream message](message.md#auxiliary-stream).
+
+The host sets all the crypto parameters and informs the client about it.
+Client then uses received `AES key`, `HMAC key` and `Client/Server IV` to setup
+the crypto context.
