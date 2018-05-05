@@ -17,6 +17,7 @@ It's basically RTP over TCP (configuration / status of session) and UDP (data).
   - [Channel Opening](#channel-opening)
   - [Streamer Handshaking](#streamer-handshaking)
   - [Packets](#packets)
+    - [Packet Layout](#packet-layout)
     - [Control Handshake Packet](#control-handshake-packet)
     - [Channel Control Packet](#channel-control-packet)
       - [Channel Control Header](#channel-control-header)
@@ -254,6 +255,50 @@ respond with a `Client Handshake`.
 > NOTE: [Input Feedback](#input) and [Chat Audio](#audio) are special!
 
 ## Packets
+
+### Packet Layout
+
+```
+├── RtpHeader
+└── Payload (RtpHeader.PayloadType)
+    ├── Control Handshake
+    ├── Channel Control
+    │   ├── Channel Create
+    │   ├── Channel Open
+    │   └── Channel Close
+    ├── UDP Handshake
+    └── Streamer
+        ├── TCP Header
+        ├── UDP Header
+        ├── Audio Payload
+        │   ├── Server Handshake
+        │   ├── Client Handshake
+        │   ├── Control
+        │   └── Data
+        ├── Video Payload
+        │   ├── Server Handshake
+        │   ├── Client Handshake
+        │   ├── Control
+        │   └── Data
+        ├── Input Payload
+        │   ├── Server Handshake
+        │   ├── Client Handshake
+        │   ├── Frame Ack
+        │   └── Frame
+        └── Control Payload
+            └── Control Header
+                ├── Session Init
+                ├── Session Create
+                ├── Session Create Response
+                ├── Session Destroy
+                ├── Video Statistics
+                ├── Realtime Telemetry
+                ├── Change Video Quality
+                ├── Initiate Network Test
+                ├── Network Information
+                ├── Network Test Response
+                └── Controller Event
+```
 
 ### Control Handshake Packet
 
