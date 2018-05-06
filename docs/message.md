@@ -57,6 +57,7 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
       - [Text Result](#text-result)
     - [System Text Acknowledge](#system-text-acknowledge)
     - [System Text Input](#system-text-input)
+      - [Text Delta](#text-delta)
     - [Title Text Selection](#title-text-selection)
     - [Title Text Input](#title-text-input)
     - [Text Configuration](#text-configuration)
@@ -1017,18 +1018,19 @@ Launch a title / URL on the console.
 **Response**: [System Text Acknowledge](#system-text-acknowledge)
 **Requests Ack**: `NO`
 
-| Offset (hex) | Offset (dec) | Type     | Description           |
-| -----------: | -----------: | -------- | --------------------- |
-|         0x00 |            0 | uint32   | Text Session Id       |
-|         0x04 |            4 | uint32   | Base Version          |
-|         0x08 |            8 | uint32   | Submitted Version     |
-|         0x0C |           12 | uint32   | Total Text bytelength |
-|         0x10 |           16 | uint32   | Selection Start       |
-|         0x14 |           20 | uint32   | Selection Length      |
-|         0x18 |           24 | uint16   | Flags                 |
-|         0x1A |           26 | uint32   | Text Chunk bytestart  |
-|         0x1E |           30 | SGString | Delta (TODO: Verify)  |
-|         0x?? |           ?? | SGString | Text Chunk            |
+| Offset (hex) | Offset (dec) | Type        | Description           |
+| -----------: | -----------: | ----------- | --------------------- |
+|         0x00 |            0 | uint32      | Text Session Id       |
+|         0x04 |            4 | uint32      | Base Version          |
+|         0x08 |            8 | uint32      | Submitted Version     |
+|         0x0C |           12 | uint32      | Total Text bytelength |
+|         0x10 |           16 | uint32      | Selection Start       |
+|         0x14 |           20 | uint32      | Selection Length      |
+|         0x18 |           24 | uint16      | Flags                 |
+|         0x1A |           26 | uint32      | Text Chunk bytestart  |
+|         0x1E |           30 | SGString    | Text Chunk            |
+|         0x?? |           ?? | uint16      | Delta Length          |
+|         0x?? |           ?? | Delta\[len] | Text Delta            |
 
 - **Text Session Id**: Text session id
 - **Base Version**: Base version
@@ -1038,8 +1040,17 @@ Launch a title / URL on the console.
 - **Selection Length**: Selection length
 - **Flags**: Flags
 - **Text Chunk bytestart**: Bytestart of textchunk
-- **Delta**: Delta
 - **Text Chunk**: Actual text chunk to send
+- **Delta Length**: Count of Text Delta
+- **Text Delta**: See [Text Delta](#text-delta)
+
+#### Text Delta
+
+| Offset (hex) | Offset (dec) | Type     | Description    |
+| -----------: | -----------: | -------- | -------------- |
+|         0x00 |            0 | uint32   | Offset         |
+|         0x04 |            4 | uint32   | Delete Count   |
+|         0x08 |            8 | SGString | Insert Content |
 
 ### Title Text Selection
 
