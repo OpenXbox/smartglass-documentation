@@ -22,6 +22,7 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
     - [Fragment](#fragment)
     - [Acknowledgement](#acknowledgement)
     - [Json](#json)
+      - [Json Fragmentation](#json-fragmentation)
     - [Auxiliary Stream](#auxiliary-stream)
       - [Endpoint](#endpoint)
     - [Disconnect](#disconnect)
@@ -431,6 +432,41 @@ Used to transfer commands or info in text-form.
 |         0x00 |            0 | SGString | Text        |
 
 - **Text**: JSON Body
+
+#### Json Fragmentation
+
+In case the `Protected Payload` of a Json Message exceeds `1024 bytes`,
+the message gets fragmented.
+
+Fragmentation is done by base64-encoding and splitting-up the Json string, the maximum
+fragment length being `905 bytes` (When serializing without spaces).
+
+Example fragment-set:
+
+```json
+# Fragment #0
+{"datagram_size":"24","datagram_id":"1","fragment_offset":"0","fragment_length":"12","fragment_data":"eyJ0ZXN0Ijoi"}
+# Fragment #1
+{"datagram_size":"24","datagram_id":"1","fragment_offset":"12","fragment_length":"12","fragment_data":"dmFsdWUifQ=="}
+
+# After concatenation
+"eyJ0ZXN0IjoidmFsdWUifQ=="
+
+# After decoding
+'{"test":"value"}'
+```
+
+- **datagram_size**: Total base64-string length
+- **datagram_id**: Identifier of the fragment-set
+- **fragment_offset**: Position of the current fragment
+- **fragment_length**: Length of the current fragment
+- **fragment_data**: Base64 string
+
+Receiving participant checks if a set of fragments is received completely by summarizing `fragment_length` fields
+for the specific `datagram_id` and checking it against `datagram_size`.
+
+When all fragments are received, they are ordered by `fragment_offset` and the `fragment_data` is concatenated and
+base64-decoded.
 
 ### Auxiliary Stream
 
