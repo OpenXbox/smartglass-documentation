@@ -566,7 +566,7 @@ Save a DVR clip
 |         0x04 |            4 | int32  | End Time Delta   |
 
 - **Start Time Delta**: Start time of recording in seconds (e.g. -60 for last minute)
-- **End Time Delta**: End time of recording in seconds (e.g. 0 for *now*)
+- **End Time Delta**: End time of recording in seconds (e.g. 0 for _now_)
 
 ### Unsnap
 
