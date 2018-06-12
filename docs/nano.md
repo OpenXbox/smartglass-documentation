@@ -1,6 +1,8 @@
 # Nano Protocol
 
-Nano is the protocol Gamestreaming is based on.
+Nano (aka. Nano RDP / Codename: Arcadia) is the protocol Gamestreaming is based on.
+You can see strong similarities when looking at the Windows IoT RDP server implementation, *NanoRDPServer.exe*.
+
 It's basically RTP over TCP (configuration / status of session) and UDP (data).
 
 - [Nano Protocol](#nano-protocol)
