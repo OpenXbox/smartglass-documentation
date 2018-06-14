@@ -560,10 +560,10 @@ Send poweroff to the console.
 
 Save a DVR clip
 
-| Offset (hex) | Offset (dec) | Type   | Description      |
-| -----------: | -----------: | ------ | ---------------- |
-|         0x00 |            0 | int32  | Start Time Delta |
-|         0x04 |            4 | int32  | End Time Delta   |
+| Offset (hex) | Offset (dec) | Type  | Description      |
+| -----------: | -----------: | ----- | ---------------- |
+|         0x00 |            0 | int32 | Start Time Delta |
+|         0x04 |            4 | int32 | End Time Delta   |
 
 - **Start Time Delta**: Start time of recording in seconds (e.g. -60 for last minute)
 - **End Time Delta**: End time of recording in seconds (e.g. 0 for _now_)

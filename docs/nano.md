@@ -1,7 +1,7 @@
 # Nano Protocol
 
 Nano (aka. Nano RDP / Codename: Arcadia) is the protocol Gamestreaming is based on.
-You can see strong similarities when looking at the Windows IoT RDP server implementation, *NanoRDPServer.exe*.
+You can see strong similarities when looking at the Windows IoT RDP server implementation, _NanoRDPServer.exe_.
 
 It's basically RTP over TCP (configuration / status of session) and UDP (data).
 
@@ -261,45 +261,45 @@ respond with a `Client Handshake`.
 ### Packet Layout
 
 ```
-├── RtpHeader
-└── Payload (RtpHeader.PayloadType)
-    ├── Control Handshake
-    ├── Channel Control
-    │   ├── Channel Create
-    │   ├── Channel Open
-    │   └── Channel Close
-    ├── UDP Handshake
-    └── Streamer
-        ├── TCP Header
-        ├── UDP Header
-        ├── Audio Payload
-        │   ├── Server Handshake
-        │   ├── Client Handshake
-        │   ├── Control
-        │   └── Data
-        ├── Video Payload
-        │   ├── Server Handshake
-        │   ├── Client Handshake
-        │   ├── Control
-        │   └── Data
-        ├── Input Payload
-        │   ├── Server Handshake
-        │   ├── Client Handshake
-        │   ├── Frame Ack
-        │   └── Frame
-        └── Control Payload
-            └── Control Header
-                ├── Session Init
-                ├── Session Create
-                ├── Session Create Response
-                ├── Session Destroy
-                ├── Video Statistics
-                ├── Realtime Telemetry
-                ├── Change Video Quality
-                ├── Initiate Network Test
-                ├── Network Information
-                ├── Network Test Response
-                └── Controller Event
+    ├── RtpHeader
+    └── Payload (RtpHeader.PayloadType)
+        ├── Control Handshake
+        ├── Channel Control
+        │   ├── Channel Create
+        │   ├── Channel Open
+        │   └── Channel Close
+        ├── UDP Handshake
+        └── Streamer
+            ├── TCP Header
+            ├── UDP Header
+            ├── Audio Payload
+            │   ├── Server Handshake
+            │   ├── Client Handshake
+            │   ├── Control
+            │   └── Data
+            ├── Video Payload
+            │   ├── Server Handshake
+            │   ├── Client Handshake
+            │   ├── Control
+            │   └── Data
+            ├── Input Payload
+            │   ├── Server Handshake
+            │   ├── Client Handshake
+            │   ├── Frame Ack
+            │   └── Frame
+            └── Control Payload
+                └── Control Header
+                    ├── Session Init
+                    ├── Session Create
+                    ├── Session Create Response
+                    ├── Session Destroy
+                    ├── Video Statistics
+                    ├── Realtime Telemetry
+                    ├── Change Video Quality
+                    ├── Initiate Network Test
+                    ├── Network Information
+                    ├── Network Test Response
+                    └── Controller Event
 ```
 
 ### Control Handshake Packet
