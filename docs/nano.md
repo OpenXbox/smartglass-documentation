@@ -30,8 +30,8 @@ It's basically RTP over TCP (configuration / status of session) and UDP (data).
         - [Close](#close)
     - [UDP Handshake Packet](#udp-handshake-packet)
     - [Streamer Packet](#streamer-packet)
-      - [TCP Streamer Header](#tcp-streamer-header)
-      - [UDP Streamer Header](#udp-streamer-header)
+      - [Streamer Flags](#streamer-flags)
+      - [Streamer Header](#streamer-header)
       - [Audio Video Streamer Payload Type](#audio-video-streamer-payload-type)
       - [Input Payload Type](#input-payload-type)
   - [Streamer Payloads](#streamer-payloads)
@@ -392,46 +392,39 @@ respond with a `Client Handshake`.
 
 ### Streamer Packet
 
-The header of this packet differs based on the used transport
-protocol:
+#### Streamer Flags
 
-#### TCP Streamer Header
+| Flag             | Value |
+| ---------------- | ----- |
+| Got Seq/Prev Seq | 0x01  |
+| Unknown          | 0x02  |
 
-| Offset (hex) | Offset (dec) | Type         | Description               |
-| -----------: | -----------: | ------------ | ------------------------- |
-|         0x00 |            0 | uint32       | Streamer Version          |
-|         0x04 |            4 | uint32       | Sequence Number           |
-|         0x08 |            8 | uint32       | Previous Sequence Number  |
-|         0x0C |           12 | uint32       | Streamer Payload Type     |
-|       \*0x10 |         \*16 | uint32       | \*Streamer Payload Length |
-|         0x?? |           ?? | byte\[\*len] | Streamer Payload          |
+#### Streamer Header
+
+UDP usually uses flags: `0x0`.
+TCP usually uses flags: `0x3`.
+For FEC there are additional flags to process (TODO).
+
+| Offset (hex) | Offset (dec) | Type         | Description                |
+| -----------: | -----------: | ------------ | -------------------------- |
+|         0x00 |            0 | uint32       | Flags                      |
+|       \*0x?? |         \*?? | uint32       | \*Sequence Number          |
+|       \*0x?? |         \*?? | uint32       | \*Previous Sequence Number |
+|         0x?? |           ?? | uint32       | Streamer Payload Type      |
+|       \*0x?? |         \*?? | uint32       | \*Streamer Payload Length  |
+|         0x?? |           ?? | byte\[\*len] | Streamer Payload           |
 
 **Total size**: _variable_
 
 > **Streamer Payload Length**: Only used if `Streamer Payload Type`
 > is **not** 0 (0: Control packet with own header)
 
-- **Streamer Version**: Depending on used [Channel](#channels)
-- **Sequence Number**: Incrementing number, specific for channel
-  and participant side
-- **Previous Sequence Number**: Previously sent `Sequence Number`
+- **Flags**: Depending on used [Channel](#channels)
+- **Sequence Number**: If Flag `Got Seq/Prev Seq` is set -> incrementing number,
+  specific for channel and participant side
+- **Previous Sequence Number**: If Flag `Got Seq/Prev Seq` is set -> previously
+  sent `Sequence Number`
 - **Streamer Payload Type**:  See [Audio / Video Payload Type](#audio-video-streamer-payload-type)
-  and [Input Payload Type](#input-payload-type)
-- **Streamer Payload**: Depending on `Streamer Payload Type`
-
-#### UDP Streamer Header
-
-| Offset (hex) | Offset (dec) | Type       | Description             |
-| -----------: | -----------: | ---------- | ----------------------- |
-|         0x00 |            0 | uint32     | Streamer Version        |
-|         0x04 |            4 | uint32     | Streamer Payload Type   |
-|         0x08 |            8 | uint32     | Streamer Payload Length |
-|         0x0C |           12 | byte\[len] | Streamer Payload        |
-
-**Total size**: _variable_
-
-- **Streamer Version**: Depending on used [Channel](#channels)
-- **Streamer Payload Type**: See [Audio / Video Payload Type](#audio-video-streamer-payload-type)
   and [Input Payload Type](#input-payload-type)
 - **Streamer Payload**: Depending on `Streamer Payload Type`
 
@@ -508,7 +501,7 @@ value and increment on each packet.
 
 #### Audio Server Handshake
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type              | Description         |
 | -----------: | -----------: | ----------------- | ------------------- |
@@ -526,7 +519,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Audio Client Handshake
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type        | Description      |
 | -----------: | -----------: | ----------- | ---------------- |
@@ -540,7 +533,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Audio Control
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type   | Description         |
 | -----------: | -----------: | ------ | ------------------- |
@@ -560,7 +553,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Audio Data
 
-Header: [UDP Streamer Header](#udp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type       | Description |
 | -----------: | -----------: | ---------- | ----------- |
@@ -625,7 +618,7 @@ TODO
 
 #### Video Server Handshake
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type              | Description         |
 | -----------: | -----------: | ----------------- | ------------------- |
@@ -649,7 +642,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Video Client Handshake
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type        | Description      |
 | -----------: | -----------: | ----------- | ---------------- |
@@ -663,7 +656,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Video Control
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type   | Description                    |
 | -----------: | -----------: | ------ | ------------------------------ |
@@ -704,7 +697,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Video Data
 
-Header: [UDP Streamer Header](#udp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type       | Description  |
 | -----------: | -----------: | ---------- | ------------ |
@@ -841,7 +834,7 @@ while (getting_input_data) {
 
 #### Input Server Handshake
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type   | Description      |
 | -----------: | -----------: | ------ | ---------------- |
@@ -861,7 +854,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Input Client Handshake
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type   | Description         |
 | -----------: | -----------: | ------ | ------------------- |
@@ -875,7 +868,7 @@ Header: [TCP Streamer Header](#tcp-streamer-header)
 
 #### Frame Ack
 
-Header: [UDP Streamer Header](#udp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type   | Description |
 | -----------: | -----------: | ------ | ----------- |
@@ -887,7 +880,7 @@ Header: [UDP Streamer Header](#udp-streamer-header)
 
 #### Input Frame
 
-Header: [UDP Streamer Header](#udp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 
 | Offset (hex) | Offset (dec) | Type      | Description           |
 | -----------: | -----------: | --------- | --------------------- |
@@ -910,7 +903,7 @@ Header: [UDP Streamer Header](#udp-streamer-header)
 
 ### Control Protocol
 
-Header: [TCP Streamer Header](#tcp-streamer-header)
+Header: [Streamer Header](#streamer-header)
 Control Protocol packets have `Streamer Payload Type` set to `0`
 
 #### Control Header
