@@ -101,7 +101,7 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
 - **Version**: Always `2`
 - **Need Acknowledgement**: Indicates if the message needs to
   be acknowledged by a message of type [Acknowledgement](#acknowledgement)
-- **Is Fragment**: Not used for regular messages, maybe for auxiliary messages
+- **Is Fragment**: Indicates fragmented payload, see [Fragment](#fragment)
 - **Message Type**: See [Message Types](#message-types)
 
 ## Message Types
@@ -385,20 +385,23 @@ Informs client about surface change, used in auxiliary-stream context.
 
 **Message Type**: _variable_
 **Response**: _variable_
-**Requests Ack**: `NO`
+**Requests Ack**: _variable_
 **Is Fragment**: `YES`
 
 Used for messages that need to be fragmented.
+When all fragments are received, concatenate the data blobs and parse
+the assembled data as indicated `Message Type`.
 
-| Offset (hex) | Offset (dec) | Type     | Description    |
-| -----------: | -----------: | -------- | -------------- |
-|         0x00 |            0 | uint32   | Sequence Begin |
-|         0x04 |            4 | uint32   | Sequence End   |
-|         0x08 |            8 | SGString | Data           |
+| Offset (hex) | Offset (dec) | Type       | Description    |
+| -----------: | -----------: | ---------- | -------------- |
+|         0x00 |            0 | uint32     | Sequence Begin |
+|         0x04 |            4 | uint32     | Sequence End   |
+|         0x08 |            8 | uint16     | Data length    |
+|         0x0A |           10 | byte\[len] | Data           |
 
-- **Sequence Begin**: Start offset of this fragment
-- **Sequence End**: End offset of this fragment
-- **Data**: `Base64` encoded data
+- **Sequence Begin**: First sequence number of the fragment-set
+- **Sequence End**: Last sequence number (+1) of the fragement-set
+- **Data**: Data fragment
 
 ### Acknowledgement
 
