@@ -450,7 +450,7 @@ For FEC there are additional flags to process (TODO).
 
 ### Reference Timestamp
 
-Reference Timestamp is **microseconds** since epoch.
+Reference Timestamp is **milliseconds** since epoch.
 
 ### Timestamp of Data Packets
 
