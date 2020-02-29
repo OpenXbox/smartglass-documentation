@@ -1,9 +1,11 @@
 # Smartglass Documentation
 
-[![Build Status](https://travis-ci.org/OpenXbox/smartglass-documentation.svg?branch=master)](https://travis-ci.org/OpenXbox/smartglass-documentation)
-[![Discord](https://img.shields.io/badge/discord-OpenXbox-blue.svg)](https://discord.gg/E8kkJhQ)
+[![Build Status](https://travis-ci.com/OpenXbox/smartglass-documentation.svg?branch=master)](https://travis-ci.com/OpenXbox/smartglass-documentation)
+[![Discord](https://img.shields.io/badge/discord-OpenXbox-blue.svg)](https://openxbox.org/discord)
 
 Documentation of the Xbox One SmartGlass protocol
+
+Python framework `mkdocs` is used to render the Markdown documentation.
 
 ## Contribute
 
@@ -14,18 +16,21 @@ Contributions are very welcome. Here's how you can help:
 - Correct spelling / grammar
 - Check ISSUES tab...
 
-## Markdown style
+### Workflow
 
-Please make sure that your edits comply with the enforced markdown rules.
-You can use remark-lint for that (requires nodejs and npm).
+1. __Fork__ this repo
+1. Make changes
+1. __Verify__ your changes are formatted properly
+1. Send a __Pull Request__
 
+## Local testing
 
-Install remark-lint
+Serve the documentation
 ```
-npm install
+make serve
 ```
 
-Lint markdown style
+Build the documentation
 ```
-npm test
+make build
 ```
