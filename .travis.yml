@@ -1,6 +1,9 @@
 language: python
 python: 3.7
-branches: master
+branches:
+  except:
+  - gh-pages
+
 install:
 - pip install mkdocs
 script: true
