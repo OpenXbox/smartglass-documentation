@@ -6,9 +6,10 @@ branches:
 
 install:
 - pip install mkdocs
-script: true
-before_deploy:
+
+script:
 - mkdocs build --verbose --clean --strict
+
 deploy:
   provider: pages
   skip_cleanup: true
