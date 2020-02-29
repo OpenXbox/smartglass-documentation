@@ -5,6 +5,8 @@
 
 Documentation of the Xbox One SmartGlass protocol
 
+Python framework `mkdocs` is used to render the Markdown documentation.
+
 ## Contribute
 
 Contributions are very welcome. Here's how you can help:
@@ -14,18 +16,21 @@ Contributions are very welcome. Here's how you can help:
 - Correct spelling / grammar
 - Check ISSUES tab...
 
-## Markdown style
+## Workflow
 
-Please make sure that your edits comply with the enforced markdown rules.
-You can use remark-lint for that (requires nodejs and npm).
-
-
-Install remark-lint
+### Local
+Serve the documentation
 ```
-npm install
+make serve
 ```
 
-Lint markdown style
+Build the documentation
 ```
-npm test
+make build
 ```
+
+### Contribute
+1. __Fork__ this repo
+1. Make changes
+1. __Verify__ your changes are formatted properly
+1. Send a __Pull Request__

@@ -1,4 +1,7 @@
-fix: ## Auto-fix markdown style
-	npm run fix_md
-lint: ## check markdown style with remark-cli
-	npm test
+build: ## Build docs locally
+	mkdocs build --clean
+
+serve: ## Serve live version of your docs
+	mkdocs serve
+
+all: build

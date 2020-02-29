@@ -1,0 +1,10 @@
+site_name: Xbox SmartGlass protocol
+nav:
+    - Home: index.md
+    - Basics: basics.md
+    - Cryptography: cryptography.md
+    - Simple Message: simple_message.md
+    - Channels: channels.md
+    - Messages: message.md
+    - Gamestream (Nano): nano.md
+theme: mkdocs

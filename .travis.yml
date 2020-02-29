@@ -1,5 +1,18 @@
-notifications:
-  email: false
-language: node_js
-node_js:
- - "stable"
+language: python
+python: 3.7
+branches: master
+install:
+- pip install mkdocs
+script: true
+before_deploy:
+- mkdocs build --verbose --clean --strict
+deploy:
+  provider: pages
+  skip_cleanup: true
+  keep_history: true
+  local_dir: site
+  target_branch: gh-pages
+  on:
+    branch: master
+  github_token:
+    secure: MU87kucRfj171amWpkAmGFlQ14e5bb76b+wDSHnWmH+EqSYGfDTk0kVgJh4LRnKAOwHCqBYfCdCrsfZuYG3EOlvxwNfdIGMHNO9UNnd6a6gFcheEncWIKxD7RWBiZ7Ml/zTN1zLqZbdsmu6RZ4d/6gfTH4QguRq48vzy/lBl2B3GSTjgfVrYnCO/QN5SwzrO4mvWfdIAXDWfSzA1iudHuJPEET3CuN2/CvXBsWdIF4N4t6DVh2DvRC5TvE4WhNAFURMfWP52Wg8ZOXU6T3gbkDlvyUNFV8jOcwkWXt7fq3aE6rhyegT7HgMmY3zToJQLOk8ajW1CEMfSGt24pUodCSnJsNES5+t5SKCXf0UTThJE59WeJMFR5tijiG7MVZAy2zKgovYBVruO6XT4tiVkdfO+d9PFugwwShHyCYcJstbPV/TBwDWo25xm+m+GuEQz1xnZ4gcyGBzePJLJrO1/wvERBCFQqtvJ0hJ4842puM/lydFUxD2F0c1j0oJ+9ghcl8lb854dsZGNJZlgZYYqgiNM9e7+QwASzDXbow1VMQqWDUM093oj2sV2Ywq/fi5JWMfKsdzwmbclPaV5TSpLE9RttYpq5TWlbCbFbTR+PfNuxq9p+ONrLkdvmlSOJHnEAoKLgK+eUZTY0IiywDp0A5gowvxZ6GYJ4tMIbtaCZLc=
