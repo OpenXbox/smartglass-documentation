@@ -1,7 +1,7 @@
 # Smartglass Documentation
 
 [![Build Status](https://travis-ci.com/OpenXbox/smartglass-documentation.svg?branch=master)](https://travis-ci.com/OpenXbox/smartglass-documentation)
-[![Discord](https://img.shields.io/badge/discord-OpenXbox-blue.svg)](https://openxbox.org/discord)
+[![Discord](https://img.shields.io/discord/338946086775554048)](https://openxbox.org/discord)
 
 Documentation of the Xbox One SmartGlass protocol
 
