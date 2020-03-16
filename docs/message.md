@@ -93,10 +93,10 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
 
 | Flag                 | Bits                  | Mask   |
 | -------------------- | --------------------- | ------ |
-| Version              | `0000 0000 0000 0011` | 0x03   |
-| Need Acknowledgement | `0000 0000 0000 0100` | 0x04   |
-| Is Fragment          | `0000 0000 0000 1000` | 0x08   |
-| Message Type         | `1111 1111 1111 0000` | 0xFFF0 |
+| Version              | `0011 0000 0000 0000` | 0x3000 |
+| Need Acknowledgement | `0100 0000 0000 0000` | 0x4000 |
+| Is Fragment          | `1000 0000 0000 0000` | 0x8000 |
+| Message Type         | `0000 1111 1111 1111` | 0x0FFF |
 
 - **Version**: Always `2`
 - **Need Acknowledgement**: Indicates if the message needs to
