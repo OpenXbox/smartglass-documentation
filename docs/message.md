@@ -93,10 +93,10 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
 
 | Flag                 | Bits                  | Mask   |
 | -------------------- | --------------------- | ------ |
-| Version              | `0000 0000 0000 0011` | 0x03   |
-| Need Acknowledgement | `0000 0000 0000 0100` | 0x04   |
-| Is Fragment          | `0000 0000 0000 1000` | 0x08   |
-| Message Type         | `1111 1111 1111 0000` | 0xFFF0 |
+| Version              | `1100 0000 0000 0000` | 0xC000 |
+| Need Acknowledgement | `0010 0000 0000 0000` | 0x2000 |
+| Is Fragment          | `0001 0000 0000 0000` | 0x1000 |
+| Message Type         | `0000 1111 1111 1111` | 0x0FFF |
 
 - **Version**: Always `2`
 - **Need Acknowledgement**: Indicates if the message needs to
@@ -323,11 +323,11 @@ Informs client about running titles and Xbox OS version.
 
 | Offset (hex) | Offset (dec) | Type      | Description       |
 | -----------: | -----------: | --------- | ----------------- |
-|         0x00 |            0 | uint16    | Title Id          |
-|         0x02 |            2 | uint16    | Title Disposition |
-|         0x04 |            4 | byte\[16] | Product Id        |
-|         0x14 |           20 | byte\[16] | Sandbox Id        |
-|         0x24 |           36 | SGString  | AUM Id            |
+|         0x00 |            0 | uint32    | Title Id          |
+|         0x04 |            4 | uint16    | Title Disposition |
+|         0x06 |            6 | byte\[16] | Product Id        |
+|         0x16 |           22 | byte\[16] | Sandbox Id        |
+|         0x26 |           38 | SGString  | AUM Id            |
 
 - **Title Id**: Title Id
 - **Title Disposition**: 1 bit: HasFocus-Flag, 15 bits: [Active Title Location](#active-title-location)
