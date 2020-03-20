@@ -323,11 +323,11 @@ Informs client about running titles and Xbox OS version.
 
 | Offset (hex) | Offset (dec) | Type      | Description       |
 | -----------: | -----------: | --------- | ----------------- |
-|         0x00 |            0 | uint16    | Title Id          |
-|         0x02 |            2 | uint16    | Title Disposition |
-|         0x04 |            4 | byte\[16] | Product Id        |
-|         0x14 |           20 | byte\[16] | Sandbox Id        |
-|         0x24 |           36 | SGString  | AUM Id            |
+|         0x00 |            0 | uint32    | Title Id          |
+|         0x04 |            4 | uint16    | Title Disposition |
+|         0x06 |            6 | byte\[16] | Product Id        |
+|         0x16 |           22 | byte\[16] | Sandbox Id        |
+|         0x26 |           38 | SGString  | AUM Id            |
 
 - **Title Id**: Title Id
 - **Title Disposition**: 1 bit: HasFocus-Flag, 15 bits: [Active Title Location](#active-title-location)
