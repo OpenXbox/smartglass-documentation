@@ -93,9 +93,9 @@ via packets of type `0xD00D`. We refer to them as messages of type `Message`.
 
 | Flag                 | Bits                  | Mask   |
 | -------------------- | --------------------- | ------ |
-| Version              | `0011 0000 0000 0000` | 0x3000 |
-| Need Acknowledgement | `0100 0000 0000 0000` | 0x4000 |
-| Is Fragment          | `1000 0000 0000 0000` | 0x8000 |
+| Version              | `1100 0000 0000 0000` | 0xC000 |
+| Need Acknowledgement | `0010 0000 0000 0000` | 0x2000 |
+| Is Fragment          | `0001 0000 0000 0000` | 0x1000 |
 | Message Type         | `0000 1111 1111 1111` | 0x0FFF |
 
 - **Version**: Always `2`
