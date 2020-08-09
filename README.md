@@ -1,6 +1,6 @@
 # Smartglass Documentation
 
-[![Build Status](https://travis-ci.com/OpenXbox/smartglass-documentation.svg?branch=master)](https://travis-ci.com/OpenXbox/smartglass-documentation)
+[![GitHub Workflow - Build](https://img.shields.io/github/workflow/status/OpenXbox/smartglass-documentation/build?label=build)](https://github.com/OpenXbox/smartglass-documentation/actions?query=workflow%3Abuild)
 [![Discord](https://img.shields.io/discord/338946086775554048)](https://openxbox.org/discord)
 
 Documentation of the Xbox One SmartGlass protocol
@@ -26,11 +26,13 @@ Contributions are very welcome. Here's how you can help:
 ## Local testing
 
 Serve the documentation
-```
+
+```sh
 make serve
 ```
 
 Build the documentation
-```
+
+```sh
 make build
 ```
