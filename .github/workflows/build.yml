@@ -9,10 +9,5 @@ jobs:
     name: Deploy docs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v1
-
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: MkDocs Simple action
+      uses: athackst/mkdocs-simple-plugin@v0.1.1
