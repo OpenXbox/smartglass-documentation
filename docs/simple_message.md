@@ -297,9 +297,9 @@ with the following packet:
 
 | Offset (hex) | Offset (dec) | Type   | Description    |
 | -----------: | -----------: | ------ | -------------- |
-|          0x0 |            0 | uint32 | Connect Result |
-|          0x4 |            4 | uint32 | Pairing State  |
-|          0x8 |            8 | uint32 | Participant ID |
+|          0x0 |            0 | uint16 | Connect Result |
+|          0x2 |            2 | uint16 | Pairing State  |
+|          0x4 |            4 | uint32 | Participant ID |
 
 - **Connect Result**: Indicates status of the connect
   attempt, see [Connect Result](#connect-result)
