@@ -699,6 +699,19 @@ Header: [Streamer Header](#streamer-header)
 
 Header: [Streamer Header](#streamer-header)
 
+Assembling video frames:
+
+- Frames are sequential by `Frame Id`
+- Each Frame aka. `Frame Id` has several chunks
+- Chunk size is provided in `Data length`, Position of Data chunk in Frame is provided with `Offset`
+- `Packet count` gives the amount of chunks in a frame
+- To assemble the full frame do the following:
+    - Collect all packets for a specific `Frame Id`
+    - Check if `Packet count` equals to collected packets/chunks
+    - Sort the chunks by `Offset`
+    - Concatenate the chunks `Data` section
+    - The resulting final Frame blob should equal in size to `Total size`
+
 | Offset (hex) | Offset (dec) | Type       | Description  |
 | -----------: | -----------: | ---------- | ------------ |
 |         0x00 |            0 | uint32     | Flags        |
