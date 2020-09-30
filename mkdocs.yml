@@ -7,4 +7,4 @@ nav:
     - Channels: channels.md
     - Messages: message.md
     - Gamestream (Nano): nano.md
-theme: mkdocs
+theme: material
