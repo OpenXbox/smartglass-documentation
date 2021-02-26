@@ -23,7 +23,7 @@ In this documentation only the Xbox One variant of SmartGlass is documented.
 
 Here is a rough overview about the capabilities of the SmartGlass protocol.
 
-- Start games / apps via TitleID
+- ~~Start games / apps via TitleID~~ (this feature got removed from the protocol by Microsoft, with ~Sysupdate 10.0.11763.4088 // 04/2019)
 - Controller input ([Input Channel](channels.md#input-channel))
 - Media player control ([Media Channel](channels.md#media-channel))
 - Text input ([Text Channel](channels.md#text-channel))
