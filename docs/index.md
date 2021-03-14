@@ -39,9 +39,13 @@ The following specifications share similarities with the Xbox specific protocols
 
 - [MS-CDP: Connected Devices Platform](https://msdn.microsoft.com/en-us/library/mt766144.aspx)
 
-### Nano protocol
+### Nano protocol (v1/v2)
 
 - [MS-RDPEUDP: RDP:UDP TransportExtension](https://msdn.microsoft.com/en-us/library/hh536846.aspx)
+
+### XCloud (Nano v3)
+
+- [MS-SRTP: Secure Real-time Transport Protocol (SRTP) Profile](https://docs.microsoft.com/en-us/openspecs/office_protocols/ms-srtp/d9641c95-b152-4cc7-8311-d178f3241f1f)
 
 ## Disclaimer
 
