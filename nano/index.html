@@ -1,0 +1,4019 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+    
+    
+      
+        <title>Gamestream (Nano) - Xbox SmartGlass protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7951f6f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nano-protocol" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Xbox SmartGlass protocol" class="md-header__button md-logo" aria-label="Xbox SmartGlass protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Xbox SmartGlass protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gamestream (Nano)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Xbox SmartGlass protocol" class="md-nav__button md-logo" aria-label="Xbox SmartGlass protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Xbox SmartGlass protocol
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/" class="md-nav__link">
+        Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cryptography/" class="md-nav__link">
+        Cryptography
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simple_message/" class="md-nav__link">
+        Simple Message
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../channels/" class="md-nav__link">
+        Channels
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../message/" class="md-nav__link">
+        Messages
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Gamestream (Nano)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Gamestream (Nano)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    How it works
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcp-vs-udp" class="md-nav__link">
+    TCP vs. UDP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-layout" class="md-nav__link">
+    Data layout
+  </a>
+  
+    <nav class="md-nav" aria-label="Data layout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp-socket" class="md-nav__link">
+    TCP Socket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#padding" class="md-nav__link">
+    Padding
+  </a>
+  
+    <nav class="md-nav" aria-label="Padding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rtp-header" class="md-nav__link">
+    RTP Header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channels" class="md-nav__link">
+    Channels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-types" class="md-nav__link">
+    Payload Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamer-protocol-version" class="md-nav__link">
+    Streamer Protocol Version
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-opening" class="md-nav__link">
+    Channel Opening
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamer-handshaking" class="md-nav__link">
+    Streamer Handshaking
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packets" class="md-nav__link">
+    Packets
+  </a>
+  
+    <nav class="md-nav" aria-label="Packets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packet-layout" class="md-nav__link">
+    Packet Layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-handshake-packet" class="md-nav__link">
+    Control Handshake Packet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-packet" class="md-nav__link">
+    Channel Control Packet
+  </a>
+  
+    <nav class="md-nav" aria-label="Channel Control Packet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-header" class="md-nav__link">
+    Channel Control Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-types" class="md-nav__link">
+    Channel Control Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-payloads" class="md-nav__link">
+    Channel Control Payloads
+  </a>
+  
+    <nav class="md-nav" aria-label="Channel Control Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open" class="md-nav__link">
+    Open
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close" class="md-nav__link">
+    Close
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udp-handshake-packet" class="md-nav__link">
+    UDP Handshake Packet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamer-packet" class="md-nav__link">
+    Streamer Packet
+  </a>
+  
+    <nav class="md-nav" aria-label="Streamer Packet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamer-flags" class="md-nav__link">
+    Streamer Flags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamer-header" class="md-nav__link">
+    Streamer Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-video-streamer-payload-type" class="md-nav__link">
+    Audio Video Streamer Payload Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-payload-type" class="md-nav__link">
+    Input Payload Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamer-payloads" class="md-nav__link">
+    Streamer Payloads
+  </a>
+  
+    <nav class="md-nav" aria-label="Streamer Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-timestamp" class="md-nav__link">
+    Reference Timestamp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-of-data-packets" class="md-nav__link">
+    Timestamp of Data Packets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-id" class="md-nav__link">
+    Frame Id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio" class="md-nav__link">
+    Audio
+  </a>
+  
+    <nav class="md-nav" aria-label="Audio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-format" class="md-nav__link">
+    Audio Format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-codec" class="md-nav__link">
+    Audio Codec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-server-handshake" class="md-nav__link">
+    Audio Server Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-client-handshake" class="md-nav__link">
+    Audio Client Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-control" class="md-nav__link">
+    Audio Control
+  </a>
+  
+    <nav class="md-nav" aria-label="Audio Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-control-flags" class="md-nav__link">
+    Audio Control Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-data" class="md-nav__link">
+    Audio Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video" class="md-nav__link">
+    Video
+  </a>
+  
+    <nav class="md-nav" aria-label="Video">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lost-frame-reporting" class="md-nav__link">
+    Lost frame reporting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-format" class="md-nav__link">
+    Video Format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-codec" class="md-nav__link">
+    Video Codec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-server-handshake" class="md-nav__link">
+    Video Server Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-client-handshake" class="md-nav__link">
+    Video Client Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-control" class="md-nav__link">
+    Video Control
+  </a>
+  
+    <nav class="md-nav" aria-label="Video Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#video-control-flags" class="md-nav__link">
+    Video Control Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-data" class="md-nav__link">
+    Video Data
+  </a>
+  
+    <nav class="md-nav" aria-label="Video Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#video-data-flags" class="md-nav__link">
+    Video Data Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    Input
+  </a>
+  
+    <nav class="md-nav" aria-label="Input">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-button-model" class="md-nav__link">
+    Input Button Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-analog-model" class="md-nav__link">
+    Input Analog Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-extension-model" class="md-nav__link">
+    Input Extension Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-server-handshake" class="md-nav__link">
+    Input Server Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-client-handshake" class="md-nav__link">
+    Input Client Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-ack" class="md-nav__link">
+    Frame Ack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-frame" class="md-nav__link">
+    Input Frame
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-protocol" class="md-nav__link">
+    Control Protocol
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-header" class="md-nav__link">
+    Control Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-payload-type" class="md-nav__link">
+    Control Payload Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-init" class="md-nav__link">
+    Session Init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-create" class="md-nav__link">
+    Session Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-create-response" class="md-nav__link">
+    Session Create Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-destroy" class="md-nav__link">
+    Session Destroy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-statistics" class="md-nav__link">
+    Video Statistics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-telemetry" class="md-nav__link">
+    Realtime Telemetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Realtime Telemetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telemetry-field" class="md-nav__link">
+    Telemetry Field
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-video-quality" class="md-nav__link">
+    Change Video Quality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiate-network-test" class="md-nav__link">
+    Initiate Network Test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-information" class="md-nav__link">
+    Network Information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-test-response" class="md-nav__link">
+    Network Test Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-event" class="md-nav__link">
+    Controller Event
+  </a>
+  
+    <nav class="md-nav" aria-label="Controller Event">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controller-event-type" class="md-nav__link">
+    Controller Event Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    How it works
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcp-vs-udp" class="md-nav__link">
+    TCP vs. UDP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-layout" class="md-nav__link">
+    Data layout
+  </a>
+  
+    <nav class="md-nav" aria-label="Data layout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp-socket" class="md-nav__link">
+    TCP Socket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#padding" class="md-nav__link">
+    Padding
+  </a>
+  
+    <nav class="md-nav" aria-label="Padding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rtp-header" class="md-nav__link">
+    RTP Header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channels" class="md-nav__link">
+    Channels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-types" class="md-nav__link">
+    Payload Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamer-protocol-version" class="md-nav__link">
+    Streamer Protocol Version
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-opening" class="md-nav__link">
+    Channel Opening
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamer-handshaking" class="md-nav__link">
+    Streamer Handshaking
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packets" class="md-nav__link">
+    Packets
+  </a>
+  
+    <nav class="md-nav" aria-label="Packets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packet-layout" class="md-nav__link">
+    Packet Layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-handshake-packet" class="md-nav__link">
+    Control Handshake Packet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-packet" class="md-nav__link">
+    Channel Control Packet
+  </a>
+  
+    <nav class="md-nav" aria-label="Channel Control Packet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-header" class="md-nav__link">
+    Channel Control Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-types" class="md-nav__link">
+    Channel Control Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-control-payloads" class="md-nav__link">
+    Channel Control Payloads
+  </a>
+  
+    <nav class="md-nav" aria-label="Channel Control Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open" class="md-nav__link">
+    Open
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close" class="md-nav__link">
+    Close
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udp-handshake-packet" class="md-nav__link">
+    UDP Handshake Packet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamer-packet" class="md-nav__link">
+    Streamer Packet
+  </a>
+  
+    <nav class="md-nav" aria-label="Streamer Packet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamer-flags" class="md-nav__link">
+    Streamer Flags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamer-header" class="md-nav__link">
+    Streamer Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-video-streamer-payload-type" class="md-nav__link">
+    Audio Video Streamer Payload Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-payload-type" class="md-nav__link">
+    Input Payload Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamer-payloads" class="md-nav__link">
+    Streamer Payloads
+  </a>
+  
+    <nav class="md-nav" aria-label="Streamer Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-timestamp" class="md-nav__link">
+    Reference Timestamp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-of-data-packets" class="md-nav__link">
+    Timestamp of Data Packets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-id" class="md-nav__link">
+    Frame Id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio" class="md-nav__link">
+    Audio
+  </a>
+  
+    <nav class="md-nav" aria-label="Audio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-format" class="md-nav__link">
+    Audio Format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-codec" class="md-nav__link">
+    Audio Codec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-server-handshake" class="md-nav__link">
+    Audio Server Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-client-handshake" class="md-nav__link">
+    Audio Client Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-control" class="md-nav__link">
+    Audio Control
+  </a>
+  
+    <nav class="md-nav" aria-label="Audio Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-control-flags" class="md-nav__link">
+    Audio Control Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-data" class="md-nav__link">
+    Audio Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video" class="md-nav__link">
+    Video
+  </a>
+  
+    <nav class="md-nav" aria-label="Video">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lost-frame-reporting" class="md-nav__link">
+    Lost frame reporting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-format" class="md-nav__link">
+    Video Format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-codec" class="md-nav__link">
+    Video Codec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-server-handshake" class="md-nav__link">
+    Video Server Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-client-handshake" class="md-nav__link">
+    Video Client Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-control" class="md-nav__link">
+    Video Control
+  </a>
+  
+    <nav class="md-nav" aria-label="Video Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#video-control-flags" class="md-nav__link">
+    Video Control Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-data" class="md-nav__link">
+    Video Data
+  </a>
+  
+    <nav class="md-nav" aria-label="Video Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#video-data-flags" class="md-nav__link">
+    Video Data Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    Input
+  </a>
+  
+    <nav class="md-nav" aria-label="Input">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-button-model" class="md-nav__link">
+    Input Button Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-analog-model" class="md-nav__link">
+    Input Analog Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-extension-model" class="md-nav__link">
+    Input Extension Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-server-handshake" class="md-nav__link">
+    Input Server Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-client-handshake" class="md-nav__link">
+    Input Client Handshake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-ack" class="md-nav__link">
+    Frame Ack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-frame" class="md-nav__link">
+    Input Frame
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-protocol" class="md-nav__link">
+    Control Protocol
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-header" class="md-nav__link">
+    Control Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-payload-type" class="md-nav__link">
+    Control Payload Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-init" class="md-nav__link">
+    Session Init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-create" class="md-nav__link">
+    Session Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-create-response" class="md-nav__link">
+    Session Create Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-destroy" class="md-nav__link">
+    Session Destroy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-statistics" class="md-nav__link">
+    Video Statistics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-telemetry" class="md-nav__link">
+    Realtime Telemetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Realtime Telemetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telemetry-field" class="md-nav__link">
+    Telemetry Field
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-video-quality" class="md-nav__link">
+    Change Video Quality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiate-network-test" class="md-nav__link">
+    Initiate Network Test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-information" class="md-nav__link">
+    Network Information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-test-response" class="md-nav__link">
+    Network Test Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-event" class="md-nav__link">
+    Controller Event
+  </a>
+  
+    <nav class="md-nav" aria-label="Controller Event">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controller-event-type" class="md-nav__link">
+    Controller Event Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="nano-protocol">Nano Protocol</h1>
+<p>Nano (aka. Nano RDP / Codename: Arcadia) is the protocol Gamestreaming is based on.
+You can see strong similarities when looking at the Windows IoT RDP server implementation, <em>NanoRDPServer.exe</em>.</p>
+<p>It's basically RTP over TCP (configuration / status of session) and UDP (data).</p>
+<ul>
+<li><a href="#nano-protocol">Nano Protocol</a></li>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#tcp-vs-udp">TCP vs. UDP</a></li>
+<li><a href="#data-layout">Data layout</a><ul>
+<li><a href="#tcp-socket">TCP Socket</a></li>
+</ul>
+</li>
+<li><a href="#padding">Padding</a><ul>
+<li><a href="#example">Example</a></li>
+</ul>
+</li>
+<li><a href="#rtp-header">RTP Header</a></li>
+<li><a href="#channels">Channels</a></li>
+<li><a href="#payload-types">Payload Types</a></li>
+<li><a href="#streamer-protocol-version">Streamer Protocol Version</a></li>
+<li><a href="#channel-opening">Channel Opening</a></li>
+<li><a href="#streamer-handshaking">Streamer Handshaking</a></li>
+<li><a href="#packets">Packets</a><ul>
+<li><a href="#packet-layout">Packet Layout</a></li>
+<li><a href="#control-handshake-packet">Control Handshake Packet</a></li>
+<li><a href="#channel-control-packet">Channel Control Packet</a></li>
+<li><a href="#channel-control-header">Channel Control Header</a></li>
+<li><a href="#channel-control-types">Channel Control Types</a></li>
+<li><a href="#channel-control-payloads">Channel Control Payloads</a><ul>
+<li><a href="#create">Create</a></li>
+<li><a href="#open">Open</a></li>
+<li><a href="#close">Close</a></li>
+</ul>
+</li>
+<li><a href="#udp-handshake-packet">UDP Handshake Packet</a></li>
+<li><a href="#streamer-packet">Streamer Packet</a></li>
+<li><a href="#streamer-flags">Streamer Flags</a></li>
+<li><a href="#streamer-header">Streamer Header</a></li>
+<li><a href="#audio-video-streamer-payload-type">Audio Video Streamer Payload Type</a></li>
+<li><a href="#input-payload-type">Input Payload Type</a></li>
+</ul>
+</li>
+<li><a href="#streamer-payloads">Streamer Payloads</a><ul>
+<li><a href="#reference-timestamp">Reference Timestamp</a></li>
+<li><a href="#timestamp-of-data-packets">Timestamp of Data Packets</a></li>
+<li><a href="#frame-id">Frame Id</a></li>
+<li><a href="#audio">Audio</a></li>
+<li><a href="#audio-format">Audio Format</a></li>
+<li><a href="#audio-codec">Audio Codec</a></li>
+<li><a href="#audio-server-handshake">Audio Server Handshake</a></li>
+<li><a href="#audio-client-handshake">Audio Client Handshake</a></li>
+<li><a href="#audio-control">Audio Control</a><ul>
+<li><a href="#audio-control-flags">Audio Control Flags</a></li>
+</ul>
+</li>
+<li><a href="#audio-data">Audio Data</a></li>
+<li><a href="#video">Video</a></li>
+<li><a href="#lost-frame-reporting">Lost frame reporting</a></li>
+<li><a href="#video-format">Video Format</a></li>
+<li><a href="#video-codec">Video Codec</a></li>
+<li><a href="#video-server-handshake">Video Server Handshake</a></li>
+<li><a href="#video-client-handshake">Video Client Handshake</a></li>
+<li><a href="#video-control">Video Control</a><ul>
+<li><a href="#video-control-flags">Video Control Flags</a></li>
+</ul>
+</li>
+<li><a href="#video-data">Video Data</a><ul>
+<li><a href="#video-data-flags">Video Data Flags</a></li>
+</ul>
+</li>
+<li><a href="#input">Input</a></li>
+<li><a href="#input-button-model">Input Button Model</a></li>
+<li><a href="#input-analog-model">Input Analog Model</a></li>
+<li><a href="#input-extension-model">Input Extension Model</a></li>
+<li><a href="#input-server-handshake">Input Server Handshake</a></li>
+<li><a href="#input-client-handshake">Input Client Handshake</a></li>
+<li><a href="#frame-ack">Frame Ack</a></li>
+<li><a href="#input-frame">Input Frame</a></li>
+<li><a href="#control-protocol">Control Protocol</a></li>
+<li><a href="#control-header">Control Header</a></li>
+<li><a href="#control-payload-type">Control Payload Type</a></li>
+<li><a href="#session-init">Session Init</a></li>
+<li><a href="#session-create">Session Create</a></li>
+<li><a href="#session-create-response">Session Create Response</a></li>
+<li><a href="#session-destroy">Session Destroy</a></li>
+<li><a href="#video-statistics">Video Statistics</a></li>
+<li><a href="#realtime-telemetry">Realtime Telemetry</a><ul>
+<li><a href="#telemetry-field">Telemetry Field</a></li>
+</ul>
+</li>
+<li><a href="#change-video-quality">Change Video Quality</a></li>
+<li><a href="#initiate-network-test">Initiate Network Test</a></li>
+<li><a href="#network-information">Network Information</a></li>
+<li><a href="#network-test-response">Network Test Response</a></li>
+<li><a href="#controller-event">Controller Event</a><ul>
+<li><a href="#controller-event-type">Controller Event Type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<ol>
+<li>Client opens <a href="../channels/#broadcast-channel">Broadcast Channel</a> in SmartGlass Protocol and requests
+   start of gamestreaming to initialize and receive the connection-data
+   <a href="../channels/#initializing"><code>TCP Port</code>, <code>UDP Port</code> and <code>Session ID</code></a>.</li>
+<li>Client creates sockets for <code>TCP</code> and <code>UDP</code>.</li>
+<li>Client sends <a href="#control-handshake-packet">Control Handshake Packet</a> with
+   own, randomly generated, <code>Connection Id</code>.</li>
+<li>Host responds with <a href="#control-handshake-packet">Control Handshake Packet</a>
+   and it's own Connection Id.</li>
+<li>Client starts a background loop, sending <a href="#udp-handshake-packet">UDP Handshake</a> packets.</li>
+<li>Host sends <a href="#channel-control-packet"><code>Channel Create</code> and <code>Channel Open</code></a> packets</li>
+<li>Client replies with <a href="#open">Channel Open</a> packets for the appropriate channels</li>
+<li>Host sends <a href="#audio-video-streamer-payload-type">Server Handshake</a> packets for
+   <a href="#video">Video</a> and <a href="#audio">Audio</a>, announcing it's available formats</li>
+<li>Client replies with <a href="#audio-video-streamer-payload-type">Client Handshake</a> packets,
+   choosing the desired format.</li>
+<li>Client sends <a href="#audio-video-streamer-payload-type">Audio / Video Control</a> packets,
+    starting the stream.</li>
+<li>UDP Data comes flying in.</li>
+<li>Client stops <a href="#udp-handshake-packet">UDP Handshake</a> loop.</li>
+<li>... Client processes data ...</li>
+</ol>
+<h2 id="tcp-vs-udp">TCP vs. UDP</h2>
+<p>Nano uses these two IP protocols in the following ways:</p>
+<p><strong>TCP</strong></p>
+<ul>
+<li><a href="#control-handshake-packet">Control Handshaking</a></li>
+<li><a href="#channel-control-packet">Creating/Opening/Closing Channels</a></li>
+<li>Streamer Client/Server <strong>Handshaking</strong></li>
+<li>Streamer <strong>control</strong> messaging</li>
+<li><a href="#control-protocol">Control Protocol messaging</a></li>
+</ul>
+<p><strong>UDP</strong></p>
+<ul>
+<li><a href="#udp-handshake-packet">UDP handshaking</a></li>
+<li>Streamer <strong>data</strong> packets</li>
+</ul>
+<h2 id="data-layout">Data layout</h2>
+<p>The RTP header is in network / big-endian byteorder, the rest of
+the packet is usually in little-endian byteorder.</p>
+<h3 id="tcp-socket">TCP Socket</h3>
+<p>All TCP packets have a nano-packet size prepended
+(<code>uint32</code>, Little Endian), so several packets can be sent <em>stacked</em>.
+Example of a single TCP packet with two nano packets inside:</p>
+<pre><code class="language-text">packet size #1: 0x123
+nano packet #1: byte[0x123]
+packet size #2: 0x321
+nano packet #2: byte[0x321]
+</code></pre>
+<p>Ideally the chunks are split directly when received from the socket
+and then forwarded to the unpacker/processor/parser.</p>
+<h2 id="padding">Padding</h2>
+<p>Nano, different to SmartGlass core, uses padding of type
+<a href="https://en.wikipedia.org/wiki/Padding_(cryptography)#ANSI_X.923">ANSI X.923</a>
+aka. padding with <strong>zero</strong>, the last byte defining the number of padding bytes.</p>
+<p>Aligment is <strong>4 bytes</strong>.</p>
+<h3 id="example">Example</h3>
+<p><strong>Plaintext (9 bytes)</strong>
+<code>DE AD BE EF DE AD BE EF DE</code></p>
+<p><strong>Padded Plaintext (12 bytes) - 3 bytes padding</strong>
+<code>DE AD BE EF DE AD BE EF DE 00 00 03</code></p>
+<h2 id="rtp-header">RTP Header</h2>
+<p><img alt="Rtp Header" src="../rtpheader.png" /></p>
+<p>Image Source: <a href="https://de.wikipedia.org/wiki/Real-Time_Transport_Protocol">https://de.wikipedia.org/wiki/Real-Time_Transport_Protocol</a></p>
+<p>Image Copyright License: <strong>CC-by-sa-3.0</strong></p>
+<ul>
+<li><strong>Total size</strong>: 0x0C (12)</li>
+<li><strong>V</strong>: Version (2 bits): Always 2</li>
+<li><strong>P</strong>: Padding (1 bit): If set, last byte of payload is padding size.</li>
+<li><strong>X</strong>: Extension (1 bit): If set, variable size header
+  extension exists - <strong>Not used by Nano</strong></li>
+<li><strong>CSRC Count</strong>: (4 bits) Should be 0 - <strong>Not used by Nano</strong></li>
+<li><strong>M</strong>: Marker (1 bit): Indicates a <em>special packet</em> in stream data</li>
+<li><strong>Payload type</strong>: (7 bits) See <a href="#payload-types">Payload Types</a></li>
+<li><strong>Sequence number</strong>: (16 bits) Incrementing number, indvidual to each
+  channel, used to keep track of order and lost packets</li>
+<li><strong>Timestamp</strong>: (32 bits) Timestamp, unsure how it's actually calculated</li>
+<li><strong>SSRC</strong>: (32 bits) For Nano its split into 2 x 16 bits:</li>
+</ul>
+<blockquote>
+<p>NOTE: Only UDP packets use <code>Connection Id</code> field, TCP sets it to <code>0</code></p>
+<ul>
+<li>Bits 0-15: Connection Id</li>
+<li>Bits 16-32: Channel Id</li>
+</ul>
+</blockquote>
+<h2 id="channels">Channels</h2>
+<p>Nano communicates over the following channels + a core channel (<code>0</code>).
+Core Channel handles:</p>
+<ul>
+<li><a href="#control-handshake-packet">Control Handshake</a></li>
+<li><a href="#udp-handshake-packet">UDP Handshake</a></li>
+<li><a href="#channel-control-packet">Channel Control Packet</a></li>
+</ul>
+<p>The following listed channels only process messages of type <code>Streamer</code>.</p>
+<blockquote>
+<p>Usage of <code>TcpBase</code> has not been spotted in the wild to date.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Video</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::Video</code></td>
+</tr>
+<tr>
+<td>Audio</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::Audio</code></td>
+</tr>
+<tr>
+<td>Chat Audio</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::ChatAudio</code></td>
+</tr>
+<tr>
+<td>Control</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::Control</code></td>
+</tr>
+<tr>
+<td>Input</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::Input</code></td>
+</tr>
+<tr>
+<td>Input Feedback</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::Input Feedback</code></td>
+</tr>
+<tr>
+<td>TCP Base</td>
+<td><code>Microsoft::Rdp::Dct::Channel::Class::TcpBase</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="payload-types">Payload Types</h2>
+<p>Payload Type is encoded in the <a href="#rtp-header">RTP Header</a> <code>Payload type</code> field.</p>
+<table>
+<thead>
+<tr>
+<th>Payload Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Streamer</td>
+<td>0x23</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>0x60</td>
+</tr>
+<tr>
+<td>Channel Control</td>
+<td>0x61</td>
+</tr>
+<tr>
+<td>UDP Handshake</td>
+<td>0x64</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Streamer</strong>: Sending encoded video/audio/input data,
+  sending <a href="#control-protocol">Control Protocol packets</a></li>
+<li><strong>Control</strong>: Initial TCP handshake, informs each participants
+  about the used Connection Id.</li>
+<li><strong>Channel Control</strong>: Creating / opening / closing <a href="#channels">Channels</a>.</li>
+<li><strong>UDP Handshake</strong>: Initial UDP handshake, used to inform
+  the host about the used UDP port of the client side.</li>
+</ul>
+<h2 id="streamer-protocol-version">Streamer Protocol Version</h2>
+<p>Currently these are the used streamer protocol version:</p>
+<ul>
+<li><strong>Video</strong>: Version 5</li>
+<li><strong>Audio</strong>: Version 4</li>
+<li><strong>Input</strong>: Version 3</li>
+</ul>
+<h2 id="channel-opening">Channel Opening</h2>
+<p>By default, console <a href="#create">creates</a> and <a href="#open">opens</a> Channels for:</p>
+<ul>
+<li>Audio</li>
+<li>Video</li>
+<li>ChatAudio</li>
+<li>Control</li>
+</ul>
+<p>Client needs to respond with a <a href="#open">Channel Open</a> packet.
+After that, handshaking needs to be done, see <a href="#streamer-handshaking">Streamer Handshaking</a></p>
+<blockquote>
+<p>NOTE: <code>Input</code> and <code>Input Feedback</code> are somewhat special, see
+<a href="#input">Input</a></p>
+</blockquote>
+<h2 id="streamer-handshaking">Streamer Handshaking</h2>
+<p>Normally, a <code>Server Handshake</code> is sent by the console, client has to
+respond with a <code>Client Handshake</code>.</p>
+<blockquote>
+<p>NOTE: <a href="#input">Input Feedback</a> and <a href="#audio">Chat Audio</a> are special!</p>
+</blockquote>
+<h2 id="packets">Packets</h2>
+<h3 id="packet-layout">Packet Layout</h3>
+<pre><code>    ├── RtpHeader
+    └── Payload (RtpHeader.PayloadType)
+        ├── Control Handshake
+        ├── Channel Control
+        │   ├── Channel Create
+        │   ├── Channel Open
+        │   └── Channel Close
+        ├── UDP Handshake
+        └── Streamer
+            ├── TCP Header
+            ├── UDP Header
+            ├── Audio Payload
+            │   ├── Server Handshake
+            │   ├── Client Handshake
+            │   ├── Control
+            │   └── Data
+            ├── Video Payload
+            │   ├── Server Handshake
+            │   ├── Client Handshake
+            │   ├── Control
+            │   └── Data
+            ├── Input Payload
+            │   ├── Server Handshake
+            │   ├── Client Handshake
+            │   ├── Frame Ack
+            │   └── Frame
+            └── Control Payload
+                └── Control Header
+                    ├── Session Init
+                    ├── Session Create
+                    ├── Session Create Response
+                    ├── Session Destroy
+                    ├── Video Statistics
+                    ├── Realtime Telemetry
+                    ├── Change Video Quality
+                    ├── Initiate Network Test
+                    ├── Network Information
+                    ├── Network Test Response
+                    └── Controller Event
+</code></pre>
+<h3 id="control-handshake-packet">Control Handshake Packet</h3>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Type</td>
+</tr>
+<tr>
+<td align="right">0x01</td>
+<td align="right">1</td>
+<td>uint16</td>
+<td>Connection Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x03 (3)</p>
+<ul>
+<li><strong>Type</strong>: Handshake type: SYN: 0 - Sent by client, ACK: 1 - Response from console</li>
+<li><strong>Connection Id</strong>: Client sends randomly generated connection
+  Id, Host responds with it's own.</li>
+</ul>
+<h3 id="channel-control-packet">Channel Control Packet</h3>
+<h4 id="channel-control-header">Channel Control Header</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Channel Control Type</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>byte[]</td>
+<td>Payload</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Channel Control Type</strong>: See <a href="#channel-control-types">Channel Control Types</a></li>
+<li><strong>Payload</strong>: Depending on Type-field</li>
+</ul>
+<h4 id="channel-control-types">Channel Control Types</h4>
+<table>
+<thead>
+<tr>
+<th>Channel Control</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Open</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Close</td>
+<td>0x04</td>
+</tr>
+</tbody>
+</table>
+<h4 id="channel-control-payloads">Channel Control Payloads</h4>
+<h5 id="create">Create</h5>
+<p><strong>Channel Control Type</strong>: <code>0x02</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>Name length</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>uchar[len]</td>
+<td>Channel Name</td>
+</tr>
+<tr>
+<td align="right">0x02 + len</td>
+<td align="right">2 + len</td>
+<td>uint32</td>
+<td>Flags</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Channel Name</strong>: See <a href="#channels">Channels</a></li>
+<li><strong>Flags</strong>: Unknown</li>
+</ul>
+<h5 id="open">Open</h5>
+<p><strong>Channel Control Type</strong>: <code>0x03</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Flags length</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>byte[len]</td>
+<td>Flags</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Flags (optional)</strong>: Depending on prepended size.
+  Are sent by the client <em>as-is</em> in the responding <a href="#open">Channel Open</a> packet.</li>
+</ul>
+<h5 id="close">Close</h5>
+<p><strong>Channel Control Type</strong>: <code>0x04</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Flags</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x04 (4)</p>
+<ul>
+<li><strong>Flags</strong>: Same flags as sent with <code>Create</code> and <code>Open</code> packet</li>
+</ul>
+<h3 id="udp-handshake-packet">UDP Handshake Packet</h3>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Type</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x01 (1)</p>
+<ul>
+<li><strong>Type</strong>: Handshake Type</li>
+</ul>
+<h3 id="streamer-packet">Streamer Packet</h3>
+<h4 id="streamer-flags">Streamer Flags</h4>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Got Seq/Prev Seq</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Unknown</td>
+<td>0x02</td>
+</tr>
+</tbody>
+</table>
+<h4 id="streamer-header">Streamer Header</h4>
+<p>UDP usually uses flags: <code>0x0</code>.
+TCP usually uses flags: <code>0x3</code>.
+For FEC there are additional flags to process (TODO).</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Flags</td>
+</tr>
+<tr>
+<td align="right">*0x??</td>
+<td align="right">*??</td>
+<td>uint32</td>
+<td>*Sequence Number</td>
+</tr>
+<tr>
+<td align="right">*0x??</td>
+<td align="right">*??</td>
+<td>uint32</td>
+<td>*Previous Sequence Number</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">??</td>
+<td>uint32</td>
+<td>Streamer Payload Type</td>
+</tr>
+<tr>
+<td align="right">*0x??</td>
+<td align="right">*??</td>
+<td>uint32</td>
+<td>*Streamer Payload Length</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">??</td>
+<td>byte[*len]</td>
+<td>Streamer Payload</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<blockquote>
+<p><strong>Streamer Payload Length</strong>: Only used if <code>Streamer Payload Type</code>
+is <strong>not</strong> 0 (0: Control packet with own header)</p>
+</blockquote>
+<ul>
+<li><strong>Flags</strong>: Depending on used <a href="#channels">Channel</a></li>
+<li><strong>Sequence Number</strong>: If Flag <code>Got Seq/Prev Seq</code> is set -&gt; incrementing number,
+  specific for channel and participant side</li>
+<li><strong>Previous Sequence Number</strong>: If Flag <code>Got Seq/Prev Seq</code> is set -&gt; previously
+  sent <code>Sequence Number</code></li>
+<li><strong>Streamer Payload Type</strong>:  See <a href="#audio-video-streamer-payload-type">Audio / Video Payload Type</a>
+  and <a href="#input-payload-type">Input Payload Type</a></li>
+<li><strong>Streamer Payload</strong>: Depending on <code>Streamer Payload Type</code></li>
+</ul>
+<h4 id="audio-video-streamer-payload-type">Audio Video Streamer Payload Type</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server Handshake</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Client Handshake</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>0x04</td>
+</tr>
+</tbody>
+</table>
+<h4 id="input-payload-type">Input Payload Type</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server Handshake</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Client Handshake</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Frame Ack</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Frame</td>
+<td>0x04</td>
+</tr>
+</tbody>
+</table>
+<h2 id="streamer-payloads">Streamer Payloads</h2>
+<h3 id="reference-timestamp">Reference Timestamp</h3>
+<p>Reference Timestamp is <strong>milliseconds</strong> since epoch.</p>
+<h3 id="timestamp-of-data-packets">Timestamp of Data Packets</h3>
+<p>The Timestamp used on each Data/Frame Packet is current time in
+<strong>microseconds</strong> -&gt; <strong>relative</strong> to the <a href="#reference-timestamp">Reference Timestamp</a></p>
+<h3 id="frame-id">Frame Id</h3>
+<p>The initial Frame Id is chosen randomly by the participant that's
+sending the handshake.
+Frame Ids of the data/frame packet will start with the initial
+value and increment on each packet.</p>
+<h3 id="audio">Audio</h3>
+<blockquote>
+<p>NOTE: For <a href="#channels">ChatAudio Channel</a>, the <strong>client</strong> needs to send the <a href="#audio-server-handshake">Audio Server Handshake</a>
+to the console after <a href="#open">opening</a> the channel!!!
+Console responds with <a href="#audio-server-handshake">Audio Client Handshake</a></p>
+</blockquote>
+<h4 id="audio-format">Audio Format</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Channels</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Sample Rate</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Audio Codec</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If AudioCodec is PCM:</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Bit Depth</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Type</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Channels</strong>: Audio Channels of encoded data</li>
+<li><strong>Sample Rate</strong>: Samplerate of encoded data</li>
+<li><strong>Audio Codec</strong>: See <a href="#audio-codec">Audio Codec</a></li>
+<li><strong>Bit Depth (optional)</strong>: If <code>Audio Codec</code> is <code>PCM</code> this field
+  gives the bit depth of encoded data</li>
+<li><strong>Type (optional)</strong>: If <code>Audio Codec</code> is <code>PCM</code> this field
+  gives the type (<code>Integer</code> or <code>Float</code>) of encoded data</li>
+</ul>
+<h4 id="audio-codec">Audio Codec</h4>
+<table>
+<thead>
+<tr>
+<th>Codec</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>AAC</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>0x02</td>
+</tr>
+</tbody>
+</table>
+<h4 id="audio-server-handshake">Audio Server Handshake</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Protocol Version</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint64</td>
+<td>Reference Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Formats length</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>AudioFormat[len]</td>
+<td>Audio Formats</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Protocol Version</strong>: See <a href="#streamer-protocol-version">Streamer Protocol Version</a></li>
+<li><strong>Reference Timestamp</strong>: See <a href="#reference-timestamp">Reference Timestamp</a></li>
+<li><strong>Audio Formats</strong>: Available <code>Audio Formats</code>, Array of
+  <a href="#audio-format">Audio Format</a></li>
+</ul>
+<h4 id="audio-client-handshake">Audio Client Handshake</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Initial Frame Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>AudioFormat</td>
+<td>Audio Format</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Initial Frame Id</strong>: See <a href="#frame-id">Frame Id</a></li>
+<li><strong>Audio Format</strong>: By client desired <a href="#audio-format">Audio Format</a></li>
+</ul>
+<h4 id="audio-control">Audio Control</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Audio Control Flags</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x04 (4)</p>
+<ul>
+<li><strong>Audio Control Flags</strong>: See <a href="#audio-control-flags">Audio Control Flags</a></li>
+</ul>
+<h5 id="audio-control-flags">Audio Control Flags</h5>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reinitialize</td>
+<td><code>0000 0000 0000 0010</code></td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Start Stream</td>
+<td><code>0000 0000 0000 1000</code></td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>Stop Stream</td>
+<td><code>0000 0000 0001 0000</code></td>
+<td>0x10</td>
+</tr>
+</tbody>
+</table>
+<h4 id="audio-data">Audio Data</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Flags</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Frame Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Data length</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>byte[len]</td>
+<td>Data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Flags</strong>: Unknown, for <code>AAC</code> it seems to always be <code>0x4</code></li>
+<li><strong>Frame Id</strong>: See <a href="#frame-id">Frame Id</a></li>
+<li><strong>Timestamp</strong>: See <a href="#timestamp-of-data-packets">Timestamp of Data Packets</a></li>
+<li><strong>Data</strong>: Encoded data</li>
+</ul>
+<h3 id="video">Video</h3>
+<h4 id="lost-frame-reporting">Lost frame reporting</h4>
+<p>TODO</p>
+<h4 id="video-format">Video Format</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>FPS</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Width</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Height</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Video Codec</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If VideoCodec is RGB:</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Bpp</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint32</td>
+<td>Bytes</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>uint64</td>
+<td>Red Mask</td>
+</tr>
+<tr>
+<td align="right">0x20</td>
+<td align="right">32</td>
+<td>uint64</td>
+<td>Green Mask</td>
+</tr>
+<tr>
+<td align="right">0x28</td>
+<td align="right">40</td>
+<td>uint64</td>
+<td>Blue Mask</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>FPS</strong>: Frames per second</li>
+<li><strong>Width</strong>: Video Frame Width</li>
+<li><strong>Height</strong>: Video Frame Height</li>
+<li><strong>Video Codec</strong>: See <code>Video Codec</code></li>
+<li><strong>Bpp (optional)</strong>: If <code>Video Codec</code> is <code>RGB</code> this field gives
+  the bits per pixel (color depth)</li>
+<li><strong>Bytes (optional)</strong>:  If <code>Video Codec</code> is <code>RGB</code> this field gives
+  the bytes per pixel</li>
+<li><strong>Red Mask (optional)</strong>: If <code>Video Codec</code> is <code>RGB</code> this field gives
+  the <code>Red Mask</code></li>
+<li><strong>Green Mask (optional)</strong>: If <code>Video Codec</code> is <code>RGB</code> this field gives
+  the <code>Green Mask</code></li>
+<li><strong>Blue Mask (optional)</strong>: If <code>Video Codec</code> is <code>RGB</code> this field gives
+  the <code>Blue Mask</code></li>
+</ul>
+<h4 id="video-codec">Video Codec</h4>
+<table>
+<thead>
+<tr>
+<th>Codec</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H264</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>YUV</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>0x02</td>
+</tr>
+</tbody>
+</table>
+<h4 id="video-server-handshake">Video Server Handshake</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Protocol Version</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Width</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Height</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>FPS</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint64</td>
+<td>Reference Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>uint32</td>
+<td>Formats length</td>
+</tr>
+<tr>
+<td align="right">0x1C</td>
+<td align="right">28</td>
+<td>VideoFormat[len]</td>
+<td>Video Formats</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Protocol Version</strong>: See <a href="#streamer-protocol-version">Streamer Protocol Version</a></li>
+<li><strong>Width</strong>: Video Width</li>
+<li><strong>Height</strong>: Video Height</li>
+<li><strong>FPS</strong>: Frames per second</li>
+<li><strong>Reference Timestamp</strong>: <a href="#reference-timestamp">Reference Timestamp</a></li>
+<li><strong>Video Formats</strong>: Available <code>Video Formats</code>, Array of
+  <a href="#video-format">Video Format</a></li>
+</ul>
+<h4 id="video-client-handshake">Video Client Handshake</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Initial Frame Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>VideoFormat</td>
+<td>Video Format</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Initial Frame Id</strong>: See <a href="#frame-id">Frame Id</a></li>
+<li><strong>Video Format</strong>: By client desired <a href="#video-format">Video Format</a></li>
+</ul>
+<h4 id="video-control">Video Control</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Video Control Flags</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If "Last displayed frame" set:</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint32</td>
+<td>Last displayed Frame Id</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If "Queue Depth" set:</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint32</td>
+<td>Queue Depth</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If "Lost frames" set:</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint32</td>
+<td>First lost Frame</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint32</td>
+<td>Last lost Frame</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Video Control Flags</strong>: See <a href="#video-control-flags">Video Control Flags</a></li>
+<li><strong>Last displayed Frame Id (optional)</strong>: If flag <code>Last displayed frame</code> is set, this
+  informs the host about the last displayed <code>Video Frame</code> by <code>Frame Id</code></li>
+<li><strong>Timestamp (optional)</strong>: If flag <code>Last displayed frame</code> is set, this informs the
+  host about the time the frame was displayed
+  (<a href="#timestamp-of-data-packets">Timestamp of Data Packets</a>)</li>
+<li><strong>Queue Depth (optional)</strong>: If flag <code>Queue Depth</code> is set: Informs the host about queue depth</li>
+<li><strong>First lost Frame (optional)</strong>: If flag <code>Lost frames</code> is set, this informs the host about
+  the first last Frame, given the <code>Frame Id</code></li>
+<li><strong>Last lost Frame (optional)</strong>: If flag <code>Lost frames</code> is set, this informs the host about
+  the last last Frame, given the <code>Frame Id</code></li>
+</ul>
+<h5 id="video-control-flags">Video Control Flags</h5>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Request Keyframe</td>
+<td><code>0000 0000 0000 0100</code></td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Start Stream</td>
+<td><code>0000 0000 0000 1000</code></td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>Stop Stream</td>
+<td><code>0000 0000 0001 0000</code></td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>Queue Depth</td>
+<td><code>0000 0000 0010 0000</code></td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>Lost frames</td>
+<td><code>0000 0000 0100 0000</code></td>
+<td>0x40</td>
+</tr>
+<tr>
+<td>Last displayed frame</td>
+<td><code>0000 0000 1000 0000</code></td>
+<td>0x80</td>
+</tr>
+</tbody>
+</table>
+<h4 id="video-data">Video Data</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<p>Assembling video frames:</p>
+<ul>
+<li>Frames are sequential by <code>Frame Id</code></li>
+<li>Each Frame aka. <code>Frame Id</code> has several chunks</li>
+<li>Chunk size is provided in <code>Data length</code>, Position of Data chunk in Frame is provided with <code>Offset</code></li>
+<li><code>Packet count</code> gives the amount of chunks in a frame</li>
+<li>To assemble the full frame do the following:<ul>
+<li>Collect all packets for a specific <code>Frame Id</code></li>
+<li>Check if <code>Packet count</code> equals to collected packets/chunks</li>
+<li>Sort the chunks by <code>Offset</code></li>
+<li>Concatenate the chunks <code>Data</code> section</li>
+<li>The resulting final Frame blob should equal in size to <code>Total size</code></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Flags</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Frame Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Total size</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint32</td>
+<td>Packet count</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>uint32</td>
+<td>Offset</td>
+</tr>
+<tr>
+<td align="right">0x1C</td>
+<td align="right">28</td>
+<td>uint32</td>
+<td>Data length</td>
+</tr>
+<tr>
+<td align="right">0x20</td>
+<td align="right">32</td>
+<td>byte[len]</td>
+<td>Data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Flags</strong>: See <a href="#video-data-flags">Video Data Flags</a></li>
+<li><strong>Frame Id</strong>: See <a href="#frame-id">Frame Id</a></li>
+<li><strong>Timestamp</strong>: See <a href="#timestamp-of-data-packets">Timestamp of Data Packets</a></li>
+<li><strong>Total size</strong>: Total size of the Video Frame</li>
+<li><strong>Packet count</strong>: Count of total frame chunks</li>
+<li><strong>Offset</strong>: Beginning position of current frame chunk</li>
+<li><strong>Data</strong>: Encoded data</li>
+</ul>
+<h5 id="video-data-flags">Video Data Flags</h5>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyframe</td>
+<td><code>0000 0000 0000 0010</code></td>
+<td>0x02</td>
+</tr>
+</tbody>
+</table>
+<h3 id="input">Input</h3>
+<blockquote>
+<p>NOTE: Input channel does not get created by default!
+You need to send a <a href="#controller-event">Controller Event</a> over
+<a href="#control-protocol">Control Protocol</a> to make the console
+<a href="#create">Create</a> the <a href="#channels">Input Channel</a>.</p>
+<p>After client sends the <a href="#open">Open Input Channel</a> packet to the console, console
+sends an <a href="#open">Open Input Channel</a> packet packet too - then console
+<a href="#create">creates</a> and <a href="#open">opens</a> the <a href="#channels">Input Feedback Channel</a>.</p>
+<p>Client <a href="#open">opens</a> <a href="#channels">Input Feedback Channel</a>.
+Client sends the <a href="#input-server-handshake">Input Server Handshake</a> for
+<code>Input Feedback</code> - console responds with <a href="#input-client-handshake">Input Client Handshake</a>.</p>
+<p>Console will further send a <a href="#input-server-handshake">Input Server Handshake</a>
+for <code>Input</code> which client needs to respond with <a href="#input-client-handshake">Input Client Handshake</a></p>
+</blockquote>
+<h4 id="input-button-model">Input Button Model</h4>
+<p>This structure starts with <code>all-zero</code>.
+When a button-state is changed, the appropriate field is incremented by one.</p>
+<p><strong>Advice</strong>: Keep track of the button-state, don't increment the value if new button-
+state is the same as the old one - otherwise you will provoke a <em>stuck button</em>
+in case an <a href="#input-frame">Input Frame</a> packet is lost.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-C">// Initial value - button is not pressed
+button_state.A = state.RELEASED
+button_model.A = 0
+
+SendPacket()
+
+while (getting_input_data) {
+  // A button is pressed
+  if (new_state != button_state.A) {
+    button_model.A++
+    button_state.A = new_state
+
+    SendPacket()
+  }
+}
+
+// State can be checked from value like:
+// bool released = (button_model.A % 2) == 0 || button_model.A == 0
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>D-Pad Up</td>
+</tr>
+<tr>
+<td align="right">0x01</td>
+<td align="right">1</td>
+<td>byte</td>
+<td>D-Pad Down</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>byte</td>
+<td>D-Pad Left</td>
+</tr>
+<tr>
+<td align="right">0x03</td>
+<td align="right">3</td>
+<td>byte</td>
+<td>D-Pad Right</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>byte</td>
+<td>Start</td>
+</tr>
+<tr>
+<td align="right">0x05</td>
+<td align="right">5</td>
+<td>byte</td>
+<td>Back</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>byte</td>
+<td>Left thumbstick</td>
+</tr>
+<tr>
+<td align="right">0x07</td>
+<td align="right">7</td>
+<td>byte</td>
+<td>Right thumbstick</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>byte</td>
+<td>Left shoulder</td>
+</tr>
+<tr>
+<td align="right">0x09</td>
+<td align="right">9</td>
+<td>byte</td>
+<td>Right shoulder</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>byte</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td align="right">0x0B</td>
+<td align="right">11</td>
+<td>byte</td>
+<td>Unknown</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>byte</td>
+<td>A</td>
+</tr>
+<tr>
+<td align="right">0x0D</td>
+<td align="right">13</td>
+<td>byte</td>
+<td>B</td>
+</tr>
+<tr>
+<td align="right">0x0E</td>
+<td align="right">14</td>
+<td>byte</td>
+<td>X</td>
+</tr>
+<tr>
+<td align="right">0x0F</td>
+<td align="right">15</td>
+<td>byte</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x10 (16)</p>
+<h4 id="input-analog-model">Input Analog Model</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Left Trigger</td>
+</tr>
+<tr>
+<td align="right">0x01</td>
+<td align="right">1</td>
+<td>byte</td>
+<td>Right Trigger</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>uint16</td>
+<td>Left thumbstick X</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint16</td>
+<td>Left thumbstick Y</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>uint16</td>
+<td>Right thumbstick X</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint16</td>
+<td>Right thumbstick Y</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>byte</td>
+<td>Left Rumble trigger</td>
+</tr>
+<tr>
+<td align="right">0x0B</td>
+<td align="right">11</td>
+<td>byte</td>
+<td>Right Rumble trigger</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>byte</td>
+<td>Left Rumble handle</td>
+</tr>
+<tr>
+<td align="right">0x0D</td>
+<td align="right">13</td>
+<td>byte</td>
+<td>Right Rumble handle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x0E (14)</p>
+<h4 id="input-extension-model">Input Extension Model</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x01</td>
+<td align="right">1</td>
+<td>byte</td>
+<td>Unknown 2</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>byte</td>
+<td>Left Rumble trigger 2</td>
+</tr>
+<tr>
+<td align="right">0x03</td>
+<td align="right">3</td>
+<td>byte</td>
+<td>Right Rumble trigger 2</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>byte</td>
+<td>Left Rumble handle 2</td>
+</tr>
+<tr>
+<td align="right">0x05</td>
+<td align="right">5</td>
+<td>byte</td>
+<td>Right Rumble handle 2</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>byte</td>
+<td>Unknown 3</td>
+</tr>
+<tr>
+<td align="right">0x07</td>
+<td align="right">7</td>
+<td>byte</td>
+<td>Unknown 4</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>byte</td>
+<td>Unknown 5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x09 (9)</p>
+<ul>
+<li><strong>Unknown 1</strong>: Set to 1 for gamepad</li>
+</ul>
+<h4 id="input-server-handshake">Input Server Handshake</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Protocol Version</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Desktop Width</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Desktop Height</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Max Touches</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Initial frame Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x14 (20)</p>
+<ul>
+<li><strong>Protocol Version</strong>: See <a href="#streamer-protocol-version">Streamer Protocol Version</a></li>
+<li><strong>Desktop Width</strong>: Host's display width</li>
+<li><strong>Desktop Height</strong>: Host's display height</li>
+<li><strong>Max Touches</strong>: <code>0</code></li>
+<li><strong>Initial Frame Id</strong>: <a href="#frame-id">Frame Id</a></li>
+</ul>
+<h4 id="input-client-handshake">Input Client Handshake</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Max Touches</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint64</td>
+<td>Reference Timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x0C (12)</p>
+<ul>
+<li><strong>Max Touches</strong>: Input: <code>10</code>, Input Feedback: <code>0</code></li>
+<li><strong>Reference Timestamp</strong>: See <a href="#reference-timestamp">Reference Timestamp</a></li>
+</ul>
+<h4 id="frame-ack">Frame Ack</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Acked frame</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x04 (4)</p>
+<ul>
+<li><strong>Acked frame</strong>: <code>Frame Id</code> of <a href="#input-frame">Input Frame</a> to acknowledge</li>
+</ul>
+<h4 id="input-frame">Input Frame</h4>
+<p>Header: <a href="#streamer-header">Streamer Header</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Frame Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint64</td>
+<td>Created Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>byte[16]</td>
+<td>Input Button Model</td>
+</tr>
+<tr>
+<td align="right">0x24</td>
+<td align="right">36</td>
+<td>byte[14]</td>
+<td>Input Analog Model</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If remaining data:</td>
+</tr>
+<tr>
+<td align="right">0x32</td>
+<td align="right">50</td>
+<td>byte[9]</td>
+<td>Input Extension Model</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: 0x32 (50) or 0x3B (59)</p>
+<ul>
+<li><strong>Frame Id</strong>: See <a href="#frame-id">Frame Id</a></li>
+<li><strong>Timestamp</strong>: See <a href="#timestamp-of-data-packets">Timestamp of Data Packets</a></li>
+<li><strong>Created Timestamp</strong>: See <a href="#timestamp-of-data-packets">Timestamp of Data Packets</a></li>
+<li><strong>Input Button Model</strong>: See <a href="#input-button-model">Input Button Model</a></li>
+<li><strong>Input Analog Model</strong>: See <a href="#input-analog-model">Input Analog Model</a></li>
+<li><strong>Input Extension Model (optional)</strong>: <a href="#input-extension-model">Input Extension Model</a></li>
+</ul>
+<h3 id="control-protocol">Control Protocol</h3>
+<p>Header: <a href="#streamer-header">Streamer Header</a>
+Control Protocol packets have <code>Streamer Payload Type</code> set to <code>0</code></p>
+<h4 id="control-header">Control Header</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Previous Sequence (DUPE)</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint16</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>uint16</td>
+<td>Unknown 2</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint16</td>
+<td>Control Payload Type</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>byte[]</td>
+<td>Control Payload</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total size</strong>: <em>variable</em></p>
+<ul>
+<li><strong>Previous Sequence</strong>: Previous Sequence Number (DUPE)</li>
+<li><strong>Unknown 1</strong>: TODO: <code>1</code></li>
+<li><strong>Unknown 2</strong>: TODO: <code>1406</code></li>
+<li><strong>Control Payload Type</strong>: See <a href="#control-payload-type">Control Payload Type</a></li>
+<li><strong>Control Payload</strong>: Depends on <a href="#control-payload-type">Control Payload Type</a></li>
+</ul>
+<h4 id="control-payload-type">Control Payload Type</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Session Init</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Session Create</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Session Create Response</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Session Destroy</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Video Statistics</td>
+<td>0x05</td>
+</tr>
+<tr>
+<td>Realtime Telemetry</td>
+<td>0x06</td>
+</tr>
+<tr>
+<td>Change Video Quality</td>
+<td>0x07</td>
+</tr>
+<tr>
+<td>Initiate Network Test</td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>Network Information</td>
+<td>0x09</td>
+</tr>
+<tr>
+<td>Network Test Response</td>
+<td>0x0A</td>
+</tr>
+<tr>
+<td>Controller Event</td>
+<td>0x0B</td>
+</tr>
+</tbody>
+</table>
+<h4 id="session-init">Session Init</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte[]</td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<h4 id="session-create">Session Create</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Length</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>byte[length]</td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<h4 id="session-create-response">Session Create Response</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte[]</td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<h4 id="session-destroy">Session Destroy</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Length</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Unknown 2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="video-statistics">Video Statistics</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Unknown 2</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Unknown 3</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Unknown 4</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Unknown 5</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint32</td>
+<td>Unknown 6</td>
+</tr>
+</tbody>
+</table>
+<h4 id="realtime-telemetry">Realtime Telemetry</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>Field count</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>TelemetryField[count]</td>
+<td>Telemetry Fields</td>
+</tr>
+</tbody>
+</table>
+<h5 id="telemetry-field">Telemetry Field</h5>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>Key</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>uint64</td>
+<td>Value</td>
+</tr>
+</tbody>
+</table>
+<h4 id="change-video-quality">Change Video Quality</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Unknown 2</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Unknown 3</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Unknown 4</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Unknown 5</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint32</td>
+<td>Unknown 6</td>
+</tr>
+</tbody>
+</table>
+<h4 id="initiate-network-test">Initiate Network Test</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte[]</td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<h4 id="network-information">Network Information</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>byte</td>
+<td>Unknown 2</td>
+</tr>
+<tr>
+<td align="right">0x09</td>
+<td align="right">9</td>
+<td>uint32</td>
+<td>Unknown 3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="network-test-response">Network Test Response</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Unknown 1</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Unknown 2</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Unknown 3</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Unknown 4</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Unknown 5</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint64</td>
+<td>Unknown 6</td>
+</tr>
+<tr>
+<td align="right">0x1C</td>
+<td align="right">28</td>
+<td>uint64</td>
+<td>Unknown 7</td>
+</tr>
+<tr>
+<td align="right">0x24</td>
+<td align="right">36</td>
+<td>uint32</td>
+<td>Unknown 8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="controller-event">Controller Event</h4>
+<p>By sending a <code>Controller Event</code> packet to the console, the console
+will open the <code>Input</code>/<code>Input Feedback</code> channels and send the
+appropriate <code>Channel Open</code> packets to the client.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Event</td>
+</tr>
+<tr>
+<td align="right">0x01</td>
+<td align="right">1</td>
+<td>byte</td>
+<td>Controller Number</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Event</strong>: <a href="#controller-event-type">Controller Event Type</a></li>
+<li><strong>Controller Number</strong>: Null-indexed controller number</li>
+</ul>
+<h5 id="controller-event-type">Controller Event Type</h5>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Removed</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Added</td>
+<td>0x01</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../message/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Messages" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Messages
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.649a939e.min.js"></script>
+      
+    
+  </body>
+</html>

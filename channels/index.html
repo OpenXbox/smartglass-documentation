@@ -1,0 +1,2142 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+    
+    
+      
+        <title>Channels - Xbox SmartGlass protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7951f6f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#channels" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Xbox SmartGlass protocol" class="md-header__button md-logo" aria-label="Xbox SmartGlass protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Xbox SmartGlass protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Channels
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Xbox SmartGlass protocol" class="md-nav__button md-logo" aria-label="Xbox SmartGlass protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Xbox SmartGlass protocol
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/" class="md-nav__link">
+        Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cryptography/" class="md-nav__link">
+        Cryptography
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simple_message/" class="md-nav__link">
+        Simple Message
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Channels
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Channels
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-channel" class="md-nav__link">
+    Core Channel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledging-messages" class="md-nav__link">
+    Acknowledging Messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-channels" class="md-nav__link">
+    Service Channels
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acquiring-a-channel" class="md-nav__link">
+    Acquiring a channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-channel" class="md-nav__link">
+    Input Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-tv-remote-channel" class="md-nav__link">
+    Input TV Remote Channel
+  </a>
+  
+    <nav class="md-nav" aria-label="Input TV Remote Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stump-message-type" class="md-nav__link">
+    Stump Message Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-id-generation" class="md-nav__link">
+    Message Id Generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assemble-http-streaming-url" class="md-nav__link">
+    Assemble HTTP Streaming URL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdmi-guid" class="md-nav__link">
+    HDMI GUID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-source" class="md-nav__link">
+    Stump Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-quality" class="md-nav__link">
+    Stump Quality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-notification" class="md-nav__link">
+    Stump Notification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-filter-type" class="md-nav__link">
+    Stump Filter Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-base-message" class="md-nav__link">
+    Stump Base Message
+  </a>
+  
+    <nav class="md-nav" aria-label="Stump Base Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-configuration" class="md-nav__link">
+    Get Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-headend-info" class="md-nav__link">
+    Get Headend Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-live-tv-info" class="md-nav__link">
+    Get Live TV Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-program-info" class="md-nav__link">
+    Get Program Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-tuner-lineups" class="md-nav__link">
+    Get Tuner Lineups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-appchannel-lineups" class="md-nav__link">
+    Get AppChannel Lineups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-appchannel-program-data" class="md-nav__link">
+    Get AppChannel Program Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-appchannel-data" class="md-nav__link">
+    Get AppChannel Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-streaming-started" class="md-nav__link">
+    Ensure Streaming started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-channel-params" class="md-nav__link">
+    Set Channel Params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-recent-channels" class="md-nav__link">
+    Get recent Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-key" class="md-nav__link">
+    Send Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-channel" class="md-nav__link">
+    Media Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-channel" class="md-nav__link">
+    Text Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-channel" class="md-nav__link">
+    Broadcast Channel
+  </a>
+  
+    <nav class="md-nav" aria-label="Broadcast Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-start-gamestreaming" class="md-nav__link">
+    How to start gamestreaming?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-message-type" class="md-nav__link">
+    Broadcast Message Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    Messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-start-message" class="md-nav__link">
+    Gamestream Start Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-stop-message" class="md-nav__link">
+    Gamestream Stop Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-state-message" class="md-nav__link">
+    Gamestream State Message
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamestream State Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-state" class="md-nav__link">
+    Gamestream State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing" class="md-nav__link">
+    Initializing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#started" class="md-nav__link">
+    Started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stopped" class="md-nav__link">
+    Stopped
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paused" class="md-nav__link">
+    Paused
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-enabled-message" class="md-nav__link">
+    Gamestream Enabled Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-error-message" class="md-nav__link">
+    Gamestream Error Message
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamestream Error Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-error" class="md-nav__link">
+    Gamestream Error
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-telemetry-message" class="md-nav__link">
+    Gamestream Telemetry Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-preview-status-message" class="md-nav__link">
+    Gamestream Preview Status Message
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-channel" class="md-nav__link">
+    Title Channel
+  </a>
+  
+    <nav class="md-nav" aria-label="Title Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#title-handshaking" class="md-nav__link">
+    Title handshaking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packet-structure" class="md-nav__link">
+    Packet structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../message/" class="md-nav__link">
+        Messages
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nano/" class="md-nav__link">
+        Gamestream (Nano)
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-channel" class="md-nav__link">
+    Core Channel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledging-messages" class="md-nav__link">
+    Acknowledging Messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-channels" class="md-nav__link">
+    Service Channels
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acquiring-a-channel" class="md-nav__link">
+    Acquiring a channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-channel" class="md-nav__link">
+    Input Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-tv-remote-channel" class="md-nav__link">
+    Input TV Remote Channel
+  </a>
+  
+    <nav class="md-nav" aria-label="Input TV Remote Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stump-message-type" class="md-nav__link">
+    Stump Message Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-id-generation" class="md-nav__link">
+    Message Id Generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assemble-http-streaming-url" class="md-nav__link">
+    Assemble HTTP Streaming URL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdmi-guid" class="md-nav__link">
+    HDMI GUID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-source" class="md-nav__link">
+    Stump Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-quality" class="md-nav__link">
+    Stump Quality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-notification" class="md-nav__link">
+    Stump Notification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-filter-type" class="md-nav__link">
+    Stump Filter Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stump-base-message" class="md-nav__link">
+    Stump Base Message
+  </a>
+  
+    <nav class="md-nav" aria-label="Stump Base Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-configuration" class="md-nav__link">
+    Get Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-headend-info" class="md-nav__link">
+    Get Headend Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-live-tv-info" class="md-nav__link">
+    Get Live TV Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-program-info" class="md-nav__link">
+    Get Program Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-tuner-lineups" class="md-nav__link">
+    Get Tuner Lineups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-appchannel-lineups" class="md-nav__link">
+    Get AppChannel Lineups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-appchannel-program-data" class="md-nav__link">
+    Get AppChannel Program Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-appchannel-data" class="md-nav__link">
+    Get AppChannel Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-streaming-started" class="md-nav__link">
+    Ensure Streaming started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-channel-params" class="md-nav__link">
+    Set Channel Params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-recent-channels" class="md-nav__link">
+    Get recent Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-key" class="md-nav__link">
+    Send Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-channel" class="md-nav__link">
+    Media Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-channel" class="md-nav__link">
+    Text Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-channel" class="md-nav__link">
+    Broadcast Channel
+  </a>
+  
+    <nav class="md-nav" aria-label="Broadcast Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-start-gamestreaming" class="md-nav__link">
+    How to start gamestreaming?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-message-type" class="md-nav__link">
+    Broadcast Message Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    Messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-start-message" class="md-nav__link">
+    Gamestream Start Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-stop-message" class="md-nav__link">
+    Gamestream Stop Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-state-message" class="md-nav__link">
+    Gamestream State Message
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamestream State Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-state" class="md-nav__link">
+    Gamestream State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing" class="md-nav__link">
+    Initializing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#started" class="md-nav__link">
+    Started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stopped" class="md-nav__link">
+    Stopped
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paused" class="md-nav__link">
+    Paused
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-enabled-message" class="md-nav__link">
+    Gamestream Enabled Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-error-message" class="md-nav__link">
+    Gamestream Error Message
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamestream Error Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-error" class="md-nav__link">
+    Gamestream Error
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-telemetry-message" class="md-nav__link">
+    Gamestream Telemetry Message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamestream-preview-status-message" class="md-nav__link">
+    Gamestream Preview Status Message
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-channel" class="md-nav__link">
+    Title Channel
+  </a>
+  
+    <nav class="md-nav" aria-label="Title Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#title-handshaking" class="md-nav__link">
+    Title handshaking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packet-structure" class="md-nav__link">
+    Packet structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="channels">Channels</h1>
+<p>There are messages and status reports which service a specific area, they
+communicate on their own Channel (indicated by the <a href="#service-channels">Service Channel</a> field
+in the message header).</p>
+<p>All channel communication is of type <a href="../message/">Message</a>.</p>
+<ul>
+<li><a href="#channels">Channels</a></li>
+<li><a href="#core-channel">Core Channel</a></li>
+<li><a href="#acknowledging-messages">Acknowledging Messages</a></li>
+<li><a href="#service-channels">Service Channels</a><ul>
+<li><a href="#acquiring-a-channel">Acquiring a channel</a></li>
+<li><a href="#input-channel">Input Channel</a></li>
+<li><a href="#input-tv-remote-channel">Input TV Remote Channel</a></li>
+<li><a href="#stump-message-type">Stump Message Type</a></li>
+<li><a href="#message-id-generation">Message Id Generation</a></li>
+<li><a href="#assemble-http-streaming-url">Assemble HTTP Streaming URL</a></li>
+<li><a href="#hdmi-guid">HDMI GUID</a></li>
+<li><a href="#stump-source">Stump Source</a></li>
+<li><a href="#stump-quality">Stump Quality</a></li>
+<li><a href="#stump-notification">Stump Notification</a></li>
+<li><a href="#stump-filter-type">Stump Filter Type</a></li>
+<li><a href="#stump-base-message">Stump Base Message</a><ul>
+<li><a href="#request">Request</a></li>
+<li><a href="#response">Response</a></li>
+</ul>
+</li>
+<li><a href="#get-configuration">Get Configuration</a></li>
+<li><a href="#get-headend-info">Get Headend Info</a></li>
+<li><a href="#get-live-tv-info">Get Live TV Info</a></li>
+<li><a href="#get-program-info">Get Program Info</a></li>
+<li><a href="#get-tuner-lineups">Get Tuner Lineups</a></li>
+<li><a href="#get-appchannel-lineups">Get AppChannel Lineups</a></li>
+<li><a href="#get-appchannel-program-data">Get AppChannel Program Data</a></li>
+<li><a href="#get-appchannel-data">Get AppChannel Data</a></li>
+<li><a href="#ensure-streaming-started">Ensure Streaming started</a></li>
+<li><a href="#set-channel-params">Set Channel Params</a></li>
+<li><a href="#get-recent-channels">Get recent Channels</a></li>
+<li><a href="#send-key">Send Key</a></li>
+<li><a href="#media-channel">Media Channel</a></li>
+<li><a href="#text-channel">Text Channel</a></li>
+<li><a href="#broadcast-channel">Broadcast Channel</a></li>
+<li><a href="#how-to-start-gamestreaming">How to start gamestreaming?</a></li>
+<li><a href="#broadcast-message-type">Broadcast Message Type</a></li>
+<li><a href="#messages">Messages</a><ul>
+<li><a href="#gamestream-start-message">Gamestream Start Message</a></li>
+<li><a href="#gamestream-stop-message">Gamestream Stop Message</a></li>
+<li><a href="#gamestream-state-message">Gamestream State Message</a></li>
+<li><a href="#gamestream-state">Gamestream State</a></li>
+<li><a href="#initializing">Initializing</a></li>
+<li><a href="#started">Started</a></li>
+<li><a href="#stopped">Stopped</a></li>
+<li><a href="#paused">Paused</a></li>
+<li><a href="#gamestream-enabled-message">Gamestream Enabled Message</a></li>
+<li><a href="#gamestream-error-message">Gamestream Error Message</a></li>
+<li><a href="#gamestream-error">Gamestream Error</a></li>
+<li><a href="#gamestream-telemetry-message">Gamestream Telemetry Message</a></li>
+<li><a href="#gamestream-preview-status-message">Gamestream Preview Status Message</a></li>
+</ul>
+</li>
+<li><a href="#title-channel">Title Channel</a></li>
+<li><a href="#title-handshaking">Title handshaking</a></li>
+<li><a href="#packet-structure">Packet structure</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="core-channel">Core Channel</h2>
+<p>Core Channel is <code>0</code>.</p>
+<h2 id="acknowledging-messages">Acknowledging Messages</h2>
+<p>Console sends packets of type <a href="../message/#acknowledgement">Acknowledgement</a>
+on channel <code>0x1000000000000000</code>, Client sends <code>Acks</code> on <a href="#core-channel">Core Channel</a>.</p>
+<h2 id="service-channels">Service Channels</h2>
+<p>Click on the channel in the following table to get more information.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>GUID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#input-channel">SystemInput</a></td>
+<td><code>fa20b8ca-66fb-46e0-adb60b978a59d35f</code></td>
+</tr>
+<tr>
+<td><a href="#input-tv-remote-channel">SystemInputTVRemote</a></td>
+<td><code>d451e3b3-60bb-4c71-b3dbf994b1aca3a7</code></td>
+</tr>
+<tr>
+<td><a href="#media-channel">SystemMedia</a></td>
+<td><code>48a9ca24-eb6d-4e12-8c43d57469edd3cd</code></td>
+</tr>
+<tr>
+<td><a href="#text-channel">SystemText</a></td>
+<td><code>7af3e6a2-488b-40cb-a93179c04b7da3a0</code></td>
+</tr>
+<tr>
+<td><a href="#broadcast-channel">SystemBroadcast</a></td>
+<td><code>b6a117d8-f5e2-45d7-862e8fd8e3156476</code></td>
+</tr>
+<tr>
+<td><a href="#title-channel">Title</a></td>
+<td><code>00000000-0000-0000-0000000000000000</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="acquiring-a-channel">Acquiring a channel</h3>
+<p>After <a href="../message/#local-join">Local Join</a> is done successfully, client
+can start additional <a href="#service-channels">Service Channel</a>.</p>
+<p><strong>Example</strong>
+The following messaging happens on <a href="#core-channel">Core Channel</a>.</p>
+<ol>
+<li>Start with <code>Request Id</code> 0</li>
+<li>Client sends <a href="../message/#channel-start-request">Channel Start Request</a> with
+   current <code>Request Id</code> and <a href="#service-channels">Target Service Channel GUID</a>
+   to console</li>
+<li>Console replies with <a href="../message/#channel-start-response">Channel Start Response</a></li>
+<li>Make sure <code>Request Id</code> in response matches the request</li>
+<li>Check result code of response, has to be <code>0</code> for success</li>
+<li>Use <code>Target Channel Id</code>, delivered in the response, to communicate
+   with that channel</li>
+<li>... Send next <a href="../message/#channel-start-request">Channel Start Request</a> with
+   incremented <code>Request Id</code> ...</li>
+</ol>
+<h3 id="input-channel">Input Channel</h3>
+<p>Control console via gamepad controls, touch, accelerometer, gyroscope etc.</p>
+<p>Used messages:</p>
+<ul>
+<li><a href="../message/#gamepad">Gamepad</a></li>
+<li><a href="../message/#touch">Title Touch</a></li>
+<li><a href="../message/#touch">System Touch</a></li>
+<li><a href="../message/#accelerometer">Accelerometer</a></li>
+<li><a href="../message/#gyrometer">Gyrometer</a></li>
+<li><a href="../message/#inclinometer">Inclinometer</a></li>
+<li><a href="../message/#compass">Compass</a></li>
+<li><a href="../message/#orientation">Orientation</a></li>
+</ul>
+<h3 id="input-tv-remote-channel">Input TV Remote Channel</h3>
+<p>Also known as <code>Stump</code>, controls configured infrared devices via Xbox's IR Blaster
+and makes it possible to stream LiveTV and maybe HDMI IN.
+Communication is completely <a href="../message/#json">JSON</a>-based.</p>
+<h4 id="stump-message-type">Stump Message Type</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>String Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error</td>
+<td>Error</td>
+</tr>
+<tr>
+<td>Ensure Streaming Started</td>
+<td>EnsureStreamingStarted</td>
+</tr>
+<tr>
+<td>Get Configuration</td>
+<td>GetConfiguration</td>
+</tr>
+<tr>
+<td>Get Headend Info</td>
+<td>GetHeadendInfo</td>
+</tr>
+<tr>
+<td>Get LiveTV Info</td>
+<td>GetLiveTVInfo</td>
+</tr>
+<tr>
+<td>Get Program Info</td>
+<td>GetProgrammInfo</td>
+</tr>
+<tr>
+<td>Get Recent Channels</td>
+<td>GetRecentChannels</td>
+</tr>
+<tr>
+<td>Get Tuner Lineups</td>
+<td>GetTunerLineups</td>
+</tr>
+<tr>
+<td>Get AppChannel Data</td>
+<td>GetAppChannelData</td>
+</tr>
+<tr>
+<td>Get AppChannel Lineups</td>
+<td>GetAppChannelLineups</td>
+</tr>
+<tr>
+<td>Get AppChannel Program Data</td>
+<td>GetAppChannelProgramData</td>
+</tr>
+<tr>
+<td>Send Key</td>
+<td>SendKey</td>
+</tr>
+<tr>
+<td>Set Channel</td>
+<td>SetChannel</td>
+</tr>
+</tbody>
+</table>
+<h4 id="message-id-generation">Message Id Generation</h4>
+<p>An example of a messageid (Android client): <code>7edcf9d0.14</code>.</p>
+<ul>
+<li>Generate a random int, called <code>Message Id Prefix</code>, from <code>0</code> to <code>0x7FFFFFFF</code>.</li>
+<li>Initialize a <code>Message Id Index</code> with <code>1</code></li>
+<li>Concat both values, splitted by <code>.</code>: Prefix: <code>7edcf9d0</code>, Index: <code>1</code> =&gt; <code>7edcf9d0.1</code></li>
+<li>For each new request that's sent to the console, <code>Message Id Index</code> gets
+  incremented: <code>7edcf9d0.2</code>, <code>7edcf9d0.3</code></li>
+</ul>
+<blockquote>
+<p>NOTE: AppChannel stuff uses a <strong>GUID</strong> as <code>Message Id</code></p>
+</blockquote>
+<h4 id="assemble-http-streaming-url">Assemble HTTP Streaming URL</h4>
+<p>TODO</p>
+<h4 id="hdmi-guid">HDMI GUID</h4>
+<p><code>BA5EBA11-DEA1-4BAD-BA11-FEDDEADFAB1E</code></p>
+<h4 id="stump-source">Stump Source</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>String Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HDMI</td>
+<td>hdmi</td>
+</tr>
+<tr>
+<td>USB TV Tuner</td>
+<td>tuner</td>
+</tr>
+</tbody>
+</table>
+<h4 id="stump-quality">Stump Quality</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>String Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low Quality</td>
+<td>low</td>
+</tr>
+<tr>
+<td>Medium Quality</td>
+<td>medium</td>
+</tr>
+<tr>
+<td>High Quality</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Best Quality</td>
+<td>best</td>
+</tr>
+</tbody>
+</table>
+<h4 id="stump-notification">Stump Notification</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>String Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Streaming Error</td>
+<td>StreamingError</td>
+</tr>
+<tr>
+<td>Channel Changed</td>
+<td>ChannelChanged</td>
+</tr>
+<tr>
+<td>Channel Type Changed</td>
+<td>ChannelTypeChanged</td>
+</tr>
+<tr>
+<td>Configuration Changed</td>
+<td>ConfigurationChanged</td>
+</tr>
+<tr>
+<td>Device UI Changed</td>
+<td>DeviceUIChanged</td>
+</tr>
+<tr>
+<td>Headend Changed</td>
+<td>HeadendChanged</td>
+</tr>
+<tr>
+<td>Video Format Changed</td>
+<td>VideoFormatChanged</td>
+</tr>
+<tr>
+<td>Program Changed</td>
+<td>ProgrammChanged</td>
+</tr>
+<tr>
+<td>Tunerstate Changed</td>
+<td>TunerStateChanged</td>
+</tr>
+</tbody>
+</table>
+<h4 id="stump-filter-type">Stump Filter Type</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>String Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>HD and SD</td>
+<td>HDSD</td>
+</tr>
+<tr>
+<td>Only HD</td>
+<td>HD</td>
+</tr>
+</tbody>
+</table>
+<h4 id="stump-base-message">Stump Base Message</h4>
+<h5 id="request">Request</h5>
+<p>Direction: <em>Client -&gt; Console</em></p>
+<pre><code class="language-json">{
+    &quot;request&quot;: &quot;Stump Message Type goes here&quot;,
+    &quot;msgid&quot;: &quot;Generated Message Id goes here&quot;,
+    &quot;params&quot;: &quot;Either null/None or some other parameters&quot;
+}
+</code></pre>
+<h5 id="response">Response</h5>
+<p>Direction: <em>Console -&gt; Client</em></p>
+<p><strong>Regular response</strong></p>
+<pre><code class="language-json">{
+    &quot;response&quot;: &quot;Same as request value&quot;,
+    &quot;msgid&quot;: &quot;Same as request value&quot;,
+    &quot;params&quot;: &quot;Requested data&quot;
+}
+</code></pre>
+<p><strong>Notification</strong></p>
+<pre><code class="language-json">{
+    &quot;notification&quot;: &quot;notification value&quot;,
+    // Maybe some other value?
+}
+</code></pre>
+<p><strong>Error</strong></p>
+<pre><code class="language-json">{
+    &quot;response&quot;: &quot;Error&quot;,
+    &quot;msgid&quot;: &quot;Same as request value&quot;,
+    &quot;error&quot;: &quot;Some error text&quot;
+}
+</code></pre>
+<h4 id="get-configuration">Get Configuration</h4>
+<p>Value: <code>GetConfiguration</code></p>
+<p><strong>Request Parameters</strong>
+<code>None</code></p>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">[
+    {
+        &quot;device_id&quot;: &quot;0&quot;,
+        &quot;device_type&quot;: &quot;tv&quot;,
+        &quot;buttons&quot;: {
+            &quot;btn.back&quot;: &quot;Back&quot;,
+            &quot;btn.up&quot;: &quot;Up&quot;,
+            &quot;btn.red&quot;: &quot;Red&quot;,
+            // and more...
+        }
+    },
+    {
+        &quot;device_id&quot;: &quot;1&quot;,
+        &quot;device_type&quot;: &quot;stb&quot;,
+        &quot;buttons&quot;: {}
+    },
+    {
+        // ...
+        &quot;device_type&quot;: &quot;tuner&quot;
+    }
+]
+</code></pre>
+<h4 id="get-headend-info">Get Headend Info</h4>
+<p>Value: <code>GetHeadendInfo</code></p>
+<p><strong>Request Parameters</strong>
+<code>None</code></p>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">{
+    &quot;headendId&quot;: &quot;dbd2530a-fcd5-8ff0-b89d-20cd7e021502&quot;,
+    &quot;providerName&quot;: &quot;Sky Deutschland&quot;,
+    &quot;headendLocale&quot;: &quot;de-DE&quot;,
+    &quot;providers&quot;: [
+        {
+            &quot;headendId&quot;: &quot;DBD2530A-FCD5-8FF0-B89D-20CD7E021502&quot;,
+            &quot;providerName&quot;: &quot;Sky Deutschland&quot;,
+            &quot;source&quot;: &quot;hdmi&quot;,
+            &quot;titleId&quot;: &quot;162615AD&quot;,
+            &quot;filterPreference&quot;: &quot;HDSD&quot;,
+            &quot;canStream&quot;: &quot;false&quot;
+        },
+        {
+            &quot;headendId&quot;: &quot;D130DB0D-6CBC-328C-A30F-A514C0D0F377&quot;,
+            &quot;providerName&quot;: &quot;Unity Media&quot;,
+            &quot;source&quot;: &quot;tuner&quot;,
+            &quot;titleId&quot;: &quot;162615AD&quot;,
+            &quot;filterPreference&quot;: &quot;ALL&quot;,
+            &quot;canStream&quot;: &quot;true&quot;
+        }
+    ],
+    &quot;blockExplicitContentPerShow&quot;: false,
+    &quot;dvrEnabled&quot;: false
+}
+</code></pre>
+<h4 id="get-live-tv-info">Get Live TV Info</h4>
+<p>Value: <code>GetLiveTVInfo</code></p>
+<p><strong>Request Parameters</strong>
+<code>None</code></p>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">{ &quot;inHdmiMode&quot;: &quot;1&quot; }
+</code></pre>
+<h4 id="get-program-info">Get Program Info</h4>
+<p>Value: <code>GetProgrammInfo</code></p>
+<p><strong>Request Parameters</strong>
+<code>None</code></p>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">// Unknown
+</code></pre>
+<h4 id="get-tuner-lineups">Get Tuner Lineups</h4>
+<p>Value: <code>GetTunerLineups</code></p>
+<p><strong>Request Parameters</strong>
+<code>None</code></p>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">{
+    &quot;providers&quot;:[
+        {
+        &quot;headendId&quot;:&quot;D130DB0D-6CBC-328C-A30F-A514C0D0F377&quot;,
+        &quot;cqsChannels&quot;:[
+
+        ],
+        &quot;foundChannels&quot;:[
+
+        ]
+        }
+    ]
+}
+</code></pre>
+<h4 id="get-appchannel-lineups">Get AppChannel Lineups</h4>
+<p>Value: <code>GetAppChannelLineups</code></p>
+<p><strong>Request Parameters</strong>
+<code>None</code></p>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;:&quot;LiveTvHdmiProvider&quot;,
+        &quot;providerName&quot;:&quot;OneGuide&quot;,
+        &quot;primaryColor&quot;:&quot;ff107c10&quot;,
+        &quot;secondaryColor&quot;:&quot;ffebebeb&quot;,
+        &quot;titleId&quot;:&quot;0BB0AAE5&quot;,
+        &quot;channels&quot;:[
+
+        ]
+    },
+    {
+        &quot;id&quot;:&quot;LiveTvPlaylistProvider&quot;,
+        &quot;providerName&quot;:&quot;OneGuide&quot;,
+        &quot;primaryColor&quot;:&quot;ff107c10&quot;,
+        &quot;secondaryColor&quot;:&quot;ffebebeb&quot;,
+        &quot;titleId&quot;:&quot;0BB0AAE5&quot;,
+        &quot;channels&quot;:[
+        {
+            &quot;id&quot;:&quot;PromoAppChannel&quot;,
+            &quot;name&quot;:&quot;More app channels&quot;
+        }
+        ]
+    },
+    {
+        &quot;id&quot;:&quot;LiveTvUsbProvider&quot;,
+        &quot;providerName&quot;:&quot;OneGuide&quot;,
+        &quot;primaryColor&quot;:&quot;ff107c10&quot;,
+        &quot;secondaryColor&quot;:&quot;ffebebeb&quot;,
+        &quot;titleId&quot;:&quot;0BB0AAE5&quot;,
+        &quot;channels&quot;:[
+        ]
+    }
+]
+</code></pre>
+<h4 id="get-appchannel-program-data">Get AppChannel Program Data</h4>
+<p>Value: <code>GetAppChannelProgramData</code></p>
+<p><strong>Request Parameters</strong></p>
+<pre><code class="language-json">{
+    &quot;providerId&quot;: &quot;provider id goes here&quot;,
+    &quot;programId&quot;: &quot;program id goes here&quot;
+}
+</code></pre>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">// Unknown
+</code></pre>
+<h4 id="get-appchannel-data">Get AppChannel Data</h4>
+<p>Value: <code>GetAppChannelData</code></p>
+<p><strong>Request Parameters</strong></p>
+<pre><code class="language-json">{
+    &quot;providerId&quot;: &quot;provider id goes here&quot;,
+    &quot;channelId&quot;: &quot;channel id goes here&quot;,
+    &quot;id&quot;: &quot;channel id again&quot;
+}
+</code></pre>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">// Unknown
+</code></pre>
+<h4 id="ensure-streaming-started">Ensure Streaming started</h4>
+<p>Value: <code>EnsureStreamingStarted</code></p>
+<p><strong>Request Parameters</strong></p>
+<pre><code class="language-json">{ &quot;source&quot;: &quot;stump source goes here&quot;}
+</code></pre>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">// Unknown
+</code></pre>
+<h4 id="set-channel-params">Set Channel Params</h4>
+<p>Value: <code>SetChannel</code></p>
+<p><strong>Request Parameters</strong>
+By Id:</p>
+<pre><code class="language-json">{ &quot;channelId&quot;: &quot;target Channel Id&quot;, &quot;lineupInstanceId&quot;: &quot;target Lineup Id&quot; }
+</code></pre>
+<p>By Name:</p>
+<pre><code class="language-json">{ &quot;channel_name&quot;: &quot;target channel name&quot; }
+</code></pre>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">// Unknown
+</code></pre>
+<h4 id="get-recent-channels">Get recent Channels</h4>
+<p>Value: <code>GetRecentChannels</code></p>
+<p><strong>Request Paramters</strong></p>
+<pre><code class="language-json">{ &quot;startindex&quot;: 0, &quot;count&quot;: 50 }
+</code></pre>
+<p><strong>Response Parameters</strong></p>
+<pre><code class="language-json">[ &quot;list&quot;, &quot;of&quot;, &quot;channels&quot;]
+</code></pre>
+<h4 id="send-key">Send Key</h4>
+<p>Value: <code>SendKey</code></p>
+<p><strong>Request Parameters</strong></p>
+<pre><code class="language-json">{
+    &quot;button_id&quot;: &quot;button id string&quot;,
+    // optional:
+    // &quot;device_id&quot;: &quot;target device id&quot;
+}
+</code></pre>
+<p><strong>Response Parameters</strong>
+<code>True</code> on success, <code>False</code> on error</p>
+<h3 id="media-channel">Media Channel</h3>
+<p>Get info about currently playing media and control the playback.</p>
+<p>Used messages:</p>
+<ul>
+<li><a href="../message/#media-controller-removed">Media Controller Removed</a></li>
+<li><a href="../message/#media-command">Media Command</a></li>
+<li><a href="../message/#media-command-result">Media Command Result</a></li>
+<li><a href="../message/#media-state">Media State</a></li>
+</ul>
+<h3 id="text-channel">Text Channel</h3>
+<p>Input Text whenever a text-dialog is shown on Xbox.</p>
+<p>Used messages:</p>
+<ul>
+<li><a href="../message/#text-configuration">Title Text Configuration</a></li>
+<li><a href="../message/#title-text-input">Title Text Input</a></li>
+<li><a href="../message/#title-text-selection">Title Text Selection</a></li>
+<li><a href="../message/#text-configuration">System Text Configuration</a></li>
+<li><a href="../message/#system-text-input">System Text Input</a></li>
+<li><a href="../message/#system-text-acknowledge">System Text Acknowledge</a></li>
+<li><a href="../message/#system-text-done">System Text Done</a></li>
+</ul>
+<h3 id="broadcast-channel">Broadcast Channel</h3>
+<p>Initializing of Gamestreaming is done over this channel.
+Communication is completely <a href="../message/#json">JSON</a>-based.
+Actual streaming is done over <a href="../nano/">Nano</a>.</p>
+<p>Messages actively sent from client to console:</p>
+<ul>
+<li><a href="#gamestream-start-message">Gamestream Start Message</a></li>
+<li><a href="#gamestream-stop-message">Gamestream Stop Message</a></li>
+</ul>
+<p>The other messages are basically status messages sent from console to client.</p>
+<h4 id="how-to-start-gamestreaming">How to start gamestreaming?</h4>
+<ol>
+<li>Open the <a href="#acquiring-a-channel">SystemBroadcast</a> channel.</li>
+<li>Console sends a <a href="#gamestream-enabled-message">Gamestream Enabled Message</a>.</li>
+<li>Check the field <code>enabled</code> if it's possible to use Gamestreaming (e.g. if it's activated).</li>
+<li>Send a <a href="#gamestream-start-message">Gamestream Start Message</a> to the console.</li>
+<li>Console sends some <a href="#gamestream-state-message">Gamestream State Messages</a>.</li>
+<li>Get the connection data from <a href="#initializing">State: Initializing</a>.</li>
+<li>Use <a href="../nano/">Nano</a> to connect to the console.</li>
+</ol>
+<h4 id="broadcast-message-type">Broadcast Message Type</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+<th>Sent by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#gamestream-start-message">Start Gamestream</a></td>
+<td>0x01</td>
+<td>Client</td>
+</tr>
+<tr>
+<td><a href="#gamestream-stop-message">Stop Gamestream</a></td>
+<td>0x02</td>
+<td>Client</td>
+</tr>
+<tr>
+<td><a href="#gamestream-state-message">Gamestream State</a></td>
+<td>0x03</td>
+<td>Console</td>
+</tr>
+<tr>
+<td><a href="#gamestream-enabled-message">Gamestream Enabled</a></td>
+<td>0x04</td>
+<td>Console</td>
+</tr>
+<tr>
+<td><a href="#gamestream-error-message">Gamestream Error</a></td>
+<td>0x05</td>
+<td>Console</td>
+</tr>
+<tr>
+<td><a href="#gamestream-telemetry-message">Telemetry</a></td>
+<td>0x06</td>
+<td>Console</td>
+</tr>
+<tr>
+<td><a href="#gamestream-preview-status-message">Preview Status</a></td>
+<td>0x07</td>
+<td>Console</td>
+</tr>
+</tbody>
+</table>
+<h4 id="messages">Messages</h4>
+<h5 id="gamestream-start-message">Gamestream Start Message</h5>
+<p>Type: <code>0x1</code></p>
+<p>Direction: <em>Client -&gt; Console</em></p>
+<blockquote>
+<p>NOTE: Some values <em>could</em> be int or bool rather than string
+but the following example is the original format that gets sent
+from the original Windows 10 client</p>
+</blockquote>
+<pre><code class="language-json">{
+    &quot;type&quot;: 1,
+    &quot;configuration&quot;: {
+        &quot;urcpType&quot;: &quot;0&quot;,
+        &quot;urcpFixedRate&quot;: &quot;-1&quot;,
+        &quot;urcpMaximumWindow&quot;: &quot;1310720&quot;,
+        &quot;urcpMinimumRate&quot;: &quot;256000&quot;,
+        &quot;urcpMaximumRate&quot;: &quot;10000000&quot;,
+        &quot;urcpKeepAliveTimeoutMs&quot;: &quot;0&quot;,
+        &quot;audioFecType&quot;: &quot;0&quot;,
+        &quot;videoFecType&quot;: &quot;0&quot;,
+        &quot;videoFecLevel&quot;: &quot;3&quot;,
+        &quot;videoPacketUtilization&quot;: &quot;0&quot;,
+        &quot;enableDynamicBitrate&quot;: &quot;false&quot;,
+        &quot;dynamicBitrateScaleFactor&quot;: &quot;1&quot;,
+        &quot;dynamicBitrateUpdateMs&quot;: &quot;5000&quot;,
+        &quot;sendKeyframesOverTCP&quot;: &quot;false&quot;,
+        &quot;videoMaximumWidth&quot;: &quot;1280&quot;,
+        &quot;videoMaximumHeight&quot;: &quot;720&quot;,
+        &quot;videoMaximumFrameRate&quot;: &quot;60&quot;,
+        &quot;videoPacketDefragTimeoutMs&quot;: &quot;16&quot;,
+        &quot;enableVideoFrameAcks&quot;: &quot;false&quot;,
+        &quot;enableAudioChat&quot;: &quot;true&quot;,
+        &quot;audioBufferLengthHns&quot;: &quot;10000000&quot;,
+        &quot;audioSyncPolicy&quot;: &quot;1&quot;,
+        &quot;audioSyncMinLatency&quot;: &quot;10&quot;,
+        &quot;audioSyncDesiredLatency&quot;: &quot;40&quot;,
+        &quot;audioSyncMaxLatency&quot;: &quot;170&quot;,
+        &quot;audioSyncCompressLatency&quot;: &quot;100&quot;,
+        &quot;audioSyncCompressFactor&quot;: &quot;0.99&quot;,
+        &quot;audioSyncLengthenFactor&quot;: &quot;1.01&quot;,
+        &quot;enableOpusAudio&quot;: &quot;false&quot;,
+        &quot;enableOpusChatAudio&quot;: &quot;true&quot;,
+        &quot;inputReadsPerSecond&quot;: &quot;120&quot;,
+        &quot;udpMaxSendPacketsInWinsock&quot;: &quot;250&quot;,
+        &quot;udpSubBurstGroups&quot;: &quot;0&quot;,
+        &quot;udpBurstDurationMs&quot;: &quot;12&quot;
+    },
+    &quot;reQueryPreviewStatus&quot;: false
+}
+</code></pre>
+<h5 id="gamestream-stop-message">Gamestream Stop Message</h5>
+<p>Type: <code>0x2</code></p>
+<p>Direction: <em>Client -&gt; Console / never seen in the wild</em></p>
+<pre><code class="language-json">{
+    &quot;type&quot;: 2
+}
+</code></pre>
+<h5 id="gamestream-state-message">Gamestream State Message</h5>
+<p>Type: <code>0x3</code></p>
+<p>Direction: <em>Console -&gt; Client</em></p>
+<p>All gamestream state messages use a <code>state</code> field,
+declared in the following table.</p>
+<h6 id="gamestream-state">Gamestream State</h6>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initializing</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Started</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Stopped</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Paused</td>
+<td>0x04</td>
+</tr>
+</tbody>
+</table>
+<h6 id="initializing">Initializing</h6>
+<pre><code class="language-json">{
+    &quot;type&quot;: 3,
+    &quot;state&quot;: 1,
+    &quot;sessionId&quot;: &quot;{123E4567-E89b-12D3-A456-426655440000}&quot;,
+    &quot;udpPort&quot;: 55068,
+    &quot;tcpPort&quot;: 52556
+}
+</code></pre>
+<h6 id="started">Started</h6>
+<pre><code class="language-json">{
+    &quot;type&quot;: 3,
+    &quot;state&quot;: 2,
+    &quot;sessionId&quot;: &quot;{123E4567-E89b-12D3-A456-426655440000}&quot;,
+    &quot;isWirelessConnection&quot;: false,
+    &quot;wirelessChannel&quot;: 0,
+    &quot;transmitLinkSpeed&quot;: 1000000000
+}
+</code></pre>
+<h6 id="stopped">Stopped</h6>
+<pre><code class="language-json">{
+    &quot;type&quot;: 3,
+    &quot;state&quot;: 3,
+    &quot;sessionId&quot;: &quot;{123E4567-E89b-12D3-A456-426655440000}&quot;
+}
+</code></pre>
+<h6 id="paused">Paused</h6>
+<pre><code class="language-json">// Never seen in the wild
+</code></pre>
+<h5 id="gamestream-enabled-message">Gamestream Enabled Message</h5>
+<p>Type: <code>0x4</code></p>
+<p>Direction: <em>Console -&gt; Client</em></p>
+<pre><code class="language-json">{
+    &quot;type&quot;: 4,
+    &quot;enabled&quot;: true,
+    &quot;canBeEnabled&quot;: true,
+    &quot;majorProtocolVersion&quot;: 6,
+    &quot;minorProtocolVersion&quot;: 0
+}
+</code></pre>
+<h5 id="gamestream-error-message">Gamestream Error Message</h5>
+<p>Type: <code>0x5</code></p>
+<p>Direction: <em>Console -&gt; Client</em></p>
+<pre><code class="language-json">{
+    &quot;type&quot;: 5,
+    &quot;errorType&quot;: 1,
+    &quot;errorValue&quot;: 1234
+}
+</code></pre>
+<h6 id="gamestream-error">Gamestream Error</h6>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Failed to instantiate</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Failed to initialize</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Failed to start</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Failed to stop</td>
+<td>0x05</td>
+</tr>
+<tr>
+<td>No Controller</td>
+<td>0x06</td>
+</tr>
+<tr>
+<td>Different MSA active</td>
+<td>0x07</td>
+</tr>
+<tr>
+<td>DRM Video</td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>HDCP Video</td>
+<td>0x09</td>
+</tr>
+<tr>
+<td>Kinect Title</td>
+<td>0x0A</td>
+</tr>
+<tr>
+<td>Prohibited Game</td>
+<td>0x0B</td>
+</tr>
+<tr>
+<td>Poor network connection</td>
+<td>0x0C</td>
+</tr>
+<tr>
+<td>Streaming disabled</td>
+<td>0x0D</td>
+</tr>
+<tr>
+<td>Cannot reach console</td>
+<td>0x0E</td>
+</tr>
+<tr>
+<td>Generic Error</td>
+<td>0x0F</td>
+</tr>
+<tr>
+<td>Version mismatch</td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>No profile</td>
+<td>0x11</td>
+</tr>
+<tr>
+<td>Broadcast in progress</td>
+<td>0x12</td>
+</tr>
+</tbody>
+</table>
+<h5 id="gamestream-telemetry-message">Gamestream Telemetry Message</h5>
+<p>Type: <code>0x6</code></p>
+<p>Direction: <em>Unknown / never seen in the wild</em></p>
+<pre><code class="language-json">{
+    &quot;type&quot;: 6
+}
+</code></pre>
+<h5 id="gamestream-preview-status-message">Gamestream Preview Status Message</h5>
+<p>Type: <code>0x7</code></p>
+<p>Direction: <em>Console -&gt; Client</em></p>
+<pre><code class="language-json">{
+    &quot;type&quot;: 7,
+    &quot;isPublicPreview&quot;: false,
+    &quot;isInternalPreview&quot;: false
+}
+</code></pre>
+<h3 id="title-channel">Title Channel</h3>
+<p>The title channel is used if the running title (aka. game) supports
+the <code>SmartGlass Experience</code> (for example: Fallout 4).</p>
+<p>For opening the <code>Service Channel</code> you have to send a <code>Title Id</code>
+while <a href="#acquiring-a-channel">acquiring the channel</a>.</p>
+<p>Title channel does basic communication over the <code>Core channel</code>:</p>
+<ul>
+<li><a href="../message/#auxiliary-stream">Auxiliary Stream</a></li>
+<li><a href="../message/#active-surface-change">Active Surface Change</a></li>
+</ul>
+<blockquote>
+<p>NOTE: For title specific data additional sockets are used!</p>
+</blockquote>
+<h4 id="title-handshaking">Title handshaking</h4>
+<p>Flow to get connection data for title communication:</p>
+<ol>
+<li>Client sends <a href="../message/#auxiliary-stream">Auxiliary Stream Handshake</a></li>
+<li>Host responds with <a href="../message/#auxiliary-stream">Auxiliary Stream Handshake</a></li>
+<li>Client sends <a href="../message/#auxiliary-stream">Auxiliary Stream Handshake</a> again</li>
+<li>Host responds with <a href="../message/#auxiliary-stream">Auxiliary Stream Connection Info</a></li>
+<li>Client sets up <a href="../cryptography/#auxiliary-stream-encryption">Auxiliary crypto context</a></li>
+<li>Client connects to advertised <code>Title endpoints</code></li>
+</ol>
+<h4 id="packet-structure">Packet structure</h4>
+<p>TODO</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../simple_message/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Simple Message" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Simple Message
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../message/" class="md-footer__link md-footer__link--next" aria-label="Next: Messages" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Messages
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.649a939e.min.js"></script>
+      
+    
+  </body>
+</html>

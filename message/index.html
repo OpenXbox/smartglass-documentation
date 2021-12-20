@@ -1,0 +1,4586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+    
+    
+      
+        <title>Messages - Xbox SmartGlass protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7951f6f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#message" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Xbox SmartGlass protocol" class="md-header__button md-logo" aria-label="Xbox SmartGlass protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Xbox SmartGlass protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Messages
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Xbox SmartGlass protocol" class="md-nav__button md-logo" aria-label="Xbox SmartGlass protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Xbox SmartGlass protocol
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/" class="md-nav__link">
+        Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cryptography/" class="md-nav__link">
+        Cryptography
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simple_message/" class="md-nav__link">
+        Simple Message
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../channels/" class="md-nav__link">
+        Channels
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Messages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Messages
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    Header
+  </a>
+  
+    <nav class="md-nav" aria-label="Header">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-flags" class="md-nav__link">
+    Header Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-types" class="md-nav__link">
+    Message Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-payloads" class="md-nav__link">
+    Message Payloads
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-join" class="md-nav__link">
+    Local Join
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Join">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-capabilities" class="md-nav__link">
+    Device Capabilities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-start-request" class="md-nav__link">
+    Channel Start Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-start-response" class="md-nav__link">
+    Channel Start Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-stop" class="md-nav__link">
+    Channel Stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console-status" class="md-nav__link">
+    Console Status
+  </a>
+  
+    <nav class="md-nav" aria-label="Console Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-title" class="md-nav__link">
+    Active Title
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-title-location" class="md-nav__link">
+    Active Title Location
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-surface-change" class="md-nav__link">
+    Active Surface Change
+  </a>
+  
+    <nav class="md-nav" aria-label="Active Surface Change">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-surface-type" class="md-nav__link">
+    Active Surface Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fragment" class="md-nav__link">
+    Fragment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acknowledgement" class="md-nav__link">
+    Acknowledgement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    Json
+  </a>
+  
+    <nav class="md-nav" aria-label="Json">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-fragmentation" class="md-nav__link">
+    Json Fragmentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auxiliary-stream" class="md-nav__link">
+    Auxiliary Stream
+  </a>
+  
+    <nav class="md-nav" aria-label="Auxiliary Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    Endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disconnect" class="md-nav__link">
+    Disconnect
+  </a>
+  
+    <nav class="md-nav" aria-label="Disconnect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disconnect-reason" class="md-nav__link">
+    Disconnect Reason
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-off" class="md-nav__link">
+    Power Off
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#game-dvr-record" class="md-nav__link">
+    Game DVR Record
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsnap" class="md-nav__link">
+    Unsnap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamepad" class="md-nav__link">
+    Gamepad
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamepad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamepad-button" class="md-nav__link">
+    Gamepad Button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paired-identity-state-changed" class="md-nav__link">
+    Paired Identity State Changed
+  </a>
+  
+    <nav class="md-nav" aria-label="Paired Identity State Changed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paired-identity-state" class="md-nav__link">
+    Paired Identity State
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-state" class="md-nav__link">
+    Media State
+  </a>
+  
+    <nav class="md-nav" aria-label="Media State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sound-level" class="md-nav__link">
+    Sound Level
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-playback-status" class="md-nav__link">
+    Media Playback Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-transport-state" class="md-nav__link">
+    Media Transport State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-type" class="md-nav__link">
+    Media Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-metadata" class="md-nav__link">
+    Media Metadata
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-controller-removed" class="md-nav__link">
+    Media Controller Removed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-command-result" class="md-nav__link">
+    Media Command Result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-command" class="md-nav__link">
+    Media Command
+  </a>
+  
+    <nav class="md-nav" aria-label="Media Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#media-control-command" class="md-nav__link">
+    Media Control Command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orientation" class="md-nav__link">
+    Orientation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compass" class="md-nav__link">
+    Compass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inclinometer" class="md-nav__link">
+    Inclinometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gyrometer" class="md-nav__link">
+    Gyrometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerometer" class="md-nav__link">
+    Accelerometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#touch" class="md-nav__link">
+    Touch
+  </a>
+  
+    <nav class="md-nav" aria-label="Touch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#touch-action" class="md-nav__link">
+    Touch Action
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#touchpoint" class="md-nav__link">
+    Touchpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-launch" class="md-nav__link">
+    Title Launch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-text-done" class="md-nav__link">
+    System Text Done
+  </a>
+  
+    <nav class="md-nav" aria-label="System Text Done">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-result" class="md-nav__link">
+    Text Result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-text-acknowledge" class="md-nav__link">
+    System Text Acknowledge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-text-input" class="md-nav__link">
+    System Text Input
+  </a>
+  
+    <nav class="md-nav" aria-label="System Text Input">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-delta" class="md-nav__link">
+    Text Delta
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-text-selection" class="md-nav__link">
+    Title Text Selection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-text-input" class="md-nav__link">
+    Title Text Input
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-configuration" class="md-nav__link">
+    Text Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Text Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-input-scope" class="md-nav__link">
+    Text Input Scope
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-option-flags" class="md-nav__link">
+    Text Option Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nano/" class="md-nav__link">
+        Gamestream (Nano)
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    Header
+  </a>
+  
+    <nav class="md-nav" aria-label="Header">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-flags" class="md-nav__link">
+    Header Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-types" class="md-nav__link">
+    Message Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-payloads" class="md-nav__link">
+    Message Payloads
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-join" class="md-nav__link">
+    Local Join
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Join">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-capabilities" class="md-nav__link">
+    Device Capabilities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-start-request" class="md-nav__link">
+    Channel Start Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-start-response" class="md-nav__link">
+    Channel Start Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channel-stop" class="md-nav__link">
+    Channel Stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console-status" class="md-nav__link">
+    Console Status
+  </a>
+  
+    <nav class="md-nav" aria-label="Console Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-title" class="md-nav__link">
+    Active Title
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-title-location" class="md-nav__link">
+    Active Title Location
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-surface-change" class="md-nav__link">
+    Active Surface Change
+  </a>
+  
+    <nav class="md-nav" aria-label="Active Surface Change">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-surface-type" class="md-nav__link">
+    Active Surface Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fragment" class="md-nav__link">
+    Fragment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acknowledgement" class="md-nav__link">
+    Acknowledgement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    Json
+  </a>
+  
+    <nav class="md-nav" aria-label="Json">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-fragmentation" class="md-nav__link">
+    Json Fragmentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auxiliary-stream" class="md-nav__link">
+    Auxiliary Stream
+  </a>
+  
+    <nav class="md-nav" aria-label="Auxiliary Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    Endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disconnect" class="md-nav__link">
+    Disconnect
+  </a>
+  
+    <nav class="md-nav" aria-label="Disconnect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disconnect-reason" class="md-nav__link">
+    Disconnect Reason
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-off" class="md-nav__link">
+    Power Off
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#game-dvr-record" class="md-nav__link">
+    Game DVR Record
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsnap" class="md-nav__link">
+    Unsnap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamepad" class="md-nav__link">
+    Gamepad
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamepad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamepad-button" class="md-nav__link">
+    Gamepad Button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paired-identity-state-changed" class="md-nav__link">
+    Paired Identity State Changed
+  </a>
+  
+    <nav class="md-nav" aria-label="Paired Identity State Changed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paired-identity-state" class="md-nav__link">
+    Paired Identity State
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-state" class="md-nav__link">
+    Media State
+  </a>
+  
+    <nav class="md-nav" aria-label="Media State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sound-level" class="md-nav__link">
+    Sound Level
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-playback-status" class="md-nav__link">
+    Media Playback Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-transport-state" class="md-nav__link">
+    Media Transport State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-type" class="md-nav__link">
+    Media Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-metadata" class="md-nav__link">
+    Media Metadata
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-controller-removed" class="md-nav__link">
+    Media Controller Removed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-command-result" class="md-nav__link">
+    Media Command Result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-command" class="md-nav__link">
+    Media Command
+  </a>
+  
+    <nav class="md-nav" aria-label="Media Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#media-control-command" class="md-nav__link">
+    Media Control Command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orientation" class="md-nav__link">
+    Orientation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compass" class="md-nav__link">
+    Compass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inclinometer" class="md-nav__link">
+    Inclinometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gyrometer" class="md-nav__link">
+    Gyrometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerometer" class="md-nav__link">
+    Accelerometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#touch" class="md-nav__link">
+    Touch
+  </a>
+  
+    <nav class="md-nav" aria-label="Touch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#touch-action" class="md-nav__link">
+    Touch Action
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#touchpoint" class="md-nav__link">
+    Touchpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-launch" class="md-nav__link">
+    Title Launch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-text-done" class="md-nav__link">
+    System Text Done
+  </a>
+  
+    <nav class="md-nav" aria-label="System Text Done">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-result" class="md-nav__link">
+    Text Result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-text-acknowledge" class="md-nav__link">
+    System Text Acknowledge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-text-input" class="md-nav__link">
+    System Text Input
+  </a>
+  
+    <nav class="md-nav" aria-label="System Text Input">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-delta" class="md-nav__link">
+    Text Delta
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-text-selection" class="md-nav__link">
+    Title Text Selection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title-text-input" class="md-nav__link">
+    Title Text Input
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-configuration" class="md-nav__link">
+    Text Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Text Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-input-scope" class="md-nav__link">
+    Text Input Scope
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-option-flags" class="md-nav__link">
+    Text Option Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="message">Message</h1>
+<p>After the initial connection is made, the actual communication happens
+via packets of type <code>0xD00D</code>. We refer to them as messages of type <code>Message</code>.</p>
+<ul>
+<li><a href="#message">Message</a></li>
+<li><a href="#header">Header</a><ul>
+<li><a href="#header-flags">Header Flags</a></li>
+</ul>
+</li>
+<li><a href="#message-types">Message Types</a></li>
+<li><a href="#message-payloads">Message Payloads</a><ul>
+<li><a href="#local-join">Local Join</a></li>
+<li><a href="#device-capabilities">Device Capabilities</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#channel-start-request">Channel Start Request</a></li>
+<li><a href="#channel-start-response">Channel Start Response</a></li>
+<li><a href="#channel-stop">Channel Stop</a></li>
+<li><a href="#console-status">Console Status</a></li>
+<li><a href="#active-title">Active Title</a></li>
+<li><a href="#active-title-location">Active Title Location</a></li>
+<li><a href="#active-surface-change">Active Surface Change</a></li>
+<li><a href="#active-surface-type">Active Surface Type</a></li>
+<li><a href="#fragment">Fragment</a></li>
+<li><a href="#acknowledgement">Acknowledgement</a></li>
+<li><a href="#json">Json</a></li>
+<li><a href="#json-fragmentation">Json Fragmentation</a></li>
+<li><a href="#auxiliary-stream">Auxiliary Stream</a></li>
+<li><a href="#endpoint">Endpoint</a></li>
+<li><a href="#disconnect">Disconnect</a></li>
+<li><a href="#disconnect-reason">Disconnect Reason</a></li>
+<li><a href="#power-off">Power Off</a></li>
+<li><a href="#game-dvr-record">Game DVR Record</a></li>
+<li><a href="#unsnap">Unsnap</a></li>
+<li><a href="#gamepad">Gamepad</a></li>
+<li><a href="#gamepad-button">Gamepad Button</a></li>
+<li><a href="#paired-identity-state-changed">Paired Identity State Changed</a></li>
+<li><a href="#paired-identity-state">Paired Identity State</a></li>
+<li><a href="#media-state">Media State</a></li>
+<li><a href="#sound-level">Sound Level</a></li>
+<li><a href="#media-playback-status">Media Playback Status</a></li>
+<li><a href="#media-transport-state">Media Transport State</a></li>
+<li><a href="#media-type">Media Type</a></li>
+<li><a href="#media-metadata">Media Metadata</a></li>
+<li><a href="#media-controller-removed">Media Controller Removed</a></li>
+<li><a href="#media-command-result">Media Command Result</a></li>
+<li><a href="#media-command">Media Command</a></li>
+<li><a href="#media-control-command">Media Control Command</a></li>
+<li><a href="#orientation">Orientation</a></li>
+<li><a href="#compass">Compass</a></li>
+<li><a href="#inclinometer">Inclinometer</a></li>
+<li><a href="#gyrometer">Gyrometer</a></li>
+<li><a href="#accelerometer">Accelerometer</a></li>
+<li><a href="#touch">Touch</a></li>
+<li><a href="#touch-action">Touch Action</a></li>
+<li><a href="#touchpoint">Touchpoint</a></li>
+<li><a href="#title-launch">Title Launch</a></li>
+<li><a href="#system-text-done">System Text Done</a></li>
+<li><a href="#text-result">Text Result</a></li>
+<li><a href="#system-text-acknowledge">System Text Acknowledge</a></li>
+<li><a href="#system-text-input">System Text Input</a></li>
+<li><a href="#text-delta">Text Delta</a></li>
+<li><a href="#title-text-selection">Title Text Selection</a></li>
+<li><a href="#title-text-input">Title Text Input</a></li>
+<li><a href="#text-configuration">Text Configuration</a></li>
+<li><a href="#text-input-scope">Text Input Scope</a></li>
+<li><a href="#text-option-flags">Text Option Flags</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="header">Header</h2>
+<table>
+<thead>
+<tr>
+<th>Offset (hex)</th>
+<th>Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>0</td>
+<td>uint16</td>
+<td>Packet Type</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>2</td>
+<td>uint16</td>
+<td>Protected Payload Length</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>4</td>
+<td>uint32</td>
+<td>Sequence Number</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>8</td>
+<td>uint32</td>
+<td>Target Participant Id</td>
+</tr>
+<tr>
+<td>0x0C</td>
+<td>12</td>
+<td>uint32</td>
+<td>Source Participant Id</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>16</td>
+<td>uint16</td>
+<td>Flags (Version, NeedAck, IsFragment, MsgType)</td>
+</tr>
+<tr>
+<td>0x12</td>
+<td>18</td>
+<td>uint64</td>
+<td>Channel Id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Packet Type</strong>: Always <code>0xD00D</code> for message packet</li>
+<li><strong>Protected Payload Length</strong>: Payload length before encryption <strong>excluding</strong>
+  padding. That is, the length of the plaintext</li>
+<li><strong>Sequence Number</strong>: Incrementing sequence number - if packet
+  was not acknowledged even if requested, message gets sent
+  again with same sequence number. Start index is <code>1</code>.</li>
+<li><strong>Target Participant Id</strong>: Target Id as seen from sender, client sets this to 0</li>
+<li><strong>Source Participant Id</strong>:  Id of sender, client gets that from
+  <a href="../simple_message/#connect-response">Connect Response</a></li>
+<li><strong>Flags</strong>: See <a href="#header-flags">Header Flags</a></li>
+<li><strong>Channel Id</strong>: Negotioated Channel Id (see
+  <a href="#channel-start-response">Channel Start Response</a>)</li>
+</ul>
+<h3 id="header-flags">Header Flags</h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Version</td>
+<td><code>1100 0000 0000 0000</code></td>
+<td>0xC000</td>
+</tr>
+<tr>
+<td>Need Acknowledgement</td>
+<td><code>0010 0000 0000 0000</code></td>
+<td>0x2000</td>
+</tr>
+<tr>
+<td>Is Fragment</td>
+<td><code>0001 0000 0000 0000</code></td>
+<td>0x1000</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td><code>0000 1111 1111 1111</code></td>
+<td>0x0FFF</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Version</strong>: Always <code>2</code></li>
+<li><strong>Need Acknowledgement</strong>: Indicates if the message needs to
+  be acknowledged by a message of type <a href="#acknowledgement">Acknowledgement</a></li>
+<li><strong>Is Fragment</strong>: Indicates fragmented payload, see <a href="#fragment">Fragment</a></li>
+<li><strong>Message Type</strong>: See <a href="#message-types">Message Types</a></li>
+</ul>
+<h2 id="message-types">Message Types</h2>
+<p>Direction as seen from the client perspective:</p>
+<ul>
+<li>→ Sent from client to console</li>
+<li>← Sent from console to client</li>
+<li>↔ Both parties send this messagetype</li>
+<li>x Unknown</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th align="center">Direction</th>
+<th>Channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#acknowledgement">Acknowledgement</a></td>
+<td>0x01</td>
+<td align="center">↔</td>
+<td><em>Various</em></td>
+</tr>
+<tr>
+<td>Group</td>
+<td>0x02</td>
+<td align="center">x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><a href="#local-join">Local Join</a></td>
+<td>0x03</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td>Stop Activity</td>
+<td>0x05</td>
+<td align="center">x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><a href="#auxiliary-stream">Auxiliary Stream</a></td>
+<td>0x19</td>
+<td align="center">↔</td>
+<td>Title</td>
+</tr>
+<tr>
+<td><a href="#active-surface-change">Active Surface Change</a></td>
+<td>0x1A</td>
+<td align="center">←</td>
+<td>Title</td>
+</tr>
+<tr>
+<td>Navigate</td>
+<td>0x1B</td>
+<td align="center">x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><a href="#json">Json</a></td>
+<td>0x1C</td>
+<td align="center">↔</td>
+<td><em>Various</em></td>
+</tr>
+<tr>
+<td>Tunnel</td>
+<td>0x1D</td>
+<td align="center">x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><a href="#console-status">Console Status</a></td>
+<td>0x1E</td>
+<td align="center">←</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#text-configuration">Title Text Configuration</a></td>
+<td>0x1F</td>
+<td align="center">←</td>
+<td>SystemText</td>
+</tr>
+<tr>
+<td><a href="#title-text-input">Title Text Input</a></td>
+<td>0x20</td>
+<td align="center">↔</td>
+<td>SystemText</td>
+</tr>
+<tr>
+<td><a href="#title-text-selection">Title Text Selection</a></td>
+<td>0x21</td>
+<td align="center">→</td>
+<td>SystemText</td>
+</tr>
+<tr>
+<td>MirroringRequest</td>
+<td>0x22</td>
+<td align="center">x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><a href="#title-launch">Title Launch</a></td>
+<td>0x23</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#channel-start-request">Channel Start Request</a></td>
+<td>0x26</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#channel-start-response">Channel Start Response</a></td>
+<td>0x27</td>
+<td align="center">←</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#channel-stop">Channel Stop</a></td>
+<td>0x28</td>
+<td align="center">x</td>
+<td>Core</td>
+</tr>
+<tr>
+<td>System</td>
+<td>0x29</td>
+<td align="center">x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><a href="#disconnect">Disconnect</a></td>
+<td>0x2A</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#touch">Title Touch</a></td>
+<td>0x2E</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#accelerometer">Accelerometer</a></td>
+<td>0x2F</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#gyrometer">Gyrometer</a></td>
+<td>0x30</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#inclinometer">Inclinometer</a></td>
+<td>0x31</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#compass">Compass</a></td>
+<td>0x32</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#orientation">Orientation</a></td>
+<td>0x33</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#paired-identity-state-changed">Paired Identity State Changed</a></td>
+<td>0x36</td>
+<td align="center">←</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#unsnap">Unsnap</a></td>
+<td>0x37</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#game-dvr-record">Game DVR Record</a></td>
+<td>0x38</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#power-off">Power Off</a></td>
+<td>0x39</td>
+<td align="center">→</td>
+<td>Core</td>
+</tr>
+<tr>
+<td><a href="#media-controller-removed">Media Controller Removed</a></td>
+<td>0xF00</td>
+<td align="center">←</td>
+<td>SystemMedia</td>
+</tr>
+<tr>
+<td><a href="#media-command">Media Command</a></td>
+<td>0xF01</td>
+<td align="center">→</td>
+<td>SystemMedia</td>
+</tr>
+<tr>
+<td><a href="#media-command-result">Media Command Result</a></td>
+<td>0xF02</td>
+<td align="center">←</td>
+<td>SystemMedia</td>
+</tr>
+<tr>
+<td><a href="#media-state">Media State</a></td>
+<td>0xF03</td>
+<td align="center">←</td>
+<td>SystemMedia</td>
+</tr>
+<tr>
+<td><a href="#gamepad">Gamepad</a></td>
+<td>0xF0A</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#text-configuration">System Text Configuration</a></td>
+<td>0xF2B</td>
+<td align="center">←</td>
+<td>SystemText</td>
+</tr>
+<tr>
+<td><a href="#system-text-input">System Text Input</a></td>
+<td>0xF2C</td>
+<td align="center">↔</td>
+<td>SystemText</td>
+</tr>
+<tr>
+<td><a href="#touch">System Touch</a></td>
+<td>0xF2E</td>
+<td align="center">→</td>
+<td>SystemInput</td>
+</tr>
+<tr>
+<td><a href="#system-text-acknowledge">System Text Acknowledge</a></td>
+<td>0xF34</td>
+<td align="center">↔</td>
+<td>SystemText</td>
+</tr>
+<tr>
+<td><a href="#system-text-done">System Text Done</a></td>
+<td>0xF35</td>
+<td align="center">↔</td>
+<td>SystemText</td>
+</tr>
+</tbody>
+</table>
+<h2 id="message-payloads">Message Payloads</h2>
+<h3 id="local-join">Local Join</h3>
+<p><strong>Message Type</strong>: <code>0x03</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Pair client to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>Device Type</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>uint16</td>
+<td>Native Width</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint16</td>
+<td>Native Height</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>uint16</td>
+<td>DPI X</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint16</td>
+<td>DPI Y</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>uint64</td>
+<td>Device Capabilities</td>
+</tr>
+<tr>
+<td align="right">0x12</td>
+<td align="right">18</td>
+<td>uint32</td>
+<td>Client Version</td>
+</tr>
+<tr>
+<td align="right">0x16</td>
+<td align="right">22</td>
+<td>uint32</td>
+<td>OS Major Version</td>
+</tr>
+<tr>
+<td align="right">0x1A</td>
+<td align="right">26</td>
+<td>uint32</td>
+<td>OS Minor Version</td>
+</tr>
+<tr>
+<td align="right">0x1E</td>
+<td align="right">30</td>
+<td>SGString</td>
+<td>Display Name</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Device Type</strong>: See <a href="../simple_message/#client-type">Client Type</a></li>
+<li><strong>Native Width</strong>: Display resolution width from connecting client</li>
+<li><strong>Native Height</strong>: Display resolution height from connecting client</li>
+<li><strong>DPI X</strong>: Pixel Density on X-axis from client display</li>
+<li><strong>DPI Y</strong>: Pixel Density on Y-axis from client display</li>
+<li><strong>Device Capabilities</strong>: See <a href="#device-capabilities">Device Capabilities</a></li>
+<li><strong>Client Version</strong>: SmartGlass client version</li>
+<li><strong>OS Major Version</strong>: Operating System major version</li>
+<li><strong>OS Minor Version</strong>: Operating System minor version</li>
+<li><strong>Display Name</strong>: Client's display name</li>
+</ul>
+<h4 id="device-capabilities">Device Capabilities</h4>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>0000 0000 0000 0000</code></td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Streaming</td>
+<td><code>0000 0000 0000 0001</code></td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td><code>0000 0000 0000 0010</code></td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Accelerometer</td>
+<td><code>0000 0000 0000 0100</code></td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Compass</td>
+<td><code>0000 0000 0000 1000</code></td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>Gyrometer</td>
+<td><code>0000 0000 0001 0000</code></td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>Inclinometer</td>
+<td><code>0000 0000 0010 0000</code></td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>Orientation</td>
+<td><code>0000 0000 0100 0000</code></td>
+<td>0x40</td>
+</tr>
+<tr>
+<td>All</td>
+<td><code>1111 1111 1111 1111</code></td>
+<td>0xFFFFFFFFFFFFFFFF</td>
+</tr>
+</tbody>
+</table>
+<h4 id="examples">Examples</h4>
+<p><strong>Windows</strong></p>
+<pre><code class="language-ini">DeviceType = ClientType.WindowsStore
+NativeWidth = 1080
+NativeHeight = 1920
+DpiX = 96
+DpiY = 96
+DeviceCapabilities = DeviceCapabilities.All
+ClientVersion = 15
+OSMajor = 6
+OSMinor = 2
+DisplayName = &quot;SmartGlass-PC&quot;
+</code></pre>
+<p><strong>Android</strong></p>
+<pre><code class="language-ini">DeviceType = ClientType.Android
+# Resolution is portrait mode
+NativeWidth = 720
+NativeHeight = 1280
+DpiX = 160
+DpiY = 160
+DeviceCapabilities = DeviceCapabilities.All
+ClientVersion = 151117100  # v2.4.1511.17100-Beta
+OSMajor = 22  # Android 5.1.1 - API Version 22
+OSMinor = 0
+DisplayName = &quot;com.microsoft.xboxone.smartglass.beta&quot;
+</code></pre>
+<h3 id="channel-start-request">Channel Start Request</h3>
+<p><strong>Message Type</strong>: <code>0x26</code>
+<strong>Response</strong>: <a href="#channel-start-response">Channel Start Response</a>
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Start opening a <code>Service Channel</code>.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Channel Request Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Title Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>byte[16]</td>
+<td>Service Channel GUID</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>uint32</td>
+<td>Activity Id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Channel Request Id</strong>: Incrementing number, it's used to
+  match with <a href="#channel-start-response">Channel Start Response</a></li>
+<li><strong>Title Id</strong>: Set for <a href="../channels/#title-channel">Title channel</a>, otherwise <code>0</code></li>
+<li><strong>Service Channel GUID</strong>: See <a href="../channels/#service-channels">Service Channels</a></li>
+<li><strong>Activity Id</strong>: Always <code>0</code></li>
+</ul>
+<h3 id="channel-start-response">Channel Start Response</h3>
+<p><strong>Message Type</strong>: <code>0x27</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Response to <a href="#channel-start-request">Channel Start Request</a>.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Channel Request Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint64</td>
+<td>Target Channel Id</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Result</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Channel Request Id</strong>: Matches with
+  <a href="#channel-start-request">Channel Start Request</a></li>
+<li><strong>Target Channel Id</strong>: Assigned <code>Channel Id</code> to be used in
+  <a href="#header">Message Header</a></li>
+<li><strong>Result</strong>: Result code, <code>0</code> on success</li>
+</ul>
+<h3 id="channel-stop">Channel Stop</h3>
+<p><strong>Message Type</strong>: <code>0x28</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Stop an opened <code>Service Channel</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Target Channel Id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Target Channel Id</strong>: <code>Channel Id</code> received by
+  <a href="#channel-start-response">Channel Start Response</a></li>
+</ul>
+<h3 id="console-status">Console Status</h3>
+<p><strong>Message Type</strong>: <code>0x1E</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Informs client about running titles and Xbox OS version.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Live TV Provider</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Major Version</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Minor Version</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Build Number</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>SGString</td>
+<td>Locale</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint16</td>
+<td>Active Title Count</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>ActiveTitle[count]</td>
+<td>Active Titles</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Live TV Provider</strong>: Live TV provider Id</li>
+<li><strong>Major Version</strong>: Major OS version</li>
+<li><strong>Minor Version</strong>: Minor OS version</li>
+<li><strong>Build Number</strong>: OS builder number</li>
+<li><strong>Locale</strong>: Locale string</li>
+<li><strong>Active Title Count</strong>: Number of <code>Active Titles</code></li>
+<li><strong>Active Titles</strong>: Array of <a href="#active-title">Active Title</a></li>
+</ul>
+<h4 id="active-title">Active Title</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Title Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint16</td>
+<td>Title Disposition</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>byte[16]</td>
+<td>Product Id</td>
+</tr>
+<tr>
+<td align="right">0x16</td>
+<td align="right">22</td>
+<td>byte[16]</td>
+<td>Sandbox Id</td>
+</tr>
+<tr>
+<td align="right">0x26</td>
+<td align="right">38</td>
+<td>SGString</td>
+<td>AUM Id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Title Id</strong>: Title Id</li>
+<li><strong>Title Disposition</strong>: 1 bit: HasFocus-Flag, 15 bits: <a href="#active-title-location">Active Title Location</a></li>
+<li><strong>Product Id</strong>: Product Id</li>
+<li><strong>Sandbox Id</strong>: Sandbox Id</li>
+<li><strong>AUM Id</strong>: Application User Model Id</li>
+</ul>
+<h4 id="active-title-location">Active Title Location</h4>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Fill</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Snapped</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Start View</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>System UI</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>0x05</td>
+</tr>
+</tbody>
+</table>
+<h3 id="active-surface-change">Active Surface Change</h3>
+<p><strong>Message Type</strong>: <code>0x1A</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Informs client about surface change, used in auxiliary-stream context.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>Surface Type</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>uint16</td>
+<td>Server TCP Port</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint16</td>
+<td>Server UDP Port</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>byte[16]</td>
+<td>Session Id</td>
+</tr>
+<tr>
+<td align="right">0x16</td>
+<td align="right">22</td>
+<td>uint16</td>
+<td>Render Width</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>uint16</td>
+<td>Render Height</td>
+</tr>
+<tr>
+<td align="right">0x1A</td>
+<td align="right">26</td>
+<td>byte[16]</td>
+<td>Master Session Key</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Surface Type</strong>: See <a href="#active-surface-type">Active Surface Type</a></li>
+<li><strong>Server TCP Port</strong>: Used with <code>Auxiliary Stream</code></li>
+<li><strong>Server UDP Port</strong>: Used with <code>Auxiliary Stream</code></li>
+<li><strong>Session Id</strong>: Used with <code>Auxiliary Stream</code></li>
+<li><strong>Render Width</strong>: Used with <code>Auxiliary Stream</code></li>
+<li><strong>Render Height</strong>: Used with <code>Auxiliary Stream</code></li>
+<li><strong>Master Session Key</strong>: Used with <code>Auxiliary Stream</code></li>
+</ul>
+<h4 id="active-surface-type">Active Surface Type</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blank</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Direct</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Title Text Entity</td>
+<td>0x03</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fragment">Fragment</h3>
+<p><strong>Message Type</strong>: <em>variable</em>
+<strong>Response</strong>: <em>variable</em>
+<strong>Requests Ack</strong>: <em>variable</em>
+<strong>Is Fragment</strong>: <code>YES</code></p>
+<p>Used for messages that need to be fragmented.
+When all fragments are received, concatenate the data blobs and parse
+the assembled data as indicated <code>Message Type</code>.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Sequence Begin</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Sequence End</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint16</td>
+<td>Data length</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>byte[len]</td>
+<td>Data</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Sequence Begin</strong>: First sequence number of the fragment-set</li>
+<li><strong>Sequence End</strong>: Last sequence number (+1) of the fragement-set</li>
+<li><strong>Data</strong>: Data fragment</li>
+</ul>
+<h3 id="acknowledgement">Acknowledgement</h3>
+<p><strong>Message Type</strong>: <code>0x01</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Acknowledge a message from sender, alternatively used to request hearbeat from peer.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Low Watermark</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Processed List Length</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32[len]</td>
+<td>Processed List</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint32</td>
+<td>Rejected List Length</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>uint32[len]</td>
+<td>Rejected List</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Low Watermark</strong>: Last received/processed sequence number</li>
+<li><strong>Processed List</strong>: Processed sequence numbers (array of <code>uint32</code>)</li>
+<li><strong>Rejected List</strong>: Rejected sequence numbers (array of <code>uint32</code>)</li>
+</ul>
+<h3 id="json">Json</h3>
+<p><strong>Message Type</strong>: <code>0x1C</code>
+<strong>Response</strong>: <em>variable</em>
+<strong>Requests Ack</strong>: <em>variable</em></p>
+<p>Used to transfer commands or info in text-form.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>SGString</td>
+<td>Text</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text</strong>: JSON Body</li>
+</ul>
+<h4 id="json-fragmentation">Json Fragmentation</h4>
+<p>In case the <code>Protected Payload</code> of a Json Message exceeds <code>1024 bytes</code>,
+the message gets fragmented.</p>
+<p>Fragmentation is done by base64-encoding and splitting-up the Json string, the maximum
+fragment length being <code>905 bytes</code> (When serializing without spaces).</p>
+<p>Example fragment-set:</p>
+<pre><code class="language-json"># Fragment #0
+{&quot;datagram_size&quot;:&quot;24&quot;,&quot;datagram_id&quot;:&quot;1&quot;,&quot;fragment_offset&quot;:&quot;0&quot;,&quot;fragment_length&quot;:&quot;12&quot;,&quot;fragment_data&quot;:&quot;eyJ0ZXN0Ijoi&quot;}
+# Fragment #1
+{&quot;datagram_size&quot;:&quot;24&quot;,&quot;datagram_id&quot;:&quot;1&quot;,&quot;fragment_offset&quot;:&quot;12&quot;,&quot;fragment_length&quot;:&quot;12&quot;,&quot;fragment_data&quot;:&quot;dmFsdWUifQ==&quot;}
+
+# After concatenation
+&quot;eyJ0ZXN0IjoidmFsdWUifQ==&quot;
+
+# After decoding
+'{&quot;test&quot;:&quot;value&quot;}'
+</code></pre>
+<ul>
+<li><strong>datagram_size</strong>: Total base64-string length</li>
+<li><strong>datagram_id</strong>: Identifier of the fragment-set</li>
+<li><strong>fragment_offset</strong>: Position of the current fragment</li>
+<li><strong>fragment_length</strong>: Length of the current fragment</li>
+<li><strong>fragment_data</strong>: Base64 string</li>
+</ul>
+<p>Receiving participant checks if a set of fragments is received completely by summarizing <code>fragment_length</code> fields
+for the specific <code>datagram_id</code> and checking it against <code>datagram_size</code>.</p>
+<p>When all fragments are received, they are ordered by <code>fragment_offset</code> and the <code>fragment_data</code> is concatenated and
+base64-decoded.</p>
+<h3 id="auxiliary-stream">Auxiliary Stream</h3>
+<p><strong>Message Type</strong>: <code>0x19</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Used for <em>SmartGlass Experience</em> aka. game companion stuff.
+The only known utilization is in Fallout 4.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Connection Info Flag</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>If Connection Info Flag == 1:</td>
+</tr>
+<tr>
+<td align="right">0x01</td>
+<td align="right">1</td>
+<td>uint16</td>
+<td>AES Key length</td>
+</tr>
+<tr>
+<td align="right">0x03</td>
+<td align="right">3</td>
+<td>byte[len]</td>
+<td>AES Key</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>uint16</td>
+<td>Server IV length</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>byte[len]</td>
+<td>Server IV</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>uint16</td>
+<td>Client IV length</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>byte[len]</td>
+<td>Client IV</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>uint16</td>
+<td>HMAC Key length</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>byte[len]</td>
+<td>HMAC Key</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>uint16</td>
+<td>Endpoints Size</td>
+</tr>
+<tr>
+<td align="right">??</td>
+<td align="right">??</td>
+<td>Endpoint[size]</td>
+<td>Endpoints</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Connection Info Flag</strong>: Handshake: <code>0</code>, Connection Data: <code>1</code></li>
+<li><strong>AES Key</strong>: AES-CBC Key</li>
+<li><strong>Server IV</strong>: Server's Initialization Vector</li>
+<li><strong>Client IV</strong>: Client's Initialization Vector</li>
+<li><strong>HMAC Key</strong>: HMAC key</li>
+<li><strong>Endpoints Size</strong>: Endpoint count</li>
+<li><strong>Endpoints</strong>: Advertised title endpoints, See <a href="#endpoint">Endpoint</a></li>
+</ul>
+<h4 id="endpoint">Endpoint</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SGString</td>
+<td>IP Address</td>
+</tr>
+<tr>
+<td>SGString</td>
+<td>Port</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disconnect">Disconnect</h3>
+<p><strong>Message Type</strong>: <code>0x2A</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Disconnect client from console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Reason</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td> Error code</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Reason</strong>: See <a href="#disconnect-reason">Disconnect Reason</a></li>
+<li><strong>Error code</strong>: Error code</li>
+</ul>
+<h4 id="disconnect-reason">Disconnect Reason</h4>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unspecified</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Power Off</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>AppClose</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>SignOut</td>
+<td>0x05</td>
+</tr>
+<tr>
+<td>Reboot</td>
+<td>0x06</td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td>0x07</td>
+</tr>
+<tr>
+<td>Low Power</td>
+<td>0x08</td>
+</tr>
+</tbody>
+</table>
+<h3 id="power-off">Power Off</h3>
+<p><strong>Message Type</strong>: <code>0x39</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send poweroff to the console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>SGString</td>
+<td>Live ID</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Live ID</strong>: Live ID of console to power off. This info is stored in the <a href="../simple_message/#certificate">Discovery Response Certificate</a></li>
+</ul>
+<h3 id="game-dvr-record">Game DVR Record</h3>
+<p><strong>Message Type</strong>: <code>0x38</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Save a DVR clip</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>int32</td>
+<td>Start Time Delta</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>int32</td>
+<td>End Time Delta</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Start Time Delta</strong>: Start time of recording in seconds (e.g. -60 for last minute)</li>
+<li><strong>End Time Delta</strong>: End time of recording in seconds (e.g. 0 for <em>now</em>)</li>
+</ul>
+<h3 id="unsnap">Unsnap</h3>
+<p><strong>Message Type</strong>: <code>0x37</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Unsnap currently snapped application.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>byte</td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Unknown</strong>: Unknown</li>
+</ul>
+<h3 id="gamepad">Gamepad</h3>
+<p><strong>Message Type</strong>: <code>0xF0A</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send gamepad control (not for use with low latency <em>gamestreaming</em>).</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint16</td>
+<td>Buttons</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>float32</td>
+<td>Left Trigger</td>
+</tr>
+<tr>
+<td align="right">0x0E</td>
+<td align="right">14</td>
+<td>float32</td>
+<td>Right Trigger</td>
+</tr>
+<tr>
+<td align="right">0x12</td>
+<td align="right">18</td>
+<td>float32</td>
+<td>Left Thumbstick X</td>
+</tr>
+<tr>
+<td align="right">0x16</td>
+<td align="right">22</td>
+<td>float32</td>
+<td>Left Thumbstick Y</td>
+</tr>
+<tr>
+<td align="right">0x1A</td>
+<td align="right">26</td>
+<td>float32</td>
+<td>Right Thumbstick X</td>
+</tr>
+<tr>
+<td align="right">0x1E</td>
+<td align="right">30</td>
+<td>float32</td>
+<td>Right Thumbstick Y</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Timestamp</strong>: Timestamp</li>
+<li><strong>Buttons</strong>: See Flags <a href="#gamepad-button">Gamepad Button</a></li>
+<li><strong>Left Trigger</strong>: Left Trigger value</li>
+<li><strong>Right Trigger</strong>: Right trigger value</li>
+<li><strong>Left Thumbstick X</strong>: Left thumbstick x-axis value</li>
+<li><strong>Left Thumbstick Y</strong>: Left thumbstick y-axis value</li>
+<li><strong>Right Thumbstick X</strong>: Right thumbstick x-axis value</li>
+<li><strong>Right Thumbstick Y</strong>: Right thumbstick y-axis value</li>
+</ul>
+<h4 id="gamepad-button">Gamepad Button</h4>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clear</td>
+<td><code>0000 0000 0000 0000</code></td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Enroll</td>
+<td><code>0000 0000 0000 0001</code></td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Nexus</td>
+<td><code>0000 0000 0000 0010</code></td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><code>0000 0000 0000 0100</code></td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>View</td>
+<td><code>0000 0000 0000 1000</code></td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>A</td>
+<td><code>0000 0000 0001 0000</code></td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>B</td>
+<td><code>0000 0000 0010 0000</code></td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>X</td>
+<td><code>0000 0000 0100 0000</code></td>
+<td>0x40</td>
+</tr>
+<tr>
+<td>Y</td>
+<td><code>0000 0000 1000 0000</code></td>
+<td>0x080</td>
+</tr>
+<tr>
+<td>D-Pad Up</td>
+<td><code>0000 0001 0000 0000</code></td>
+<td>0x100</td>
+</tr>
+<tr>
+<td>D-Pad Down</td>
+<td><code>0000 0010 0000 0000</code></td>
+<td>0x200</td>
+</tr>
+<tr>
+<td>D-Pad Left</td>
+<td><code>0000 0100 0000 0000</code></td>
+<td>0x400</td>
+</tr>
+<tr>
+<td>D-Pad Right</td>
+<td><code>0000 1000 0000 0000</code></td>
+<td>0x800</td>
+</tr>
+<tr>
+<td>Left Shoulder</td>
+<td><code>0001 0000 0000 0000</code></td>
+<td>0x1000</td>
+</tr>
+<tr>
+<td>Right Shoulder</td>
+<td><code>0010 0000 0000 0000</code></td>
+<td>0x2000</td>
+</tr>
+<tr>
+<td>Left Thumbstick</td>
+<td><code>0100 0000 0000 0000</code></td>
+<td>0x4000</td>
+</tr>
+<tr>
+<td>Right Thumbstick</td>
+<td><code>1000 0000 0000 0000</code></td>
+<td>0x8000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="paired-identity-state-changed">Paired Identity State Changed</h3>
+<p><strong>Message Type</strong>: <code>0x36</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Informs client about paired identity state change.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>State</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>State</strong>: See <a href="#paired-identity-state">Paired Identity State</a></li>
+</ul>
+<h4 id="paired-identity-state">Paired Identity State</h4>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not Paired</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Paired</td>
+<td>0x01</td>
+</tr>
+</tbody>
+</table>
+<h3 id="media-state">Media State</h3>
+<p><strong>Message Type</strong>: <code>0xF03</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Informs client about media playback state.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Title Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>SGString</td>
+<td>AUM Id</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>SGString</td>
+<td>Asset Id</td>
+</tr>
+<tr>
+<td align="right">0x0E</td>
+<td align="right">14</td>
+<td>uint16</td>
+<td>Media Type</td>
+</tr>
+<tr>
+<td align="right">0x12</td>
+<td align="right">18</td>
+<td>uint16</td>
+<td>Sound Level</td>
+</tr>
+<tr>
+<td align="right">0x16</td>
+<td align="right">22</td>
+<td>uint32</td>
+<td>Enabled commands</td>
+</tr>
+<tr>
+<td align="right">0x1A</td>
+<td align="right">26</td>
+<td>uint32</td>
+<td>Playback status</td>
+</tr>
+<tr>
+<td align="right">0x1E</td>
+<td align="right">30</td>
+<td>float32</td>
+<td>Rate</td>
+</tr>
+<tr>
+<td align="right">0x22</td>
+<td align="right">34</td>
+<td>uint64</td>
+<td>Position</td>
+</tr>
+<tr>
+<td align="right">0x2A</td>
+<td align="right">42</td>
+<td>uint64</td>
+<td>Media Start</td>
+</tr>
+<tr>
+<td align="right">0x32</td>
+<td align="right">50</td>
+<td>uint64</td>
+<td>Media End</td>
+</tr>
+<tr>
+<td align="right">0x38</td>
+<td align="right">58</td>
+<td>uint64</td>
+<td>Min Seek</td>
+</tr>
+<tr>
+<td align="right">0x42</td>
+<td align="right">66</td>
+<td>uint64</td>
+<td>Max Seek</td>
+</tr>
+<tr>
+<td align="right">0x4A</td>
+<td align="right">74</td>
+<td>uint16</td>
+<td>Metadata Length</td>
+</tr>
+<tr>
+<td align="right">0x4C</td>
+<td align="right">76</td>
+<td>MediaMetadata[len]</td>
+<td>Metadata</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Title Id</strong>: Title Id of media</li>
+<li><strong>AUM Id</strong>: Application User Model Id of media</li>
+<li><strong>Asset Id</strong>: Asset Id</li>
+<li><strong>Media Type</strong>: See <a href="#media-type">Media Type</a></li>
+<li><strong>Sound Level</strong>: See <a href="#sound-level">Sound Level</a></li>
+<li><strong>Enabled commands</strong>: See <a href="#media-control-command">Media Control Command</a></li>
+<li><strong>Playback status</strong>: See <a href="#media-playback-status">Media Playback Status</a></li>
+<li><strong>Rate</strong>: Playback rate</li>
+<li><strong>Position</strong>: Current media position (nanoseconds)</li>
+<li><strong>Media Start</strong>: Media start (nanoseconds)</li>
+<li><strong>Media End</strong>: Media end (nanoseconds)</li>
+<li><strong>Min Seek</strong>: Minimal seek position (nanoseconds)</li>
+<li><strong>Max Seek</strong>: Maximal seek position (nanoseconds)</li>
+<li><strong>Metadata Length</strong>: Length of Metadata array</li>
+<li><strong>Metadata</strong>: Array of <a href="#media-metadata">Media Metadata</a></li>
+</ul>
+<h4 id="sound-level">Sound Level</h4>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Muted</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>0x02</td>
+</tr>
+</tbody>
+</table>
+<h4 id="media-playback-status">Media Playback Status</h4>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Closed</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Changing</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Stopped</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Playing</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Paused</td>
+<td>0x04</td>
+</tr>
+</tbody>
+</table>
+<h4 id="media-transport-state">Media Transport State</h4>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Invalid</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Stopped</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Starting</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Playing</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Paused</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Buffering</td>
+<td>0x05</td>
+</tr>
+</tbody>
+</table>
+<h4 id="media-type">Media Type</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NoMedia</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Music</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Conversation</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Game</td>
+<td>0x05</td>
+</tr>
+</tbody>
+</table>
+<h4 id="media-metadata">Media Metadata</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>SGString</td>
+<td>Name</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">?</td>
+<td>SGString</td>
+<td>Value</td>
+</tr>
+</tbody>
+</table>
+<h3 id="media-controller-removed">Media Controller Removed</h3>
+<p><strong>Message Type</strong>: <code>0xF00</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Informs client about removed media controller.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Title Id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Title Id</strong>: Title Id of removed media controller</li>
+</ul>
+<h3 id="media-command-result">Media Command Result</h3>
+<p><strong>Message Type</strong>: <code>0xF02</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Informs client wether Media Command succeeded.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Request Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Result</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Request Id</strong>: Match with request Id of <a href="#media-command">Media Command</a></li>
+<li><strong>Result</strong>: Result, <code>0</code> is success</li>
+</ul>
+<h3 id="media-command">Media Command</h3>
+<p><strong>Message Type</strong>: <code>0xF01</code>
+<strong>Response</strong>: <a href="#media-command-result">Media Command Result</a>
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Sends media playback command to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Request Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Title Id</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Command</td>
+</tr>
+</tbody>
+</table>
+<p>| If Command == Seek
+| 0x10         |  16   | uint32      | Seek position</p>
+<ul>
+<li><strong>Request Id</strong>: Request Id</li>
+<li><strong>Title Id</strong>: Title Id of media controller</li>
+<li><strong>Command</strong>: See <a href="#media-control-command">Media Control Command</a></li>
+<li><strong>Seek position (optional)</strong>: Only set if Command == Seek</li>
+</ul>
+<h4 id="media-control-command">Media Control Command</h4>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Play</td>
+<td><code>0000 0000 0000 0010</code></td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Pause</td>
+<td><code>0000 0000 0000 0100</code></td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Play Pause Toggle</td>
+<td><code>0000 0000 0000 1000</code></td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td><code>0000 0000 0001 0000</code></td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>Record</td>
+<td><code>0000 0000 0010 0000</code></td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>Next Track</td>
+<td><code>0000 0000 0100 0000</code></td>
+<td>0x40</td>
+</tr>
+<tr>
+<td>Previous Track</td>
+<td><code>0000 0000 1000 0000</code></td>
+<td>0x080</td>
+</tr>
+<tr>
+<td>Fast Forward</td>
+<td><code>0000 0001 0000 0000</code></td>
+<td>0x100</td>
+</tr>
+<tr>
+<td>Rewind</td>
+<td><code>0000 0010 0000 0000</code></td>
+<td>0x200</td>
+</tr>
+<tr>
+<td>Channel Up</td>
+<td><code>0000 0100 0000 0000</code></td>
+<td>0x400</td>
+</tr>
+<tr>
+<td>Channel Down</td>
+<td><code>0000 1000 0000 0000</code></td>
+<td>0x800</td>
+</tr>
+<tr>
+<td>Back</td>
+<td><code>0001 0000 0000 0000</code></td>
+<td>0x1000</td>
+</tr>
+<tr>
+<td>View</td>
+<td><code>0010 0000 0000 0000</code></td>
+<td>0x2000</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><code>0100 0000 0000 0000</code></td>
+<td>0x4000</td>
+</tr>
+<tr>
+<td>Seek</td>
+<td><code>1000 0000 0000 0000</code></td>
+<td>0x8000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="orientation">Orientation</h3>
+<p><strong>Message Type</strong>: <code>0x33</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send orientation message to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>float32</td>
+<td>Rotation Matrix Value</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>float32</td>
+<td>W</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>float32</td>
+<td>X</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>float32</td>
+<td>Y</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>float32</td>
+<td>Z</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Timestamp</strong>: Timestamp</li>
+<li><strong>Rotation Matrix Value</strong>: Rotation Matrix Value</li>
+<li><strong>W</strong>: Value of W-axis</li>
+<li><strong>X</strong>: Value of X-axis</li>
+<li><strong>Y</strong>: Value of Y-axis</li>
+<li><strong>Z</strong>: Value of Z-axis</li>
+</ul>
+<h3 id="compass">Compass</h3>
+<p><strong>Message Type</strong>: <code>0x32</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send compass message to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>float32</td>
+<td>Magnetic North</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>float32</td>
+<td>True North</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Timestamp</strong>: Timestamp</li>
+<li><strong>Magnetic North</strong>: Magnetic North</li>
+<li><strong>True North</strong>: True North</li>
+</ul>
+<h3 id="inclinometer">Inclinometer</h3>
+<p><strong>Message Type</strong>: <code>0x31</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send inclinometer message to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>float32</td>
+<td>Pitch</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>float32</td>
+<td>Roll</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>float32</td>
+<td>Yaw</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Timestamp</strong>: Timestamp</li>
+<li><strong>Pitch</strong>: Pitch</li>
+<li><strong>Roll</strong>: Roll</li>
+<li><strong>Yaw</strong>: Yaw</li>
+</ul>
+<h3 id="gyrometer">Gyrometer</h3>
+<p><strong>Message Type</strong>: <code>0x30</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send gyrometer message to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>float32</td>
+<td>Angular Velocity X</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>float32</td>
+<td>Angular Velocity Y</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>float32</td>
+<td>Angular Velocity Z</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Timestamp</strong>: Timestamp</li>
+<li><strong>Angular Velocity X</strong>: Angular Velocity X-axis</li>
+<li><strong>Angular Velocity Y</strong>: Angular Velocity Y-axis</li>
+<li><strong>Angular Velocity Z</strong>: Angular Velocity Z-axis</li>
+</ul>
+<h3 id="accelerometer">Accelerometer</h3>
+<p><strong>Message Type</strong>: <code>0x</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send accelerometer message to console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>float32</td>
+<td>Acceleration X</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>float32</td>
+<td>Acceleration Y</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>float32</td>
+<td>Acceleration Z</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Timestamp</strong>: Timestamp</li>
+<li><strong>Acceleration X</strong>: Acceleration X-axis</li>
+<li><strong>Acceleration Y</strong>: Acceleration Y-axis</li>
+<li><strong>Acceleration Z</strong>: Acceleration Z-axis</li>
+</ul>
+<h3 id="touch">Touch</h3>
+<p><strong>Message Type</strong>: <code>0x2E</code> (Title) or <code>0xF2E</code> (System)
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<p>Send touch input message to console.</p>
+<table>
+<thead>
+<tr>
+<th>Offset (hex)</th>
+<th>Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>0</td>
+<td>uint32</td>
+<td>Touch Msg Timestamp</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>4</td>
+<td>uint16</td>
+<td> Touch Count</td>
+</tr>
+<tr>
+<td>0x06</td>
+<td>6</td>
+<td>Touchpoint[count]</td>
+<td>Touches</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Touch Msg Timestamp</strong>: Timestamp</li>
+<li><strong>Touch Count</strong>: Number of touchpoints</li>
+<li><strong>Touches</strong>: Array of <a href="#touchpoint">Touchpoint</a></li>
+</ul>
+<h4 id="touch-action">Touch Action</h4>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Down</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Move</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Up</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Cancel</td>
+<td>0x04</td>
+</tr>
+</tbody>
+</table>
+<h4 id="touchpoint">Touchpoint</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Touchpoint Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint16</td>
+<td>Touchpoint Action</td>
+</tr>
+<tr>
+<td align="right">0x06</td>
+<td align="right">6</td>
+<td>uint32</td>
+<td>Touchpoint X</td>
+</tr>
+<tr>
+<td align="right">0x0A</td>
+<td align="right">10</td>
+<td>uint32</td>
+<td>Touchpoint Y</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Touchpoint Id</strong>: Id of Touchpoint</li>
+<li><strong>Touchpoint Action</strong>: See <a href="#touch-action">Touch Action</a></li>
+<li><strong>Touchpoint X</strong>: Touchpoint X-Axis</li>
+<li><strong>Touchpoint Y</strong>: Touchpoint X-Axis</li>
+</ul>
+<h3 id="title-launch">Title Launch</h3>
+<p><strong>Message Type</strong>: <code>0x23</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<p>Launch a title / URL on the console.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint16</td>
+<td>Location</td>
+</tr>
+<tr>
+<td align="right">0x02</td>
+<td align="right">2</td>
+<td>SGString</td>
+<td>Uri</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Location</strong>: Usually <code>0</code></li>
+<li><strong>Uri</strong>: Uri to launch</li>
+</ul>
+<h3 id="system-text-done">System Text Done</h3>
+<p><strong>Message Type</strong>: <code>0xF35</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Text Session Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Text Version</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Flags</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Result</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text Session Id</strong>: Text session id</li>
+<li><strong>Text Version</strong>: Text version</li>
+<li><strong>Flags</strong>: Flags</li>
+<li><strong>Result</strong>: See <a href="#text-result">Text Result</a></li>
+</ul>
+<h4 id="text-result">Text Result</h4>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cancel</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>0x01</td>
+</tr>
+</tbody>
+</table>
+<h3 id="system-text-acknowledge">System Text Acknowledge</h3>
+<p><strong>Message Type</strong>: <code>0xF34</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Text Session Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Text Version Ack</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text Session Id</strong>: Text session id</li>
+<li><strong>Text Version Ack</strong>: Text version to acknowledge</li>
+</ul>
+<h3 id="system-text-input">System Text Input</h3>
+<p><strong>Message Type</strong>: <code>0xF2C</code>
+<strong>Response</strong>: <a href="#system-text-acknowledge">System Text Acknowledge</a>
+<strong>Requests Ack</strong>: <code>NO</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Text Session Id</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Base Version</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Submitted Version</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Total Text bytelength</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Selection Start</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint32</td>
+<td>Selection Length</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>uint16</td>
+<td>Flags</td>
+</tr>
+<tr>
+<td align="right">0x1A</td>
+<td align="right">26</td>
+<td>uint32</td>
+<td>Text Chunk bytestart</td>
+</tr>
+<tr>
+<td align="right">0x1E</td>
+<td align="right">30</td>
+<td>SGString</td>
+<td>Text Chunk</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">??</td>
+<td>uint16</td>
+<td>Delta Length</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">??</td>
+<td>Delta[len]</td>
+<td>Text Delta</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text Session Id</strong>: Text session id</li>
+<li><strong>Base Version</strong>: Base version</li>
+<li><strong>Submitted Version</strong>: Submitted version</li>
+<li><strong>Total Text bytelength</strong>: Total bytelength of text</li>
+<li><strong>Selection Start</strong>: Selection start</li>
+<li><strong>Selection Length</strong>: Selection length</li>
+<li><strong>Flags</strong>: Flags</li>
+<li><strong>Text Chunk bytestart</strong>: Bytestart of textchunk</li>
+<li><strong>Text Chunk</strong>: Actual text chunk to send</li>
+<li><strong>Delta Length</strong>: Count of Text Delta</li>
+<li><strong>Text Delta</strong>: See <a href="#text-delta">Text Delta</a></li>
+</ul>
+<h4 id="text-delta">Text Delta</h4>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint32</td>
+<td>Offset</td>
+</tr>
+<tr>
+<td align="right">0x04</td>
+<td align="right">4</td>
+<td>uint32</td>
+<td>Delete Count</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>SGString</td>
+<td>Insert Content</td>
+</tr>
+</tbody>
+</table>
+<h3 id="title-text-selection">Title Text Selection</h3>
+<p><strong>Message Type</strong>: <code>0x21</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Text Session Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Text Buffer Version</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Start</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Length</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text Session Id</strong>: Text session id</li>
+<li><strong>Text Buffer Version</strong>: Text buffer version</li>
+<li><strong>Start</strong>: Start</li>
+<li><strong>Length</strong>: Length</li>
+</ul>
+<h3 id="title-text-input">Title Text Input</h3>
+<p><strong>Message Type</strong>: <code>0x</code>
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Text Session Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Text Buffer Version</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint16</td>
+<td>Result</td>
+</tr>
+<tr>
+<td align="right">0x0E</td>
+<td align="right">14</td>
+<td>SGString</td>
+<td>Text</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text Session Id</strong>: Text session id</li>
+<li><strong>Text Buffer Version</strong>: Text buffer version</li>
+<li><strong>Result</strong>: See <a href="#text-result">Text Result</a></li>
+<li><strong>Text</strong>: Actual text</li>
+</ul>
+<h3 id="text-configuration">Text Configuration</h3>
+<p><strong>Message Type</strong>: <code>0x1F</code> (Title) or <code>0xF2B</code> (System)
+<strong>Response</strong>: None
+<strong>Requests Ack</strong>: <code>YES</code></p>
+<table>
+<thead>
+<tr>
+<th align="right">Offset (hex)</th>
+<th align="right">Offset (dec)</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0x00</td>
+<td align="right">0</td>
+<td>uint64</td>
+<td>Text Session Id</td>
+</tr>
+<tr>
+<td align="right">0x08</td>
+<td align="right">8</td>
+<td>uint32</td>
+<td>Text Buffer Version</td>
+</tr>
+<tr>
+<td align="right">0x0C</td>
+<td align="right">12</td>
+<td>uint32</td>
+<td>Text options</td>
+</tr>
+<tr>
+<td align="right">0x10</td>
+<td align="right">16</td>
+<td>uint32</td>
+<td>Input Scope</td>
+</tr>
+<tr>
+<td align="right">0x14</td>
+<td align="right">20</td>
+<td>uint32</td>
+<td>Max Text Length</td>
+</tr>
+<tr>
+<td align="right">0x18</td>
+<td align="right">24</td>
+<td>SGString</td>
+<td>Locale</td>
+</tr>
+<tr>
+<td align="right">0x??</td>
+<td align="right">??</td>
+<td>SGString</td>
+<td>Prompt</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Text Session Id</strong>: Text session id</li>
+<li><strong>Text Buffer Version</strong>: Text buffer version</li>
+<li><strong>Text options</strong>: See <a href="#text-option-flags">Text Option Flags</a></li>
+<li><strong>Input Scope</strong>: See <a href="#text-input-scope">Text Input Scope</a></li>
+<li><strong>Max Text Length</strong>: Maximal text length</li>
+<li><strong>Locale</strong>: Locale to use</li>
+<li><strong>Prompt</strong>: Text input prompt</li>
+</ul>
+<h4 id="text-input-scope">Text Input Scope</h4>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default</td>
+<td>0x0</td>
+</tr>
+<tr>
+<td>Url</td>
+<td>0x1</td>
+</tr>
+<tr>
+<td>Full FilePath</td>
+<td>0x2</td>
+</tr>
+<tr>
+<td>File Name</td>
+<td>0x3</td>
+</tr>
+<tr>
+<td>Email UserName</td>
+<td>0x4</td>
+</tr>
+<tr>
+<td>Email SmtpAddress</td>
+<td>0x5</td>
+</tr>
+<tr>
+<td>LogOn Name</td>
+<td>0x6</td>
+</tr>
+<tr>
+<td>Personal FullName</td>
+<td>0x7</td>
+</tr>
+<tr>
+<td>Personal NamePrefix</td>
+<td>0x8</td>
+</tr>
+<tr>
+<td>Personal GivenName</td>
+<td>0x9</td>
+</tr>
+<tr>
+<td>Personal MiddleName</td>
+<td>0xA</td>
+</tr>
+<tr>
+<td>Personal Surname</td>
+<td>0xB</td>
+</tr>
+<tr>
+<td>Personal NameSuffix</td>
+<td>0xC</td>
+</tr>
+<tr>
+<td>Postal Address</td>
+<td>0xD</td>
+</tr>
+<tr>
+<td>Postal Code</td>
+<td>0xE</td>
+</tr>
+<tr>
+<td>Address Street</td>
+<td>0xF</td>
+</tr>
+<tr>
+<td>Address StateOrProvince</td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>Address City</td>
+<td>0x11</td>
+</tr>
+<tr>
+<td>Address CountryName</td>
+<td>0x12</td>
+</tr>
+<tr>
+<td>Address CountryShortName</td>
+<td>0x13</td>
+</tr>
+<tr>
+<td>Currency AmountAndSymbol</td>
+<td>0x14</td>
+</tr>
+<tr>
+<td>Currency Amount</td>
+<td>0x15</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>0x16</td>
+</tr>
+<tr>
+<td>Date Month</td>
+<td>0x17</td>
+</tr>
+<tr>
+<td>Date Day</td>
+<td>0x18</td>
+</tr>
+<tr>
+<td>Date Year</td>
+<td>0x19</td>
+</tr>
+<tr>
+<td>Date MonthName</td>
+<td>0x1A</td>
+</tr>
+<tr>
+<td>Date DayName</td>
+<td>0x1B</td>
+</tr>
+<tr>
+<td>Digits</td>
+<td>0x1C</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>0x1D</td>
+</tr>
+<tr>
+<td>OneChar</td>
+<td>0x1E</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>0x1F</td>
+</tr>
+<tr>
+<td>Telephone Number</td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>Telephone CountryCode</td>
+<td>0x21</td>
+</tr>
+<tr>
+<td>Telephone AreaCode</td>
+<td>0x22</td>
+</tr>
+<tr>
+<td>Telephone LocalNumber</td>
+<td>0x23</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>0x24</td>
+</tr>
+<tr>
+<td>Time Hour</td>
+<td>0x25</td>
+</tr>
+<tr>
+<td>Time MinorSec</td>
+<td>0x26</td>
+</tr>
+<tr>
+<td>Number FullWidth</td>
+<td>0x27</td>
+</tr>
+<tr>
+<td>Alphanumeric HalfWidth</td>
+<td>0x28</td>
+</tr>
+<tr>
+<td>Alphanumeric FullWidth</td>
+<td>0x29</td>
+</tr>
+<tr>
+<td>Currency Chinese</td>
+<td>0x2A</td>
+</tr>
+<tr>
+<td>Bopomofo</td>
+<td>0x2B</td>
+</tr>
+<tr>
+<td>Hiragana</td>
+<td>0x2C</td>
+</tr>
+<tr>
+<td>Katakana HalfWidth</td>
+<td>0x2D</td>
+</tr>
+<tr>
+<td>Katakana FullWidth</td>
+<td>0x2E</td>
+</tr>
+<tr>
+<td>Hanja</td>
+<td>0x2F</td>
+</tr>
+<tr>
+<td>Hangul HalfWidth</td>
+<td>0x30</td>
+</tr>
+<tr>
+<td>Hangul FullWidth</td>
+<td>0x31</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>0x32</td>
+</tr>
+<tr>
+<td>Search TitleText</td>
+<td>0x33</td>
+</tr>
+<tr>
+<td>Search Incremental</td>
+<td>0x34</td>
+</tr>
+<tr>
+<td>Chinese HalfWidth</td>
+<td>0x35</td>
+</tr>
+<tr>
+<td>Chinese FullWidth</td>
+<td>0x36</td>
+</tr>
+<tr>
+<td>NativeScript</td>
+<td>0x37</td>
+</tr>
+</tbody>
+</table>
+<h4 id="text-option-flags">Text Option Flags</h4>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Bits</th>
+<th>Mask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default</td>
+<td><code>0000 0000 0000 0000</code></td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>Accepts Return</td>
+<td><code>0000 0000 0000 0001</code></td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Password</td>
+<td><code>0000 0000 0000 0010</code></td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Multi Line</td>
+<td><code>0000 0000 0000 0100</code></td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Spell Check Enabled</td>
+<td><code>0000 0000 0000 1000</code></td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>Prediction Enabled</td>
+<td><code>0000 0000 0001 0000</code></td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>RTL</td>
+<td><code>0000 0000 0010 0000</code></td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>Dismiss</td>
+<td><code>0100 0000 0000 0000</code></td>
+<td>0x4000</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../channels/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Channels" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Channels
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../nano/" class="md-footer__link md-footer__link--next" aria-label="Next: Gamestream (Nano)" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Gamestream (Nano)
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.649a939e.min.js"></script>
+      
+    
+  </body>
+</html>
